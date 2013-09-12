@@ -1,4 +1,4 @@
 Projekt
 =======
 
-OOSZF tárgy keretei belül készülő féléves feladat
+OOSZF tárgy keretei belül készülő féléves feladat.
