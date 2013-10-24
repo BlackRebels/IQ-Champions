@@ -18,11 +18,30 @@ namespace iqchampion_design
     /// <summary>
     /// Interaction logic for Menu.xaml
     /// </summary>
-    public partial class Menu : Page
+    public partial class Menu : Window
     {
         public Menu()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MainWindow login = new MainWindow();
+            login.Show();
+            this.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://index.hu");
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Lobby lobby = new Lobby();
+            lobby.Show();
+            this.Close();
         }
     }
 }
