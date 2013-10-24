@@ -11,7 +11,7 @@
         <Label Content="Felhasználónév" HorizontalAlignment="Left" Margin="50,67,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Jelszó" HorizontalAlignment="Left" Margin="50,138,0,0" VerticalAlignment="Top" FontSize="16"/>
         <TextBlock HorizontalAlignment="Left" Margin="50,220,0,-1" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Foreground="#FF003AFF">
-        <Hyperlink RequestNavigate="Hyperlink_RequestNavigate_1" NavigateUri="http://index.hu">
+        <Hyperlink RequestNavigate="Hyperlink_RequestNavigate_1" NavigateUri="http://localhost:3032/Account/Register">
             Regisztráció
             </Hyperlink>
         </TextBlock>
