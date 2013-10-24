@@ -16,35 +16,16 @@ using System.Windows.Shapes;
 namespace iqchampion_design
 {
     /// <summary>
-    /// Interaction logic for Menu.xaml
+    /// Interaction logic for SzobaPage.xaml
     /// </summary>
-    public partial class Menu : Window
+    public partial class SzobaPage : Page
     {
-        public Menu()
+        public SzobaPage()
         {
             InitializeComponent();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            MainWindow login = new MainWindow();
-            login.Show();
-            this.Close();
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://index.hu");
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            Lobby lobby = new Lobby();
-            lobby.Show();
-            this.Close();
-        }
-
-        private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             GameTable game = new GameTable();
             game.Show();

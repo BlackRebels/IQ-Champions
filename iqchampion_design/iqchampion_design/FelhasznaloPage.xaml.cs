@@ -10,29 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace iqchampion_design
 {
     /// <summary>
-    /// Interaction logic for GameTable.xaml
+    /// Interaction logic for FelhasznaloPage.xaml
     /// </summary>
-    public partial class GameTable : Window
+    public partial class FelhasznaloPage : Page
     {
-        public GameTable()
+        public FelhasznaloPage()
         {
             InitializeComponent();
         }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void TextEntered(object sender, KeyEventArgs e)
-        {
-
-        }
-
     }
 }

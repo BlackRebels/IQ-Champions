@@ -41,11 +41,17 @@ namespace iqchampion_design
             this.Close();
         }
 
-        private void onFelhasznaloclocked(object sender)
-        {
-            GameTable game = new GameTable();
-            game.Show();
 
+        private void onFelhasznaloClicked(object sender, MouseButtonEventArgs e)
+        {
+            FelhasznaloPage page = new FelhasznaloPage();
+            pageContainer.Content = page;
+        }
+
+        private void onSzobaClicked(object sender, MouseButtonEventArgs e)
+        {
+            SzobaPage szoba = new SzobaPage();
+            pageContainer.Content = szoba;
         }
     }
 }

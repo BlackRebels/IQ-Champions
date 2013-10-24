@@ -24,8 +24,8 @@
             <Label Content="PM" Foreground="#FFF39C04"/>
             <Label Content="System" Foreground="#FFF10000"/>
         </ListBox>
-        <ListBox Margin="0,40,40,40" Grid.Column="2" Grid.RowSpan="2">
-            <Label Content="Saját magam" FontSize="20" Foreground="Black"/>
+        <ListBox x:Name="FelhazsnaloList" Margin="0,40,40,40" Grid.Column="2" Grid.RowSpan="2">
+            <Label Content="Saját magam" FontSize="20" Foreground="Black" MouseDown="onFelhasznaloClicked"/>
             <Label Content="Egy szobában 1" Foreground="#FF319901"/>
             <Label Content="Egy szobában 1" Foreground="#FF35A800"/>
             <Label Content="Barát 1" Foreground="#FF0064C8"/>
@@ -37,19 +37,13 @@
             <Label Content="Tiltott 1" Foreground="#FFFB0000"/>
         </ListBox>
         <ListBox Margin="40" Grid.Column="1" >
-            <Label Content="Jelenlegi Szoba/ Új" FontSize="20"/>
+            <Label Content="Jelenlegi Szoba/ Új" FontSize="20" MouseDown="onSzobaClicked"/>
             <Label Content="Szoba1"/>
             <Label Content="Szoba2"/>
             <Label Content="Szoba3"/>
             <Label Content="Szoba4"/>
         </ListBox>
-        <Grid x:Name="detailWindow" Margin="40,0,40,40" Background="#FFC7C7C7" Grid.Row="1" Height="150" VerticalAlignment="Bottom" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="83*"/>
-                <RowDefinition Height="84*"/>
-            </Grid.RowDefinitions>
-            <Label Content="Kijelölés érzékeny felület,&#xD;&#xA;itt lesznek a bővebb &#xD;&#xA;iformációk ls a context menü&#xD;&#xA;lehetőségek(gombok) &#xD;&#xA;lerakva, lásd alul" HorizontalAlignment="Left" Margin="44,19,0,28" Grid.RowSpan="2" Width="148"/>
-        </Grid>
+        <Frame x:Name="pageContainer" Margin="5,0,5,52"  Height="150" VerticalAlignment="Bottom" Grid.Column="1" Grid.RowSpan="2" NavigationUIVisibility="Hidden"/>
         <Grid Margin="3,0,0,-207" Background="#FFC7C7C7" Grid.Row="1" Height="150" VerticalAlignment="Bottom">
             <Grid.RowDefinitions>
                 <RowDefinition Height="83*"/>
@@ -85,8 +79,7 @@
             <CheckBox Content="" HorizontalAlignment="Left" Margin="55,49,0,0" Grid.Row="1" VerticalAlignment="Top"/>
             <ComboBox HorizontalAlignment="Left" Margin="56,43,0,0" VerticalAlignment="Top" Width="172"/>
         </Grid>
-        <Page x:Name="felhasználó">
-            <Grid Margin="272,0,-271,-409" Background="#FFC7C7C7" Grid.Row="1" Height="150" VerticalAlignment="Bottom" Grid.Column="1">
+            <Grid Margin="264,0,-263,-396" Background="#FFC7C7C7" Grid.Row="1" Height="150" VerticalAlignment="Bottom" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="83*"/>
                     <RowDefinition Height="84*"/>
@@ -100,7 +93,6 @@
                 <Label Content="Stat4" HorizontalAlignment="Left" Margin="10,39,0,0" Grid.Row="1" VerticalAlignment="Top"/>
                 <Button Content="Chat" HorizontalAlignment="Left" Margin="153,43,0,10" Width="75"/>
             </Grid>
-        </Page>
         <Label Content="Én magam" HorizontalAlignment="Left" Height="30" Margin="3,218,0,-57" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Felhasználó" HorizontalAlignment="Left" Height="42" Margin="16,219,0,-70" Grid.Row="1" VerticalAlignment="Top" Grid.Column="1"/>
         <Label Content="Saját szoba" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="271,218,0,-59" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="121"/>
