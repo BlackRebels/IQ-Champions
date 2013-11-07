@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iqchampion_design", "iqchampion_design\iqchampion_design.csproj", "{5632ABC5-D648-4791-8179-0FDDBAC4B565}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kliens", "iqchampion_design\Kliens.csproj", "{5632ABC5-D648-4791-8179-0FDDBAC4B565}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IQWebApp", "IQWebApp\IQWebApp.csproj", "{87BEFA92-B27C-4754-AB5D-F9AB213308EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAlkalmazas", "IQWebApp\WebAlkalmazas.csproj", "{87BEFA92-B27C-4754-AB5D-F9AB213308EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlkalmazasSzerver", "AlkalmazasSzerver\AlkalmazasSzerver.csproj", "{F0B563B0-C53A-446D-A441-CBD9A934F4EA}"
 EndProject
