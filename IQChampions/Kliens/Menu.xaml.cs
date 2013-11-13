@@ -52,7 +52,7 @@ namespace iqchampion_design
         {
             while (true)
             {
-                client.PingAsync(user);
+                client.Ping(user);
                 Thread.Sleep(pingPeriod);
             }
         }

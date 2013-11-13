@@ -16,38 +16,46 @@ namespace IQChampionsServiceLibrary
         private static List<User> onlineUsers = null;
         private const int kickPeriod = 10000;
         private const int switchPeriod = 1000;
+        private static Object lockObject = new Object();
 
         #region Felhasználó kezelő
 
-        private void kickOffline()
+        private static void kickOffline()
         {
             while (true)
             {
-                Parallel.ForEach(onlineUsers, new Action<User>((o) =>
+                lock (lockObject)
                 {
-                    if (!o.isOnline)
+                    Parallel.ForEach(onlineUsers, new Action<User>((o) =>
                     {
-                        onlineUsers.Remove(o);
-                        Console.WriteLine(DateTime.Now.ToString() + " - User " + o.getName + " kicked off");
-                    }
-                }));
+                        if (!o.isOnline)
+                        {
+                            onlineUsers.Remove(o);
+                            Console.WriteLine(DateTime.Now.ToString() + " - User " + o.getName + " kicked off");
+                        }
+                    }));
+                }
                 Thread.Sleep(kickPeriod);
             }
         }
-        private void switchOffline()
+        private static void switchOffline()
         {
             while (true)
             {
-                Parallel.ForEach(onlineUsers, new Action<User>((o) =>
+                lock (lockObject)
                 {
-                    o.isOnline = false;
-                }));
+                    Parallel.ForEach(onlineUsers, new Action<User>((o) =>
+                    {
+                        o.isOnline = false;
+                    }));
+                }
                 Thread.Sleep(switchPeriod);
             }
         }
 
-        public IQService()
+        static IQService()
         {
+
             onlineUsers = new List<User>();
 
             Thread kick = new Thread(new ThreadStart(kickOffline));
@@ -61,6 +69,7 @@ namespace IQChampionsServiceLibrary
             Console.WriteLine("Server initialized successful!");
         }
 
+           
         public bool Login(string user, string pass)
         {
             // debug, adminra belép
@@ -72,7 +81,11 @@ namespace IQChampionsServiceLibrary
                 Console.WriteLine(DateTime.Now.ToString() + " - User " + user + " logged in");
                 return true;
             }
-            else return false;
+            else
+            {
+                Console.WriteLine(DateTime.Now.ToString() + " - User " + user + " failed to log in");
+                return false;
+            }
         }
 
         public bool Logout(string name)
@@ -90,9 +103,21 @@ namespace IQChampionsServiceLibrary
 
         public bool Ping(string user)
         {
-            onlineUsers.Find(x => x.getName.Equals(user)).isOnline = true;
-            Console.WriteLine(DateTime.Now.ToString() + " - User " + user + " pinged in");
-            return true;
+            try
+            {
+                lock (lockObject)
+                {
+                    onlineUsers.Find(x => x.getName.Equals(user)).isOnline = true;
+                }
+                Console.WriteLine(DateTime.Now.ToString() + " - User " + user + " pinged in");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                return false;
+            }
         }
 
         #endregion
@@ -144,7 +169,7 @@ namespace IQChampionsServiceLibrary
             throw new NotImplementedException();
         }
 
-                #endregion
+        #endregion
 
         #region APIkezelő
 
@@ -157,7 +182,7 @@ namespace IQChampionsServiceLibrary
             while (!enum_sent)
             {
                 int random = r.Next(1, 32);
-                if (   random == 1
+                if (random == 1
                     || random == 2
                     || random == 5
                     || random == 6
@@ -183,9 +208,9 @@ namespace IQChampionsServiceLibrary
                 }
 
             }
-            if (   e != APIenum.STANDBY 
-                && e != APIenum.GAME_STANDBY 
-                && e != APIenum.ROOMLIST_CHANGED 
+            if (e != APIenum.STANDBY
+                && e != APIenum.GAME_STANDBY
+                && e != APIenum.ROOMLIST_CHANGED
                 && e != APIenum.USERLIST_CHANGED)
             {
                 Console.WriteLine(name + "    " + e.ToString());
