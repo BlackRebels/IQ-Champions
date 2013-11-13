@@ -7,7 +7,7 @@ using System.Text;
 
 namespace IQChampionsServiceLibrary
 {
-    [ServiceContract(Namespace="http://iqchampions.com")]
+    [ServiceContract(Namespace = "http://iqchampions.com")]
     public interface IIQService
     {
 
@@ -83,16 +83,30 @@ namespace IQChampionsServiceLibrary
         #endregion
     }
 
+    [ServiceContract]
     [DataContract]
     public class User
     {
-        string name = null;
-        
+        private string name = null;
+        private bool isonline = false;
+
+
+
+        public User(String name)
+        {
+            this.name = name;
+            isonline = true;
+        }
+
         [DataMember]
-        public string StringValue
+        public string getName
         {
             get { return name; }
-            set { name = value; }
+        }
+        public bool isOnline
+        {
+            get { return isonline; }
+            set { isonline = value; }
         }
     }
 }

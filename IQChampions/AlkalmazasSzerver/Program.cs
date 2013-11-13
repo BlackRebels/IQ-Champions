@@ -15,7 +15,7 @@ namespace AlkalmazasSzerver
             using (ServiceHost host = new ServiceHost(typeof(IQService)))
             {
                 host.Open();
-                Console.WriteLine("Server is running...");
+                Console.WriteLine("Server is waiting for connections...");
                 Console.ReadLine();
             }
         }

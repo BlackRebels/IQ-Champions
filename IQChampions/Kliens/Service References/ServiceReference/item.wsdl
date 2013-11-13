@@ -115,12 +115,6 @@
   <wsdl:message name="IIQService_SzobaPing_OutputMessage">
     <wsdl:part name="parameters" element="tns:SzobaPingResponse" />
   </wsdl:message>
-  <wsdl:message name="IIQService_getHash_InputMessage">
-    <wsdl:part name="parameters" element="tns:getHash" />
-  </wsdl:message>
-  <wsdl:message name="IIQService_getHash_OutputMessage">
-    <wsdl:part name="parameters" element="tns:getHashResponse" />
-  </wsdl:message>
   <wsdl:portType name="IIQService">
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/Login" message="tns:IIQService_Login_InputMessage" />
@@ -193,10 +187,6 @@
     <wsdl:operation name="SzobaPing">
       <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/SzobaPing" message="tns:IIQService_SzobaPing_InputMessage" />
       <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/SzobaPingResponse" message="tns:IIQService_SzobaPing_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="getHash">
-      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/getHash" message="tns:IIQService_getHash_InputMessage" />
-      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/getHashResponse" message="tns:IIQService_getHash_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

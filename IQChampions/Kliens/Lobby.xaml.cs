@@ -36,7 +36,7 @@ namespace iqchampion_design
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Menu menu = new Menu();
+            Menu menu = new Menu(null);
             menu.Show();
             this.Close();
         }

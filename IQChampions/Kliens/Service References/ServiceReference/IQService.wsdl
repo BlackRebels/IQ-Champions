@@ -166,15 +166,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getHash">
-      <soap:operation soapAction="http://iqchampions.com/IIQService/getHash" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="IQService">
     <wsdl:port name="BasicHttpBinding_IIQService" binding="tns:BasicHttpBinding_IIQService">

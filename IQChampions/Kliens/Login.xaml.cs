@@ -44,13 +44,11 @@ namespace iqchampion_design
             using (IQServiceClient client = new IQServiceClient())
             {
                 // debug, adminra belép
-                bool authenticated = false;
-                if (TextBoxUser.Text.Equals("admin")) authenticated = client.Login("admin", "admin");
-                else authenticated = client.Login(Hash.generate(TextBoxUser.Text), Hash.generate(TextBoxPass.Password));
+                bool authenticated = client.Login(TextBoxUser.Text, Hash.generate(TextBoxPass.Password));
 
                 if (authenticated)
                 {
-                    Menu menuWindow = new Menu();
+                    Menu menuWindow = new Menu(TextBoxUser.Text);
                     menuWindow.Show();
                     this.Close();
                 }

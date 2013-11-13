@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using iqchampion_design.ServiceReference;
 
 namespace iqchampion_design
 {
@@ -20,9 +22,27 @@ namespace iqchampion_design
     /// </summary>
     public partial class Menu : Window
     {
-        public Menu()
+        private const int pingPeriod = 1000;
+        private IQServiceClient client = null;
+        private string user = null;
+
+        public Menu(string user)
         {
             InitializeComponent();
+            this.user = user;
+            client = new IQServiceClient();
+
+            Thread pingThread = new Thread(new ThreadStart(ping));
+            pingThread.IsBackground = true;
+            pingThread.Start();
+        }
+        private void ping()
+        {
+            while (true)
+            {
+                client.PingAsync(user);
+                Thread.Sleep(pingPeriod);
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

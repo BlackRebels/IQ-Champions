@@ -122,12 +122,6 @@ namespace iqchampion_design.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/SzobaPing", ReplyAction="http://iqchampions.com/IIQService/SzobaPingResponse")]
         System.Threading.Tasks.Task SzobaPingAsync(string szobanev);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getHash", ReplyAction="http://iqchampions.com/IIQService/getHashResponse")]
-        string getHash(string input);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getHash", ReplyAction="http://iqchampions.com/IIQService/getHashResponse")]
-        System.Threading.Tasks.Task<string> getHashAsync(string input);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -299,14 +293,6 @@ namespace iqchampion_design.ServiceReference {
         
         public System.Threading.Tasks.Task SzobaPingAsync(string szobanev) {
             return base.Channel.SzobaPingAsync(szobanev);
-        }
-        
-        public string getHash(string input) {
-            return base.Channel.getHash(input);
-        }
-        
-        public System.Threading.Tasks.Task<string> getHashAsync(string input) {
-            return base.Channel.getHashAsync(input);
         }
     }
 }
