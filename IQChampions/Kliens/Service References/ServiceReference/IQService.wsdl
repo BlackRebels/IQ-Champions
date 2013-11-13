@@ -112,8 +112,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Szobaletrehozas">
-      <soap:operation soapAction="http://iqchampions.com/IIQService/Szobaletrehozas" style="document" />
+    <wsdl:operation name="APIping">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/APIping" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -121,8 +121,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Szobacsatlakozas">
-      <soap:operation soapAction="http://iqchampions.com/IIQService/Szobacsatlakozas" style="document" />
+    <wsdl:operation name="createRoom">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/createRoom" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -130,8 +130,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Szobakilepes">
-      <soap:operation soapAction="http://iqchampions.com/IIQService/Szobakilepes" style="document" />
+    <wsdl:operation name="joinRoom">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/joinRoom" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -139,8 +139,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SzobaInditas">
-      <soap:operation soapAction="http://iqchampions.com/IIQService/SzobaInditas" style="document" />
+    <wsdl:operation name="getMyRoom">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/getMyRoom" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -148,8 +148,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SzobaTorles">
-      <soap:operation soapAction="http://iqchampions.com/IIQService/SzobaTorles" style="document" />
+    <wsdl:operation name="getRooms">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/getRooms" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -157,8 +157,161 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SzobaPing">
-      <soap:operation soapAction="http://iqchampions.com/IIQService/SzobaPing" style="document" />
+    <wsdl:operation name="getRoom">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/getRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="joinQueue">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/joinQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getQueuePosition">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/getQueuePosition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="joinFoundRoom">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/joinFoundRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startGame">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/startGame" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGameTable">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/getGameTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="refreshGameTable">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/refreshGameTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getActualPlayer">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/getActualPlayer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMoveRemainingTime">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/getMoveRemainingTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="chooseCell">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/chooseCell" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIfMoved">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/getIfMoved" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getQuestion">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/getQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAnswerRemainingTime">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/getAnswerRemainingTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="chooseAnswer">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/chooseAnswer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIfAnswered">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/getIfAnswered" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAnswerResults">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/getAnswerResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStatistics">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/getStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="returnToLobby">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/returnToLobby" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

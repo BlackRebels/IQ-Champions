@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiceLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -58,29 +59,110 @@ namespace IQChampionsServiceLibrary
 
         #endregion
 
-        #region Szobakezelés
-        [OperationContract]
-        void Szobaletrehozas();
+        #region APIkezelő
 
         [OperationContract]
-        bool Szobacsatlakozas(string usernev, string szobanev);
+        APIenum APIping(String name, String roomname);
+
+        #region SzobaKezelő
+        [OperationContract]
+        Boolean createRoom(String name, String roomname, String[] beállítások);
+            
+        [OperationContract]
+        Boolean joinRoom(String name, String roomname);
+               
+        [OperationContract]
+        Room getMyRoom(String name);
 
         [OperationContract]
-        void Szobakilepes(string username, string szobanev);
-
+        List<String> getRooms();
+   
         [OperationContract]
-        void SzobaInditas(string szobanev);
-
-        [OperationContract]
-        void SzobaTorles(string szobanev); //ha mégse akar játszani
-
-        [OperationContract]
-        void SzobaPing(string szobanev); //vmi bonyolult dolgot kell visszaadni NEM void
+        Room getRoom(String roomname);
+       
         #endregion
 
-        #region Játékkezelő
+        #region SorKezelő
+       
+        [OperationContract]
+        Boolean joinQueue(String name);
+       
+        [OperationContract]
+        String getQueuePosition(String name);
+       
+        [OperationContract]
+        Boolean joinFoundRoom(String name, String roomname);
 
         #endregion
+
+        #region JátékkezelőKezelő
+
+        [OperationContract]
+        Boolean startGame(String name, String roomname);
+    
+        [OperationContract]
+        GameTable getGameTable(String name, String roomname);
+       
+        [OperationContract]
+        GameTable refreshGameTable(String roomname);
+          
+        [OperationContract]
+        String getActualPlayer(String roomname);
+             
+        [OperationContract]
+        Int32 getMoveRemainingTime(String roomname);
+              
+        [OperationContract]
+        Boolean chooseCell(int x, int y);
+              
+        [OperationContract]
+        Boolean getIfMoved(String roomname);
+               
+        [OperationContract]
+        Question getQuestion(String roomname);
+                          
+        [OperationContract]
+        Int32 getAnswerRemainingTime(String roomname);
+                                   
+        [OperationContract]
+        Boolean chooseAnswer(String name, String roomname, Int16 sorszam);
+                                      
+        [OperationContract]
+        Boolean getIfAnswered(String roomname);
+                                          
+        [OperationContract]
+        String[] getAnswerResults(String roomname);
+                                               
+        [OperationContract]
+        String[] getStatistics(String roomname);
+                                          
+        [OperationContract]
+        Boolean returnToLobby(String roomname, Boolean lobby);
+
+        #endregion
+
+        #endregion
+    }
+
+    [ServiceContract]
+    [DataContract]
+    public class Question
+    {
+
+    }
+
+    [ServiceContract]
+    [DataContract]
+    public class Room
+    {
+
+    }
+
+    [ServiceContract]
+    [DataContract]
+    public class GameTable
+    {
+
     }
 
     [ServiceContract]
@@ -89,8 +171,6 @@ namespace IQChampionsServiceLibrary
     {
         private string name = null;
         private bool isonline = false;
-
-
 
         public User(String name)
         {

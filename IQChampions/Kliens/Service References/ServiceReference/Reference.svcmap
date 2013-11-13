@@ -24,6 +24,8 @@
   <Metadata>
     <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="4425eb66-91f1-4bbd-a075-aae390e11ffa" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd0" />
     <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="605a04cb-01da-4d5b-b9c5-99d5b1d555e9" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd1" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="91e15459-ba8c-452c-b4d2-b4fc2eb9c75d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd4" />
+    <MetadataFile FileName="item31.xsd" MetadataType="Schema" ID="a7db93cb-61de-49f7-9e68-9b72d16940c1" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd3" />
     <MetadataFile FileName="IQService.wsdl" MetadataType="Wsdl" ID="b82fac21-a7b3-4052-96ae-3d05b94861a5" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?wsdl" />
     <MetadataFile FileName="item.disco" MetadataType="Disco" ID="0874047c-324e-42be-a05e-528bdaf7122a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?disco" />
     <MetadataFile FileName="item.wsdl" MetadataType="Wsdl" ID="9a8169f1-234c-4c8e-9b5d-58eb32184db2" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?wsdl=wsdl0" />

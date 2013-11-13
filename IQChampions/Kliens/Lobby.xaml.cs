@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiceLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,6 +53,53 @@ namespace iqchampion_design
         {
             SzobaPage szoba = new SzobaPage();
             pageContainer.Content = szoba;
+        }
+
+        public void usingAPI(APIenum api)
+        {
+
+            switch (api)
+            {
+                case APIenum.STANDBY:
+
+                    break;
+
+                case APIenum.ROOMLIST_CHANGED:
+
+                    break;
+
+                case APIenum.USERLIST_CHANGED:
+
+                    break;
+
+                case APIenum.ROOM_STANDBY:
+
+                    break;
+
+                case APIenum.ROOM_CREATED:
+
+                    break;
+
+                case APIenum.ROOM_JOINED:
+
+                    break;
+
+                case APIenum.ROOM_REFRESH:
+
+                    break;
+
+                case APIenum.GAME_STANDBY:
+
+                    break;
+
+                case APIenum.GAME_STARTED:
+
+                    break;
+
+                default:
+
+                    break;
+            }
         }
     }
 }

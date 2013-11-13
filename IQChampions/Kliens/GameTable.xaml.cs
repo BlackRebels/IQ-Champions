@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiceLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,5 +35,60 @@ namespace iqchampion_design
 
         }
 
+
+        public void usingAPI(APIenum api)
+        {
+
+            switch (api)
+            {
+                case APIenum.STANDBY:
+
+                    break;
+
+                case APIenum.GAME_STANDBY:
+
+                    break;
+
+                case APIenum.GAME_REFRESH:
+
+                    break;
+
+                case APIenum.GAME_ENDED:
+
+                    break;
+
+                case APIenum.PLAYER_CAN_MOVE:
+
+                    break;
+
+                case APIenum.YOU_CAN_MOVE:
+
+                    break;
+
+                case APIenum.WAITING_FOR_MOVE:
+
+                    break;
+
+                case APIenum.PLAYER_MOVED:
+
+                    break;
+
+                case APIenum.YOU_CAN_ANSWER:
+
+                    break;
+
+                case APIenum.WAITING_FOR_ANSWER:
+
+                    break;
+
+                case APIenum.PLAYERS_ANSWERED:
+
+                    break;
+
+                default:
+
+                    break;
+            }
+        }
     }
 }

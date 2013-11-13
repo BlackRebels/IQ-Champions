@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using iqchampion_design.ServiceReference;
+using ServiceLibrary;
 
 namespace iqchampion_design
 {
@@ -26,15 +27,26 @@ namespace iqchampion_design
         private IQServiceClient client = null;
         private string user = null;
 
+
+        Thread APIpingThread;
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            APIpingThread.Abort();
+        }
         public Menu(string user)
         {
             InitializeComponent();
             this.user = user;
             client = new IQServiceClient();
-
             Thread pingThread = new Thread(new ThreadStart(ping));
             pingThread.IsBackground = true;
             pingThread.Start();
+
+            APIpingThread = new Thread(new ThreadStart(APIping));
+            APIpingThread.IsBackground = true;
+            APIpingThread.Start();
         }
         private void ping()
         {
@@ -42,6 +54,15 @@ namespace iqchampion_design
             {
                 client.PingAsync(user);
                 Thread.Sleep(pingPeriod);
+            }
+        }
+
+        private void APIping()
+        {
+            while (true)
+            {
+               usingAPI(client.APIping("asd", "asd"));
+               Thread.Sleep(pingPeriod);
             }
         }
 
@@ -68,6 +89,26 @@ namespace iqchampion_design
         {
             GameTable game = new GameTable();
             game.Show();
+        }
+
+        public void usingAPI(APIenum api)
+        {
+
+            switch (api)
+            {
+                case APIenum.QUEUE_STANDBY:
+                    break;
+
+                case APIenum.ROOM_FOUND:
+                    break;
+
+                case APIenum.GAME_STARTED:
+                    break;
+
+                default:
+                    MessageBox.Show("" + api.ToString());
+                    break;
+            }
         }
     }
 }

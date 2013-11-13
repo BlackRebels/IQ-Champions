@@ -44,19 +44,24 @@ namespace iqchampion_design
             using (IQServiceClient client = new IQServiceClient())
             {
                 // debug, adminra belép
-                bool authenticated = client.Login(TextBoxUser.Text, Hash.generate(TextBoxPass.Password));
-
-                if (authenticated)
+                try
                 {
-                    Menu menuWindow = new Menu(TextBoxUser.Text);
-                    menuWindow.Show();
-                    this.Close();
+                    bool authenticated = client.Login(TextBoxUser.Text, Hash.generate(TextBoxPass.Password));
+                    if (authenticated)
+                    {
+                        Menu menuWindow = new Menu(TextBoxUser.Text);
+                        menuWindow.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hibás felhasználónév vagy jelszó!");
+                        TextBoxUser.Text = null;
+                        TextBoxPass.Password = null;
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Hibás felhasználónév vagy jelszó!");
-                    TextBoxUser.Text = null;
-                    TextBoxPass.Password = null;
+                catch(Exception ex){
+                    MessageBox.Show("A szerver jelenleg nem elérhető!");
                 }
             }
         }
