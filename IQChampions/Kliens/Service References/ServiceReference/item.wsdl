@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://iqchampions.com" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://iqchampions.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://iqchampions.com/Imports">
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd0" namespace="http://iqchampions.com" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IIQService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Logout_InputMessage">
+    <wsdl:part name="parameters" element="tns:Logout" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Logout_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Ping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_SendAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendAll" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_SendAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getAllMesages_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllMesages" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getAllMesages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllMesagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_SendPrivate_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendPrivate" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_SendPrivate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendPrivateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getPrivateMesages_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPrivateMesages" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getPrivateMesages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPrivateMesagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_SendRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendRoom" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_SendRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getRoomMesages_InputMessage">
+    <wsdl:part name="parameters" element="tns:getRoomMesages" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getRoomMesages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getRoomMesagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_GetStatistic_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatistic" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_GetStatistic_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatisticResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_UpdateStatistic_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatistic" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_UpdateStatistic_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatisticResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Szobaletrehozas_InputMessage">
+    <wsdl:part name="parameters" element="tns:Szobaletrehozas" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Szobaletrehozas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SzobaletrehozasResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Szobacsatlakozas_InputMessage">
+    <wsdl:part name="parameters" element="tns:Szobacsatlakozas" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Szobacsatlakozas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SzobacsatlakozasResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Szobakilepes_InputMessage">
+    <wsdl:part name="parameters" element="tns:Szobakilepes" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Szobakilepes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SzobakilepesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_SzobaInditas_InputMessage">
+    <wsdl:part name="parameters" element="tns:SzobaInditas" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_SzobaInditas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SzobaInditasResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_SzobaTorles_InputMessage">
+    <wsdl:part name="parameters" element="tns:SzobaTorles" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_SzobaTorles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SzobaTorlesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_SzobaPing_InputMessage">
+    <wsdl:part name="parameters" element="tns:SzobaPing" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_SzobaPing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SzobaPingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getHash_InputMessage">
+    <wsdl:part name="parameters" element="tns:getHash" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getHash_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getHashResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IIQService">
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/Login" message="tns:IIQService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/LoginResponse" message="tns:IIQService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/Logout" message="tns:IIQService_Logout_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/LogoutResponse" message="tns:IIQService_Logout_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/Ping" message="tns:IIQService_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/PingResponse" message="tns:IIQService_Ping_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendAll">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/SendAll" message="tns:IIQService_SendAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/SendAllResponse" message="tns:IIQService_SendAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllMesages">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/getAllMesages" message="tns:IIQService_getAllMesages_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/getAllMesagesResponse" message="tns:IIQService_getAllMesages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendPrivate">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/SendPrivate" message="tns:IIQService_SendPrivate_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/SendPrivateResponse" message="tns:IIQService_SendPrivate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPrivateMesages">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/getPrivateMesages" message="tns:IIQService_getPrivateMesages_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/getPrivateMesagesResponse" message="tns:IIQService_getPrivateMesages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendRoom">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/SendRoom" message="tns:IIQService_SendRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/SendRoomResponse" message="tns:IIQService_SendRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getRoomMesages">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/getRoomMesages" message="tns:IIQService_getRoomMesages_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/getRoomMesagesResponse" message="tns:IIQService_getRoomMesages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/GetUsers" message="tns:IIQService_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/GetUsersResponse" message="tns:IIQService_GetUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatistic">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/GetStatistic" message="tns:IIQService_GetStatistic_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/GetStatisticResponse" message="tns:IIQService_GetStatistic_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatistic">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/UpdateStatistic" message="tns:IIQService_UpdateStatistic_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/UpdateStatisticResponse" message="tns:IIQService_UpdateStatistic_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Szobaletrehozas">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/Szobaletrehozas" message="tns:IIQService_Szobaletrehozas_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/SzobaletrehozasResponse" message="tns:IIQService_Szobaletrehozas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Szobacsatlakozas">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/Szobacsatlakozas" message="tns:IIQService_Szobacsatlakozas_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/SzobacsatlakozasResponse" message="tns:IIQService_Szobacsatlakozas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Szobakilepes">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/Szobakilepes" message="tns:IIQService_Szobakilepes_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/SzobakilepesResponse" message="tns:IIQService_Szobakilepes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SzobaInditas">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/SzobaInditas" message="tns:IIQService_SzobaInditas_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/SzobaInditasResponse" message="tns:IIQService_SzobaInditas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SzobaTorles">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/SzobaTorles" message="tns:IIQService_SzobaTorles_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/SzobaTorlesResponse" message="tns:IIQService_SzobaTorles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SzobaPing">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/SzobaPing" message="tns:IIQService_SzobaPing_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/SzobaPingResponse" message="tns:IIQService_SzobaPing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getHash">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/getHash" message="tns:IIQService_getHash_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/getHashResponse" message="tns:IIQService_getHash_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
