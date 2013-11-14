@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -18,76 +20,84 @@ using ServiceLibrary;
 
 namespace iqchampion_design
 {
-    /// <summary>
-    /// Interaction logic for Menu.xaml
-    /// </summary>
     public partial class Menu : Window
     {
-        private const int pingPeriod = 1000;
-        private IQServiceClient client = null;
-        private string user = null;
+        private Login parent = null;
+        private BackgroundWorker pingworker = null;
+        private Thread APIpingThread = null;
 
-
-        Thread APIpingThread;
-
-        protected override void OnClosed(EventArgs e)
+        public string User
         {
-            base.OnClosed(e);
-            APIpingThread.Abort();
+            get { return parent.User; }
         }
-        public Menu(string user)
+        
+        public Menu(Login parent)
         {
             InitializeComponent();
-            this.user = user;
-            client = new IQServiceClient();
-            Thread pingThread = new Thread(new ThreadStart(ping));
-            pingThread.IsBackground = true;
-            pingThread.Start();
-
-            APIpingThread = new Thread(new ThreadStart(APIping));
-            APIpingThread.IsBackground = true;
-            APIpingThread.Start();
+            this.parent = parent;
         }
-        private void ping()
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            pingworker = new BackgroundWorker();
+            pingworker.WorkerSupportsCancellation = true;
+            pingworker.DoWork += ping;
+            pingworker.RunWorkerCompleted += timeout;
+            pingworker.RunWorkerAsync();
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            //APIpingThread.Abort();
+            parent.Show();
+            Cursor = Cursors.Arrow;
+        }
+
+        private void ping(object sender, DoWorkEventArgs e)
         {
             while (true)
             {
-                client.Ping(user);
-                Thread.Sleep(pingPeriod);
+                if ((sender as BackgroundWorker).CancellationPending)
+                {
+                    Login.Client.Logout(User);
+                    return;
+                }
+                Thread.Sleep(Login.PingPeriod);
+                if (!Login.Client.Ping(User))
+                {
+                    MessageBox.Show("Időtúllépés!");
+                    return;
+                }
             }
         }
 
-        private void APIping()
+        private void timeout(object sender, RunWorkerCompletedEventArgs e)
         {
-            while (true)
-            {
-               usingAPI(client.APIping("asd", "asd"));
-               Thread.Sleep(pingPeriod);
-            }
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            MainWindow login = new MainWindow();
-            login.Show();
             this.Close();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void ButtonClickLogout(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://index.hu");
+            Cursor = Cursors.Wait;
+            parent.ClearFields();
+            pingworker.CancelAsync();
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void ButtonClickProfil(object sender, RoutedEventArgs e)
         {
-            Lobby lobby = new Lobby();
+            System.Diagnostics.Process.Start("http://index.hu"); // Link to user profile
+        }
+
+        private void ButtonClickGameWithFriends(object sender, RoutedEventArgs e)
+        {
+            Lobby lobby = new Lobby(this);
             lobby.Show();
-            this.Close();
+            this.Hide();
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void ButtonClickGameRandom(object sender, RoutedEventArgs e)
         {
-            GameTable game = new GameTable();
+            GameTable game = new GameTable(this);
             game.Show();
         }
 
@@ -110,5 +120,7 @@ namespace iqchampion_design
                     break;
             }
         }
+
+
     }
 }

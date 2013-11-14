@@ -7,6 +7,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using IQUtil;
 using ServiceLibrary;
 
 namespace IQChampionsServiceLibrary
@@ -14,44 +15,8 @@ namespace IQChampionsServiceLibrary
     public class IQService : IIQService
     {
         private static List<User> onlineUsers = null;
-        private const int kickPeriod = 10000;
-        private const int switchPeriod = 1000;
+        private const int timeout = 10000;
         private static Object lockObject = new Object();
-
-        #region Felhasználó kezelő
-
-        private static void kickOffline()
-        {
-            while (true)
-            {
-                lock (lockObject)
-                {
-                    Parallel.ForEach(onlineUsers, new Action<User>((o) =>
-                    {
-                        if (!o.isOnline)
-                        {
-                            onlineUsers.Remove(o);
-                            Console.WriteLine(DateTime.Now.ToString() + " - User " + o.getName + " kicked off");
-                        }
-                    }));
-                }
-                Thread.Sleep(kickPeriod);
-            }
-        }
-        private static void switchOffline()
-        {
-            while (true)
-            {
-                lock (lockObject)
-                {
-                    Parallel.ForEach(onlineUsers, new Action<User>((o) =>
-                    {
-                        o.isOnline = false;
-                    }));
-                }
-                Thread.Sleep(switchPeriod);
-            }
-        }
 
         static IQService()
         {
@@ -59,17 +24,41 @@ namespace IQChampionsServiceLibrary
             onlineUsers = new List<User>();
 
             Thread kick = new Thread(new ThreadStart(kickOffline));
-            Thread sw = new Thread(new ThreadStart(switchOffline));
-
             kick.IsBackground = true;
-            sw.IsBackground = true;
-
             kick.Start();
-            sw.Start();
-            Console.WriteLine("Server initialized successful!");
+
+            Logger.log(Errorlevel.INFO, "Initialized successful!");
         }
 
-           
+        #region Felhasználó kezelő
+
+        private static void kickOffline()
+        {
+            while (true)
+            {
+                Thread.Sleep(timeout);
+                lock (lockObject)
+                {
+                    Parallel.ForEach(onlineUsers, new Action<User>((o) =>
+                    {
+                        o.isOnline = false;
+                    }));
+                }
+                Thread.Sleep(timeout);
+                lock (lockObject)
+                {
+                    Parallel.ForEach(onlineUsers, new Action<User>((o) =>
+                    {
+                        if (!o.isOnline)
+                        {
+                            onlineUsers.Remove(o);
+                            Logger.log(Errorlevel.INFO, "User " + o.getName + " timed out");
+                        }
+                    }));
+                }
+            }
+        }
+
         public bool Login(string user, string pass)
         {
             // debug, adminra belép
@@ -78,21 +67,22 @@ namespace IQChampionsServiceLibrary
                 User login = new User(user);
                 onlineUsers.Add(login);
 
-                Console.WriteLine(DateTime.Now.ToString() + " - User " + user + " logged in");
+                Logger.log(Errorlevel.INFO, "User " + user + " logged in");
                 return true;
             }
             else
             {
-                Console.WriteLine(DateTime.Now.ToString() + " - User " + user + " failed to log in");
+                Logger.log(Errorlevel.INFO, "User " + (String.IsNullOrEmpty(user) ? "NULL" : user) + " failed to log in");
                 return false;
             }
         }
 
-        public bool Logout(string name)
+        public bool Logout(string user)
         {
             try
             {
-                onlineUsers.RemoveAll(x => x.getName.Equals(name));
+                onlineUsers.RemoveAll(x => x.getName.Equals(user));
+                Logger.log(Errorlevel.INFO, "User " + user + " logged out");
                 return true;
             }
             catch (Exception)
@@ -107,10 +97,17 @@ namespace IQChampionsServiceLibrary
             {
                 lock (lockObject)
                 {
-                    onlineUsers.Find(x => x.getName.Equals(user)).isOnline = true;
+                    User userFromOnlines = onlineUsers.Find(x => x.getName.Equals(user));
+                    if (userFromOnlines == null)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        userFromOnlines.isOnline = true;
+                        return true;
+                    }
                 }
-                Console.WriteLine(DateTime.Now.ToString() + " - User " + user + " pinged in");
-                return true;
             }
             catch (Exception ex)
             {

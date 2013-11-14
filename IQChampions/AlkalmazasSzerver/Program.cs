@@ -5,6 +5,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using IQChampionsServiceLibrary;
+using IQUtil;
 
 namespace AlkalmazasSzerver
 {
@@ -13,9 +14,9 @@ namespace AlkalmazasSzerver
         static void Main(string[] args)
         {
             using (ServiceHost host = new ServiceHost(typeof(IQService)))
-            {                
+            {
                 host.Open();
-                Console.WriteLine("Server is waiting for connections...");
+                Logger.log(Errorlevel.INFO, "Waiting for connections...");
                 Console.ReadLine();
             }
         }

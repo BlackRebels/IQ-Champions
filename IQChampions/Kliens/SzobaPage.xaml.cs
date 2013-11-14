@@ -27,7 +27,7 @@ namespace iqchampion_design
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            GameTable game = new GameTable();
+            GameTable game = new GameTable(null);
             game.Show();
         }
     }

@@ -15,14 +15,24 @@ using System.Windows.Shapes;
 
 namespace iqchampion_design
 {
-    /// <summary>
-    /// Interaction logic for GameTable.xaml
-    /// </summary>
     public partial class GameTable : Window
     {
-        public GameTable()
+        Menu parent = null;
+
+        private string user
+        {
+            get { return parent.User; }
+        }
+
+        public GameTable(Menu parent)
         {
             InitializeComponent();
+            this.parent = parent;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            parent.Show();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -90,5 +100,7 @@ namespace iqchampion_design
                     break;
             }
         }
+
+        
     }
 }

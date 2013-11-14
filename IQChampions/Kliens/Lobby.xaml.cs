@@ -16,14 +16,24 @@ using System.Windows.Shapes;
 
 namespace iqchampion_design
 {
-    /// <summary>
-    /// Interaction logic for Lobby.xaml
-    /// </summary>
     public partial class Lobby : Window
     {
-        public Lobby()
+        Menu parent = null;
+
+        public string User
+        {
+            get { return parent.User; }
+        }
+
+        public Lobby(Menu parent)
         {
             InitializeComponent();
+            this.parent = parent;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            parent.Show();
         }
 
         private void enterMessage(object sender, KeyEventArgs e)
@@ -37,8 +47,6 @@ namespace iqchampion_design
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Menu menu = new Menu(null);
-            menu.Show();
             this.Close();
         }
 

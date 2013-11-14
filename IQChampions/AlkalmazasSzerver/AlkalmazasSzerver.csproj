@@ -66,6 +66,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IQUtil\IQUtil.csproj">
+      <Project>{39853d47-541f-4109-9cb8-40cb3f3f8f7d}</Project>
+      <Name>IQUtil</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ServiceLibrary\ServiceLibrary.csproj">
       <Project>{15b3e0d2-6217-493a-a690-158c497f5318}</Project>
       <Name>ServiceLibrary</Name>

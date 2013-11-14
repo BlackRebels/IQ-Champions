@@ -19,63 +19,77 @@ using IQUtil;
 
 namespace iqchampion_design
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class Login : Window
     {
-        public MainWindow()
+        private static int pingPeriod = 1000;
+        private static IQServiceClient client = new IQServiceClient();
+        private string user = null;
+
+        public static int PingPeriod
+        {
+            get { return Login.pingPeriod; }
+        }
+        public static IQServiceClient Client
+        {
+            get { return Login.client; }
+        }
+        public string User
+        {
+            get { return this.user; }
+        }
+
+        public Login()
         {
             InitializeComponent();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        public void ClearFields()
         {
-            Close();
+            TextBoxUser.Text = null;
+            TextBoxPass.Password = null;
         }
 
-        private void TextBox_TextInput_1(object sender, TextCompositionEventArgs e)
+        private void ButtonClickLogin(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            using (IQServiceClient client = new IQServiceClient())
+            Cursor = Cursors.Arrow;
+            try
             {
-                // debug, adminra belép
-                try
+                bool authenticated = client.Login(TextBoxUser.Text, Hash.generate(TextBoxPass.Password));
+                if (authenticated)
                 {
-                    bool authenticated = client.Login(TextBoxUser.Text, Hash.generate(TextBoxPass.Password));
-                    if (authenticated)
-                    {
-                        Menu menuWindow = new Menu(TextBoxUser.Text);
-                        menuWindow.Show();
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Hibás felhasználónév vagy jelszó!");
-                        TextBoxUser.Text = null;
-                        TextBoxPass.Password = null;
-                    }
+                    user = TextBoxUser.Text;
+                    Menu menuWindow = new Menu(this);
+                    menuWindow.Show();
+                    this.Hide();
                 }
-                catch(Exception ex){
-                    MessageBox.Show("A szerver jelenleg nem elérhető!");
+                else
+                {
+                    MessageBox.Show("Hibás felhasználónév vagy jelszó!\r\nDebug user: admin");
+                    TextBoxUser.Text = null;
+                    TextBoxPass.Password = null;
                 }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("A szerver jelenleg nem elérhető!");
+            }
+            finally
+            {
+                Cursor = Cursors.Arrow;
             }
         }
 
-        private void link(object sender, MouseButtonEventArgs e)
-        {
-            Hyperlink h = new Hyperlink();
-            h.NavigateUri = new Uri("http://index.hu");
-
-        }
-
-        private void Hyperlink_RequestNavigate_1(object sender, RequestNavigateEventArgs e)
+        private void RegistrationRequestNavigate(object sender, RequestNavigateEventArgs e)
         {
             System.Diagnostics.Process.Start(e.Uri.ToString());
+        }
+
+        private void LoginVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)e.NewValue == true)
+            {
+                user = null;
+            }
         }
     }
 }
