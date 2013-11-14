@@ -16,7 +16,7 @@
         <TextBlock Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" Height="52" HorizontalAlignment="Center"><Run Language="hu-hu" Text="Menü"/></TextBlock>
         <Button Content="Profil" Margin="132,187,133,0" VerticalAlignment="Top" Height="40" FontSize="20" Click="ButtonClickProfil"/>
         <Button Content="Játék Barátokkal" Margin="132,126,133,0" VerticalAlignment="Top" Height="40" FontSize="20" Click="ButtonClickGameWithFriends"/>
-        <Button Content="Játék" Margin="132,67,133,0" VerticalAlignment="Top" Height="40" FontSize="20" Click="ButtonClickGameRandom"/>
+        <Button x:Name="ButtonJatek" Content="Játék" Margin="132,67,133,0" VerticalAlignment="Top" Height="40" FontSize="20" Click="ButtonClickGameRandom"/>
         <Button Content="Kijelentkezés" Margin="132,244,133,0" VerticalAlignment="Top" Height="40" FontSize="20" Click="ButtonClickLogout"/>
         <Button x:Name="debugbutton" Content="Pinging is on" HorizontalAlignment="Left" Margin="46,52,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
     </Grid>

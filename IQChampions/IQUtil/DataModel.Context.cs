@@ -25,7 +25,7 @@ namespace IQUtil
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<User> UserSet { get; set; }
-        public DbSet<Questions> QuestionsSet { get; set; }
+        public DbSet<dbUser> dbUserSet { get; set; }
+        public DbSet<dbQuestion> dbQuestionSet { get; set; }
     }
 }

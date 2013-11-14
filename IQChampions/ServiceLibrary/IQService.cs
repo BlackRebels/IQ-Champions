@@ -15,13 +15,16 @@ namespace IQChampionsServiceLibrary
     public class IQService : IIQService
     {
         private static List<User> onlineUsers = null;
+        private static List<string> queue = null;
+        private static List<Room> rooms = null;
         private const int timeout = 5000;
         private static Object lockObject = new Object();
 
         static IQService()
         {
-
             onlineUsers = new List<User>();
+            queue = new List<string>();
+            rooms = new List<Room>();
 
             Thread kick = new Thread(new ThreadStart(kickOffline));
             kick.IsBackground = true;
@@ -52,7 +55,8 @@ namespace IQChampionsServiceLibrary
                         if (!o.isOnline)
                         {
                             onlineUsers.Remove(o);
-                            Logger.log(Errorlevel.INFO, "User " + o.getName + " timed out");
+                            queue.Remove(o.getName);
+                            Logger.log(Errorlevel.INFO, o.getName + " timed out");
                         }
                     }));
                 }
@@ -62,17 +66,22 @@ namespace IQChampionsServiceLibrary
         public bool Login(string user, string pass)
         {
             // debug, adminra belép
-            if (user.Equals("admin"))
+            if (onlineUsers.Exists(x => x.getName.Equals(user)))
+            {
+                Logger.log(Errorlevel.INFO, user + " tried to log in twice");
+                return false;
+            }
+            else if (user.Length > 4)
             {
                 User login = new User(user);
                 onlineUsers.Add(login);
 
-                Logger.log(Errorlevel.INFO, "User " + user + " logged in");
+                Logger.log(Errorlevel.INFO, user + " logged in");
                 return true;
             }
             else
             {
-                Logger.log(Errorlevel.INFO, "User " + (String.IsNullOrEmpty(user) ? "NULL" : user) + " failed to log in");
+                Logger.log(Errorlevel.INFO, (String.IsNullOrEmpty(user) ? "NULL OR EMPTY" : user) + " failed to log in");
                 return false;
             }
         }
@@ -256,21 +265,46 @@ namespace IQChampionsServiceLibrary
 
         #region SorKezelő
 
-        //Sorhoz csatlakozás, a metódust ide kell megírni
-        public bool joinQueue(string name)
+        public void joinQueue(string user)
         {
-            throw new NotImplementedException();
+            if (!queue.Contains(user))
+            {
+                queue.Add(user);
+                Logger.log(Errorlevel.INFO, user + " joined queue");
+
+                if (queue.Count >= Room.MAXPLAYERS)
+                {
+                    Room r = new Room();
+
+                    for (int i = 0; i < Room.MAXPLAYERS; i++)
+                    {
+                        r.addUser(queue[0]);
+                        queue.RemoveAt(0);
+                    }
+                }
+            }
+            else
+            {
+                Logger.log(Errorlevel.ERROR, user + "tried to join queue twice!");
+            }
         }
-        //pozíció, vagy viszamaradó idő válasza, ha talált, szobanév visszaadása
-        public string getQueuePosition(string name)
+        public void leaveQueue(string user)
         {
-            throw new NotImplementedException();
+            queue.Remove(user);
+            Logger.log(Errorlevel.INFO, user + " leaved queue");
+        }
+
+        // viszamaradó idő válasza?
+        public int getQueuePosition(string user)
+        {
+            return queue.FindIndex(x => x == user) - Room.MAXPLAYERS;
         }
 
         //belső metódus-mivel tele van, egyből GAME STARTED
-        public bool joinFoundRoom(string name, string roomname)
+        public bool roomFound(string user)
         {
-            throw new NotImplementedException();
+            Room room = rooms.Find(x => x.Users.Contains(user));
+            return room != null;
         }
 
         #endregion
@@ -361,6 +395,17 @@ namespace IQChampionsServiceLibrary
             throw new NotImplementedException();
         }
         #endregion
-        #endregion               
+        #endregion
+    }
+
+    public class Question
+    {
+
+    }
+
+
+    public class GameTable
+    {
+
     }
 }

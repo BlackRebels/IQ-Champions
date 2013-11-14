@@ -37,10 +37,10 @@
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="DataModelContainer" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="UserSet" EntityType="DataModel.User" />
-          <EntitySet Name="QuestionsSet" EntityType="DataModel.Questions" />
+          <EntitySet Name="dbUserSet" EntityType="DataModel.dbUser" />
+          <EntitySet Name="dbQuestionSet" EntityType="DataModel.dbQuestion" />
         </EntityContainer>
-        <EntityType Name="User">
+        <EntityType Name="dbUser">
           <Key>
             <PropertyRef Name="name" />
           </Key>
@@ -52,7 +52,7 @@
           <Property Type="Int16" Name="questions" Nullable="false" DefaultValue="0" />
           <Property Type="Int16" Name="goodanswers" Nullable="false" DefaultValue="0" />
         </EntityType>
-        <EntityType Name="Questions">
+        <EntityType Name="dbQuestion">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -69,8 +69,8 @@
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="DataModelStoreContainer" CdmEntityContainer="DataModelContainer">
-    <EntitySetMapping Name="UserSet">
-      <EntityTypeMapping TypeName="IsTypeOf(DataModel.User)">
+    <EntitySetMapping Name="dbUserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataModel.dbUser)">
         <MappingFragment StoreEntitySet="UserSet">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="pass" ColumnName="pass" />
@@ -82,8 +82,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="QuestionsSet">
-      <EntityTypeMapping TypeName="IsTypeOf(DataModel.Questions)">
+    <EntitySetMapping Name="dbQuestionSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataModel.dbQuestion)">
         <MappingFragment StoreEntitySet="QuestionsSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="question" ColumnName="question" />

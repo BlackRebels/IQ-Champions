@@ -26,7 +26,7 @@ namespace IQChampionsServiceLibrary
         [OperationContract]
         bool Ping(string Name);
         #endregion
-
+        
         #region Chat
         //közös chat
         [OperationContract]
@@ -88,13 +88,16 @@ namespace IQChampionsServiceLibrary
         #region SorKezelő
        
         [OperationContract]
-        Boolean joinQueue(String name);
+        void joinQueue(String name);
+
+        [OperationContract]
+        void leaveQueue(String name);
        
         [OperationContract]
-        String getQueuePosition(String name);
+        int getQueuePosition(String name);
        
         [OperationContract]
-        Boolean joinFoundRoom(String name, String roomname);
+        bool roomFound(String name);
 
         #endregion
 
@@ -143,53 +146,7 @@ namespace IQChampionsServiceLibrary
         Boolean returnToLobby(String roomname, Boolean lobby);
 
         #endregion
-
+        
         #endregion
-    }
-
-    [ServiceContract]
-    [DataContract]
-    public class Question
-    {
-
-    }
-
-    [ServiceContract]
-    [DataContract]
-    public class Room
-    {
-
-    }
-
-    [ServiceContract]
-    [DataContract]
-    public class GameTable
-    {
-
-    }
-
-    [ServiceContract]
-    [DataContract]
-    public class User
-    {
-        private string name = null;
-        private bool isonline = false;
-
-        public User(String name)
-        {
-            this.name = name;
-            isonline = true;
-        }
-
-        [DataMember]
-        public string getName
-        {
-            get { return name; }
-        }
-        public bool isOnline
-        {
-            get { return isonline; }
-            set { isonline = value; }
-        }
     }
 }

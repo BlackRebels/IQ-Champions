@@ -92,5 +92,10 @@ namespace iqchampion_design
                 user = null;
             }
         }
+
+        private void EnterKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) ButtonClickLogin(sender, null);
+        }
     }
 }

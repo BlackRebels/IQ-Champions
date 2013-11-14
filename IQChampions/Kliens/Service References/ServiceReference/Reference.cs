@@ -15,12 +15,15 @@ namespace iqchampion_design.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Room", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Room", Namespace="http://schemas.datacontract.org/2004/07/ServiceLibrary")]
     [System.SerializableAttribute()]
     public partial class Room : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -29,6 +32,19 @@ namespace iqchampion_design.ServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] Users {
+            get {
+                return this.UsersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
+                    this.UsersField = value;
+                    this.RaisePropertyChanged("Users");
+                }
             }
         }
         
@@ -219,22 +235,28 @@ namespace iqchampion_design.ServiceReference {
         System.Threading.Tasks.Task<iqchampion_design.ServiceReference.Room> getRoomAsync(string roomname);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/joinQueue", ReplyAction="http://iqchampions.com/IIQService/joinQueueResponse")]
-        bool joinQueue(string name);
+        void joinQueue(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/joinQueue", ReplyAction="http://iqchampions.com/IIQService/joinQueueResponse")]
-        System.Threading.Tasks.Task<bool> joinQueueAsync(string name);
+        System.Threading.Tasks.Task joinQueueAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/leaveQueue", ReplyAction="http://iqchampions.com/IIQService/leaveQueueResponse")]
+        void leaveQueue(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/leaveQueue", ReplyAction="http://iqchampions.com/IIQService/leaveQueueResponse")]
+        System.Threading.Tasks.Task leaveQueueAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getQueuePosition", ReplyAction="http://iqchampions.com/IIQService/getQueuePositionResponse")]
-        string getQueuePosition(string name);
+        int getQueuePosition(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getQueuePosition", ReplyAction="http://iqchampions.com/IIQService/getQueuePositionResponse")]
-        System.Threading.Tasks.Task<string> getQueuePositionAsync(string name);
+        System.Threading.Tasks.Task<int> getQueuePositionAsync(string name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/joinFoundRoom", ReplyAction="http://iqchampions.com/IIQService/joinFoundRoomResponse")]
-        bool joinFoundRoom(string name, string roomname);
+        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/roomFound", ReplyAction="http://iqchampions.com/IIQService/roomFoundResponse")]
+        bool roomFound(string name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/joinFoundRoom", ReplyAction="http://iqchampions.com/IIQService/joinFoundRoomResponse")]
-        System.Threading.Tasks.Task<bool> joinFoundRoomAsync(string name, string roomname);
+        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/roomFound", ReplyAction="http://iqchampions.com/IIQService/roomFoundResponse")]
+        System.Threading.Tasks.Task<bool> roomFoundAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/startGame", ReplyAction="http://iqchampions.com/IIQService/startGameResponse")]
         bool startGame(string name, string roomname);
@@ -500,28 +522,36 @@ namespace iqchampion_design.ServiceReference {
             return base.Channel.getRoomAsync(roomname);
         }
         
-        public bool joinQueue(string name) {
-            return base.Channel.joinQueue(name);
+        public void joinQueue(string name) {
+            base.Channel.joinQueue(name);
         }
         
-        public System.Threading.Tasks.Task<bool> joinQueueAsync(string name) {
+        public System.Threading.Tasks.Task joinQueueAsync(string name) {
             return base.Channel.joinQueueAsync(name);
         }
         
-        public string getQueuePosition(string name) {
+        public void leaveQueue(string name) {
+            base.Channel.leaveQueue(name);
+        }
+        
+        public System.Threading.Tasks.Task leaveQueueAsync(string name) {
+            return base.Channel.leaveQueueAsync(name);
+        }
+        
+        public int getQueuePosition(string name) {
             return base.Channel.getQueuePosition(name);
         }
         
-        public System.Threading.Tasks.Task<string> getQueuePositionAsync(string name) {
+        public System.Threading.Tasks.Task<int> getQueuePositionAsync(string name) {
             return base.Channel.getQueuePositionAsync(name);
         }
         
-        public bool joinFoundRoom(string name, string roomname) {
-            return base.Channel.joinFoundRoom(name, roomname);
+        public bool roomFound(string name) {
+            return base.Channel.roomFound(name);
         }
         
-        public System.Threading.Tasks.Task<bool> joinFoundRoomAsync(string name, string roomname) {
-            return base.Channel.joinFoundRoomAsync(name, roomname);
+        public System.Threading.Tasks.Task<bool> roomFoundAsync(string name) {
+            return base.Channel.roomFoundAsync(name);
         }
         
         public bool startGame(string name, string roomname) {

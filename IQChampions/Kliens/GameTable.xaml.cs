@@ -19,7 +19,7 @@ namespace iqchampion_design
 {
     public partial class GameTable : Window
     {
-        Menu parent = null;
+        private Menu parent = null;
 
         private string User
         {
@@ -121,7 +121,7 @@ namespace iqchampion_design
 
             // itt te jösz
             // lépsz, stb
-            
+
 
             /*
             APIenum.PLAYER_CAN_MOVE;    nem te jösz

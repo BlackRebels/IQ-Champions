@@ -24,6 +24,7 @@ namespace iqchampion_design
     {
         private Login parent = null;
         private BackgroundWorker pingworker = null;
+        private BackgroundWorker queueworker = null;
         private Thread APIpingThread = null;
 
         public string User
@@ -48,11 +49,27 @@ namespace iqchampion_design
             pingworker.DoWork += ping;
             pingworker.RunWorkerCompleted += timeout;
             pingworker.RunWorkerAsync();
+
+            queueworker = new BackgroundWorker();
+            queueworker.WorkerSupportsCancellation = true;
+            queueworker.WorkerReportsProgress = true;
+            queueworker.DoWork += queueCheck;
+            queueworker.ProgressChanged += queueProgressChanged;
         }
+
+
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-            //APIpingThread.Abort();
+            if (queueworker.IsBusy)
+            {
+                queueworker.CancelAsync();
+                ButtonJatek.Content = "Játék";
+            }
+            if (pingworker.IsBusy)
+            {
+                ButtonClickLogout(sender, null);
+            }
             parent.Show();
             Cursor = Cursors.Arrow;
         }
@@ -78,6 +95,32 @@ namespace iqchampion_design
                 }
             }
         }
+
+        private void queueCheck(object sender, DoWorkEventArgs e)
+        {
+            while (!Client.roomFound(User))
+            {
+                if ((sender as BackgroundWorker).CancellationPending)
+                {
+                    Client.leaveQueue(User);
+                    return;
+                }
+                (sender as BackgroundWorker).ReportProgress(0, Client.getQueuePosition(User));
+                Thread.Sleep(Login.PingPeriod);
+            }
+
+            GameTable game = new GameTable(this);
+            this.Hide();
+            game.Show();
+        }
+
+        void queueProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            //kiiratni csicsa picsa
+
+            ButtonJatek.Content = "Sorban állsz: " + ((int)e.UserState < 1 ? "nincs elég játékos" : e.UserState);
+        }
+
 
         private void timeout(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -111,28 +154,16 @@ namespace iqchampion_design
 
         private void ButtonClickGameRandom(object sender, RoutedEventArgs e)
         {
-            Client.joinQueue(User);
-
-            // befejezni
-            APIenum ret = Client.APIping(User, null);
-            while (ret != APIenum.ROOM_FOUND)
+            if (queueworker.IsBusy)
             {
-                ret = Client.APIping(User, null);
-                Client.getQueuePosition(User); //kiiratni csicsa picsa
-                Thread.Sleep(Login.PingPeriod);
+                queueworker.CancelAsync();
+                ButtonJatek.Content = "Játék";
             }
-            Client.joinFoundRoom(User,null);
-
-            ret = Client.APIping(User, null);
-            while (ret != APIenum.ROOM_STANDBY)
+            else
             {
-                ret = Client.APIping(User, null);
-                Client.getQueuePosition(User); //kiiratni csicsa picsa
-                Thread.Sleep(Login.PingPeriod);
+                Client.joinQueue(User);
+                queueworker.RunWorkerAsync();
             }
-
-            GameTable game = new GameTable(this);
-            game.Show();
         }
 
         public void usingAPI(APIenum api)

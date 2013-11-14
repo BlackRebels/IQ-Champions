@@ -129,17 +129,23 @@
   <wsdl:message name="IIQService_joinQueue_OutputMessage">
     <wsdl:part name="parameters" element="tns:joinQueueResponse" />
   </wsdl:message>
+  <wsdl:message name="IIQService_leaveQueue_InputMessage">
+    <wsdl:part name="parameters" element="tns:leaveQueue" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_leaveQueue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:leaveQueueResponse" />
+  </wsdl:message>
   <wsdl:message name="IIQService_getQueuePosition_InputMessage">
     <wsdl:part name="parameters" element="tns:getQueuePosition" />
   </wsdl:message>
   <wsdl:message name="IIQService_getQueuePosition_OutputMessage">
     <wsdl:part name="parameters" element="tns:getQueuePositionResponse" />
   </wsdl:message>
-  <wsdl:message name="IIQService_joinFoundRoom_InputMessage">
-    <wsdl:part name="parameters" element="tns:joinFoundRoom" />
+  <wsdl:message name="IIQService_roomFound_InputMessage">
+    <wsdl:part name="parameters" element="tns:roomFound" />
   </wsdl:message>
-  <wsdl:message name="IIQService_joinFoundRoom_OutputMessage">
-    <wsdl:part name="parameters" element="tns:joinFoundRoomResponse" />
+  <wsdl:message name="IIQService_roomFound_OutputMessage">
+    <wsdl:part name="parameters" element="tns:roomFoundResponse" />
   </wsdl:message>
   <wsdl:message name="IIQService_startGame_InputMessage">
     <wsdl:part name="parameters" element="tns:startGame" />
@@ -306,13 +312,17 @@
       <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/joinQueue" message="tns:IIQService_joinQueue_InputMessage" />
       <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/joinQueueResponse" message="tns:IIQService_joinQueue_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="leaveQueue">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/leaveQueue" message="tns:IIQService_leaveQueue_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/leaveQueueResponse" message="tns:IIQService_leaveQueue_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="getQueuePosition">
       <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/getQueuePosition" message="tns:IIQService_getQueuePosition_InputMessage" />
       <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/getQueuePositionResponse" message="tns:IIQService_getQueuePosition_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="joinFoundRoom">
-      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/joinFoundRoom" message="tns:IIQService_joinFoundRoom_InputMessage" />
-      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/joinFoundRoomResponse" message="tns:IIQService_joinFoundRoom_OutputMessage" />
+    <wsdl:operation name="roomFound">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/roomFound" message="tns:IIQService_roomFound_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/roomFoundResponse" message="tns:IIQService_roomFound_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="startGame">
       <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/startGame" message="tns:IIQService_startGame_InputMessage" />

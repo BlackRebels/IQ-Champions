@@ -184,6 +184,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="leaveQueue">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/leaveQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="getQueuePosition">
       <soap:operation soapAction="http://iqchampions.com/IIQService/getQueuePosition" style="document" />
       <wsdl:input>
@@ -193,8 +202,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="joinFoundRoom">
-      <soap:operation soapAction="http://iqchampions.com/IIQService/joinFoundRoom" style="document" />
+    <wsdl:operation name="roomFound">
+      <soap:operation soapAction="http://iqchampions.com/IIQService/roomFound" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

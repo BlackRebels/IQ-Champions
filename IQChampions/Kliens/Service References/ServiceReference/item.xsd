@@ -237,7 +237,7 @@
   <xs:element name="getMyRoomResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getMyRoomResult" nillable="true" type="q8:Room" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/ServiceLibrary" minOccurs="0" name="getMyRoomResult" nillable="true" type="q8:Room" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -263,7 +263,7 @@
   <xs:element name="getRoomResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getRoomResult" nillable="true" type="q10:Room" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ServiceLibrary" minOccurs="0" name="getRoomResult" nillable="true" type="q10:Room" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -276,9 +276,19 @@
   </xs:element>
   <xs:element name="joinQueueResponse">
     <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="leaveQueue">
+    <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="joinQueueResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="leaveQueueResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="getQueuePosition">
@@ -291,22 +301,21 @@
   <xs:element name="getQueuePositionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="getQueuePositionResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="getQueuePositionResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="joinFoundRoom">
+  <xs:element name="roomFound">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="roomname" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="joinFoundRoomResponse">
+  <xs:element name="roomFoundResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="joinFoundRoomResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="roomFoundResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

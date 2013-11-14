@@ -6,8 +6,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Button Content="Bejelentkezés" HorizontalAlignment="Left" Margin="255,220,0,-20" VerticalAlignment="Top" Width="160" Height="40" FontSize="20" Click="ButtonClickLogin"/>
-        <TextBox x:Name="TextBoxUser" HorizontalAlignment="Left" Height="40" Margin="10,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="311" FontSize="20" />
-        <PasswordBox x:Name="TextBoxPass" HorizontalAlignment="Left" Height="40" Margin="10,169,0,0" VerticalAlignment="Top" Width="311" FontSize="20"/>
+        <TextBox x:Name="TextBoxUser" HorizontalAlignment="Left" Height="40" Margin="10,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="311" FontSize="20" KeyDown="EnterKeyDown" />
+        <PasswordBox x:Name="TextBoxPass" HorizontalAlignment="Left" Height="40" Margin="10,169,0,0" VerticalAlignment="Top" Width="311" FontSize="20" KeyDown="EnterKeyDown"/>
         <Label Content="Felhasználónév" HorizontalAlignment="Left" Margin="50,67,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Jelszó" HorizontalAlignment="Left" Margin="50,138,0,0" VerticalAlignment="Top" FontSize="16"/>
         <TextBlock HorizontalAlignment="Left" Margin="50,220,0,-1" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Foreground="#FF003AFF">
