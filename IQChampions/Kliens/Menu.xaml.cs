@@ -30,7 +30,11 @@ namespace iqchampion_design
         {
             get { return parent.User; }
         }
-        
+        public IQServiceClient Client
+        {
+            get { return Login.Client; }
+        }
+
         public Menu(Login parent)
         {
             InitializeComponent();
@@ -57,13 +61,17 @@ namespace iqchampion_design
         {
             while (true)
             {
-                if ((sender as BackgroundWorker).CancellationPending)
+                int sleepdur = 250;
+                for (int i = 0; i < Login.PingPeriod / sleepdur; i++)
                 {
-                    Login.Client.Logout(User);
-                    return;
+                    if ((sender as BackgroundWorker).CancellationPending)
+                    {
+                        Client.Logout(User);
+                        return;
+                    }
+                    Thread.Sleep(sleepdur);
                 }
-                Thread.Sleep(Login.PingPeriod);
-                if (!Login.Client.Ping(User))
+                if (!stop && !Login.Client.Ping(User))
                 {
                     MessageBox.Show("Időtúllépés!");
                     return;
@@ -76,6 +84,12 @@ namespace iqchampion_design
             this.Close();
         }
 
+        bool stop = false;
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            stop = !stop;
+            debugbutton.Content = "Pinging is " + (stop ? "off" : "on");
+        }
         private void ButtonClickLogout(object sender, RoutedEventArgs e)
         {
             Cursor = Cursors.Wait;
@@ -97,6 +111,26 @@ namespace iqchampion_design
 
         private void ButtonClickGameRandom(object sender, RoutedEventArgs e)
         {
+            Client.joinQueue(User);
+
+            // befejezni
+            APIenum ret = Client.APIping(User, null);
+            while (ret != APIenum.ROOM_FOUND)
+            {
+                ret = Client.APIping(User, null);
+                Client.getQueuePosition(User); //kiiratni csicsa picsa
+                Thread.Sleep(Login.PingPeriod);
+            }
+            Client.joinFoundRoom(User,null);
+
+            ret = Client.APIping(User, null);
+            while (ret != APIenum.ROOM_STANDBY)
+            {
+                ret = Client.APIping(User, null);
+                Client.getQueuePosition(User); //kiiratni csicsa picsa
+                Thread.Sleep(Login.PingPeriod);
+            }
+
             GameTable game = new GameTable(this);
             game.Show();
         }
@@ -120,6 +154,8 @@ namespace iqchampion_design
                     break;
             }
         }
+
+
 
 
     }

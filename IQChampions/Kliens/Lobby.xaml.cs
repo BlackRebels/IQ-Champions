@@ -1,8 +1,10 @@
-﻿using ServiceLibrary;
+﻿using iqchampion_design.ServiceReference;
+using ServiceLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +25,10 @@ namespace iqchampion_design
         public string User
         {
             get { return parent.User; }
+        }
+        public IQServiceClient Client
+        {
+            get { return Login.Client; }
         }
 
         public Lobby(Menu parent)
@@ -57,7 +63,7 @@ namespace iqchampion_design
             pageContainer.Content = page;
         }
 
-        private void onSzobaClicked(object sender, MouseButtonEventArgs e)
+        private void onSzobaClicked(object sender, RoutedEventArgs e)
         {
             SzobaPage szoba = new SzobaPage();
             pageContainer.Content = szoba;
@@ -109,5 +115,16 @@ namespace iqchampion_design
                     break;
             }
         }
+
+        private void Window_Loaded_1(object sender, RoutedEventArgs e)
+        {/*
+            while (true)
+            {
+                //Client.refreshRoomList();
+          * elindították-e a szobámat
+                Thread.Sleep(Login.PingPeriod);
+            }*/
+        }
+
     }
 }

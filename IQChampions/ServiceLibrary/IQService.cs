@@ -15,7 +15,7 @@ namespace IQChampionsServiceLibrary
     public class IQService : IIQService
     {
         private static List<User> onlineUsers = null;
-        private const int timeout = 10000;
+        private const int timeout = 5000;
         private static Object lockObject = new Object();
 
         static IQService()
@@ -36,7 +36,7 @@ namespace IQChampionsServiceLibrary
         {
             while (true)
             {
-                Thread.Sleep(timeout);
+                Thread.Sleep(timeout / 2);
                 lock (lockObject)
                 {
                     Parallel.ForEach(onlineUsers, new Action<User>((o) =>
@@ -44,7 +44,7 @@ namespace IQChampionsServiceLibrary
                         o.isOnline = false;
                     }));
                 }
-                Thread.Sleep(timeout);
+                Thread.Sleep(timeout / 2);
                 lock (lockObject)
                 {
                     Parallel.ForEach(onlineUsers, new Action<User>((o) =>
@@ -89,6 +89,11 @@ namespace IQChampionsServiceLibrary
             {
                 return false;
             }
+        }
+
+        public int PingPeriod()
+        {
+            return 1000;
         }
 
         public bool Ping(string user)
@@ -356,6 +361,6 @@ namespace IQChampionsServiceLibrary
             throw new NotImplementedException();
         }
         #endregion
-        #endregion
+        #endregion               
     }
 }

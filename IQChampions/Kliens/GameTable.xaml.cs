@@ -1,8 +1,10 @@
-﻿using ServiceLibrary;
+﻿using iqchampion_design.ServiceReference;
+using ServiceLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,9 +21,13 @@ namespace iqchampion_design
     {
         Menu parent = null;
 
-        private string user
+        private string User
         {
             get { return parent.User; }
+        }
+        public IQServiceClient Client
+        {
+            get { return Login.Client; }
         }
 
         public GameTable(Menu parent)
@@ -101,6 +107,28 @@ namespace iqchampion_design
             }
         }
 
-        
+        private void Window_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            Client.getGameTable(User, null);
+
+            APIenum ret = Client.APIping(User, null);
+            while (ret != APIenum.YOU_CAN_MOVE || ret != APIenum.WAITING_FOR_MOVE)
+            {
+                // nem te jösz, sötét, de látsz mindent
+                ret = Client.APIping(User, null);
+                Thread.Sleep(Login.PingPeriod);
+            }
+
+            // itt te jösz
+            // lépsz, stb
+            
+
+            /*
+            APIenum.PLAYER_CAN_MOVE;    nem te jösz
+            APIenum.YOU_CAN_MOVE        te jösz
+            */
+        }
+
+
     }
 }

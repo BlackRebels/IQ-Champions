@@ -9,6 +9,12 @@
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IIQService_PingPeriod_InputMessage">
+    <wsdl:part name="parameters" element="tns:PingPeriod" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_PingPeriod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingPeriodResponse" />
+  </wsdl:message>
   <wsdl:message name="IIQService_Login_InputMessage">
     <wsdl:part name="parameters" element="tns:Login" />
   </wsdl:message>
@@ -220,6 +226,10 @@
     <wsdl:part name="parameters" element="tns:returnToLobbyResponse" />
   </wsdl:message>
   <wsdl:portType name="IIQService">
+    <wsdl:operation name="PingPeriod">
+      <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/PingPeriod" message="tns:IIQService_PingPeriod_InputMessage" />
+      <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/PingPeriodResponse" message="tns:IIQService_PingPeriod_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://iqchampions.com/IIQService/Login" message="tns:IIQService_Login_InputMessage" />
       <wsdl:output wsaw:Action="http://iqchampions.com/IIQService/LoginResponse" message="tns:IIQService_Login_OutputMessage" />

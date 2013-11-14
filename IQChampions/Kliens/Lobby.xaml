@@ -5,7 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 	Title="Lobby" Height="480"
-        Width="800" Closing="Window_Closing">
+        Width="800" Closing="Window_Closing" Loaded="Window_Loaded_1">
 
     <Grid Margin="0,0,0,0
           ">
@@ -42,6 +42,7 @@
             <Label Content="Szoba2"/>
             <Label Content="Szoba3"/>
             <Label Content="Szoba4"/>
+            <Button Content="szobagomb" Click="onSzobaClicked"/>
         </ListBox>
         <Frame x:Name="pageContainer" Margin="5,0,5,52"  Height="150" VerticalAlignment="Bottom" Grid.Column="1" Grid.RowSpan="2" NavigationUIVisibility="Hidden"/>
         <Grid Margin="3,0,0,-207" Background="#FFC7C7C7" Grid.Row="1" Height="150" VerticalAlignment="Bottom">

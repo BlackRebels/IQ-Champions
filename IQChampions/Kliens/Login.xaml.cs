@@ -21,7 +21,7 @@ namespace iqchampion_design
 {
     public partial class Login : Window
     {
-        private static int pingPeriod = 1000;
+        private static int pingPeriod = -1;
         private static IQServiceClient client = new IQServiceClient();
         private string user = null;
 
@@ -54,6 +54,7 @@ namespace iqchampion_design
             Cursor = Cursors.Arrow;
             try
             {
+                pingPeriod = client.PingPeriod();
                 bool authenticated = client.Login(TextBoxUser.Text, Hash.generate(TextBoxPass.Password));
                 if (authenticated)
                 {

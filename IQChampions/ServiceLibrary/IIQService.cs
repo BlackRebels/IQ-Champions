@@ -15,8 +15,11 @@ namespace IQChampionsServiceLibrary
         #region Felhasználó
         //felhasználói cuccok
         [OperationContract]
-        bool Login(string Name, string Password);
+        int PingPeriod();
 
+        [OperationContract]
+        bool Login(string Name, string Password);
+        
         [OperationContract]
         bool Logout(string Name);
 

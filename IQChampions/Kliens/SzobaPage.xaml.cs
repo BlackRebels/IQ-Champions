@@ -27,6 +27,8 @@ namespace iqchampion_design
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            // Userek bepakolása szobákba
+
             GameTable game = new GameTable(null);
             game.Show();
         }
