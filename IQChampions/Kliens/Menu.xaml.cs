@@ -40,6 +40,7 @@ namespace iqchampion_design
         {
             InitializeComponent();
             this.parent = parent;
+            this.Title = "Bejelentkezve mint " + User;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -55,10 +56,9 @@ namespace iqchampion_design
             queueworker.WorkerReportsProgress = true;
             queueworker.DoWork += queueCheck;
             queueworker.ProgressChanged += queueProgressChanged;
+            queueworker.RunWorkerCompleted += startGame;
         }
-
-
-
+            
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             if (queueworker.IsBusy)
@@ -96,35 +96,39 @@ namespace iqchampion_design
             }
         }
 
+        private void timeout(object sender, RunWorkerCompletedEventArgs e)
+        {
+            this.Close();
+        }
+
         private void queueCheck(object sender, DoWorkEventArgs e)
         {
             while (!Client.roomFound(User))
             {
                 if ((sender as BackgroundWorker).CancellationPending)
                 {
-                    Client.leaveQueue(User);
                     return;
                 }
                 (sender as BackgroundWorker).ReportProgress(0, Client.getQueuePosition(User));
                 Thread.Sleep(Login.PingPeriod);
             }
-
-            GameTable game = new GameTable(this);
-            this.Hide();
-            game.Show();
         }
 
         void queueProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             //kiiratni csicsa picsa
 
-            ButtonJatek.Content = "Sorban állsz: " + ((int)e.UserState < 1 ? "nincs elég játékos" : e.UserState);
+            ButtonJatek.Content = ((int)e.UserState < 1 ? "Még " + ((int)e.UserState * -1) + " játékos kell" : e.UserState + ". vagy a sorban");
         }
 
-
-        private void timeout(object sender, RunWorkerCompletedEventArgs e)
+        void startGame(object sender, RunWorkerCompletedEventArgs e)
         {
-            this.Close();
+            if (!e.Cancelled)
+            {
+                GameTable game = new GameTable(this);
+                this.Hide();
+                game.Show();
+            }
         }
 
         bool stop = false;
@@ -133,16 +137,20 @@ namespace iqchampion_design
             stop = !stop;
             debugbutton.Content = "Pinging is " + (stop ? "off" : "on");
         }
-        private void ButtonClickLogout(object sender, RoutedEventArgs e)
-        {
-            Cursor = Cursors.Wait;
-            parent.ClearFields();
-            pingworker.CancelAsync();
-        }
 
-        private void ButtonClickProfil(object sender, RoutedEventArgs e)
+        private void ButtonClickGameRandom(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://index.hu"); // Link to user profile
+            if (queueworker.IsBusy)
+            {
+                Client.leaveQueue(User);
+                queueworker.CancelAsync();
+                ButtonJatek.Content = "Játék";
+            }
+            else
+            {
+                Client.joinQueue(User);
+                queueworker.RunWorkerAsync();
+            }
         }
 
         private void ButtonClickGameWithFriends(object sender, RoutedEventArgs e)
@@ -152,18 +160,16 @@ namespace iqchampion_design
             this.Hide();
         }
 
-        private void ButtonClickGameRandom(object sender, RoutedEventArgs e)
+        private void ButtonClickProfil(object sender, RoutedEventArgs e)
         {
-            if (queueworker.IsBusy)
-            {
-                queueworker.CancelAsync();
-                ButtonJatek.Content = "Játék";
-            }
-            else
-            {
-                Client.joinQueue(User);
-                queueworker.RunWorkerAsync();
-            }
+            System.Diagnostics.Process.Start("http://index.hu"); // Link to user profile
+        }
+
+        private void ButtonClickLogout(object sender, RoutedEventArgs e)
+        {
+            Cursor = Cursors.Wait;
+            parent.ClearFields();
+            pingworker.CancelAsync();
         }
 
         public void usingAPI(APIenum api)

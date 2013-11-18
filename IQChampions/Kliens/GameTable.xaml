@@ -41,6 +41,46 @@
             <Label Content="0:08" HorizontalAlignment="Left" Margin="192,10,0,0" VerticalAlignment="Top" FontSize="16"/>
         </Grid>
         <Button Content="Kilépés" Grid.Column="1" HorizontalAlignment="Left" Margin="435,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-        
+        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="407" Margin="10,40,0,0" VerticalAlignment="Top" Width="531" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle x:Name="cell00" Grid.Column="0" Grid.Row="0" />
+            <Rectangle x:Name="cell10" Grid.Column="1" Grid.Row="0" />
+            <Rectangle x:Name="cell20" Grid.Column="2" Grid.Row="0" />
+            <Rectangle x:Name="cell30" Grid.Column="3" Grid.Row="0" />
+            <Rectangle x:Name="cell40" Grid.Column="4" Grid.Row="0" />
+            <Rectangle x:Name="cell50" Grid.Column="5" Grid.Row="0" />
+            <Rectangle x:Name="cell01" Grid.Column="0" Grid.Row="1" />
+            <Rectangle x:Name="cell11" Grid.Column="1" Grid.Row="1" />
+            <Rectangle x:Name="cell21" Grid.Column="2" Grid.Row="1" />
+            <Rectangle x:Name="cell31" Grid.Column="3" Grid.Row="1" />
+            <Rectangle x:Name="cell41" Grid.Column="4" Grid.Row="1" />
+            <Rectangle x:Name="cell51" Grid.Column="5" Grid.Row="1" />
+            <Rectangle x:Name="cell02" Grid.Column="0" Grid.Row="2" />
+            <Rectangle x:Name="cell12" Grid.Column="1" Grid.Row="2" />
+            <Rectangle x:Name="cell22" Grid.Column="2" Grid.Row="2" />
+            <Rectangle x:Name="cell32" Grid.Column="3" Grid.Row="2" />
+            <Rectangle x:Name="cell42" Grid.Column="4" Grid.Row="2" />
+            <Rectangle x:Name="cell52" Grid.Column="5" Grid.Row="2" />
+            <Rectangle x:Name="cell03" Grid.Column="0" Grid.Row="3" />
+            <Rectangle x:Name="cell13" Grid.Column="1" Grid.Row="3" />
+            <Rectangle x:Name="cell23" Grid.Column="2" Grid.Row="3" />
+            <Rectangle x:Name="cell33" Grid.Column="3" Grid.Row="3" />
+            <Rectangle x:Name="cell43" Grid.Column="4" Grid.Row="3" />
+            <Rectangle x:Name="cell53" Grid.Column="5" Grid.Row="3" />
+        </Grid>
+
     </Grid>
 </Window>

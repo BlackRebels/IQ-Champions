@@ -51,7 +51,7 @@ namespace iqchampion_design
 
         private void ButtonClickLogin(object sender, RoutedEventArgs e)
         {
-            Cursor = Cursors.Arrow;
+            Cursor = Cursors.Wait;
             try
             {
                 pingPeriod = client.PingPeriod();
@@ -65,7 +65,7 @@ namespace iqchampion_design
                 }
                 else
                 {
-                    MessageBox.Show("Hibás felhasználónév vagy jelszó!\r\nDebug user: admin");
+                    MessageBox.Show("Hibás felhasználónév vagy jelszó!");
                     TextBoxUser.Text = null;
                     TextBoxPass.Password = null;
                 }

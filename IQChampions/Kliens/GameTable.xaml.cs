@@ -34,6 +34,7 @@ namespace iqchampion_design
         {
             InitializeComponent();
             this.parent = parent;
+            this.Title = parent.Title;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -108,7 +109,7 @@ namespace iqchampion_design
         }
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
-        {
+        {/*
             Client.getGameTable(User, null);
 
             APIenum ret = Client.APIping(User, null);
@@ -118,7 +119,7 @@ namespace iqchampion_design
                 ret = Client.APIping(User, null);
                 Thread.Sleep(Login.PingPeriod);
             }
-
+            */
             // itt te jösz
             // lépsz, stb
 

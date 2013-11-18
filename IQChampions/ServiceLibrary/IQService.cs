@@ -17,7 +17,7 @@ namespace IQChampionsServiceLibrary
         private static List<User> onlineUsers = null;
         private static List<string> queue = null;
         private static List<Room> rooms = null;
-        private const int timeout = 5000;
+        private const int timeout = 500000;
         private static Object lockObject = new Object();
 
         static IQService()
@@ -54,8 +54,11 @@ namespace IQChampionsServiceLibrary
                     {
                         if (!o.isOnline)
                         {
+                            if (queue.Remove(o.getName))
+                            {
+                                Logger.log(Errorlevel.INFO, o.getName + " leaved queue");
+                            }
                             onlineUsers.Remove(o);
-                            queue.Remove(o.getName);
                             Logger.log(Errorlevel.INFO, o.getName + " timed out");
                         }
                     }));
@@ -71,7 +74,7 @@ namespace IQChampionsServiceLibrary
                 Logger.log(Errorlevel.INFO, user + " tried to log in twice");
                 return false;
             }
-            else if (user.Length > 4)
+            else if (user.Length < 6)
             {
                 User login = new User(user);
                 onlineUsers.Add(login);
@@ -90,6 +93,10 @@ namespace IQChampionsServiceLibrary
         {
             try
             {
+                if (queue.Remove(user))
+                {
+                    Logger.log(Errorlevel.INFO, user + " leaved queue");
+                }
                 onlineUsers.RemoveAll(x => x.getName.Equals(user));
                 Logger.log(Errorlevel.INFO, "User " + user + " logged out");
                 return true;
@@ -281,6 +288,9 @@ namespace IQChampionsServiceLibrary
                         r.addUser(queue[0]);
                         queue.RemoveAt(0);
                     }
+
+                    rooms.Add(r);
+                    Logger.log(Errorlevel.INFO, r.Name + " room created!");
                 }
             }
             else
@@ -297,7 +307,14 @@ namespace IQChampionsServiceLibrary
         // viszamaradó idő válasza?
         public int getQueuePosition(string user)
         {
-            return queue.FindIndex(x => x == user) - Room.MAXPLAYERS;
+            if (queue.Count < Room.MAXPLAYERS)
+            {
+                return queue.Count - Room.MAXPLAYERS;
+            }
+            else
+            {
+                return queue.FindIndex(x => x == user);
+            }
         }
 
         //belső metódus-mivel tele van, egyből GAME STARTED

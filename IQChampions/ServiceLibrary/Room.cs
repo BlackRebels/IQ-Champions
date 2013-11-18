@@ -13,6 +13,11 @@ namespace ServiceLibrary
         private string name;
         private List<string> users;
 
+        public string Name
+        {
+            get { return name; }
+        }
+
         public List<string> Users
         {
             get { return users; }
