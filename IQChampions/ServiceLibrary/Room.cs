@@ -4,44 +4,56 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceLibrary
+namespace IQChampionsServiceLibrary
 {
     public class Room
     {
         public const int MAXPLAYERS = 4;
 
-        private string name;
-        private List<string> users;
-
-        public string Name
-        {
-            get { return name; }
-        }
-
-        public List<string> Users
-        {
-            get { return users; }
-        }
+        public GameTable Table { get; set; }
+        public string Name { get; set; }
+        public List<User> Users { get; set; }
 
         public Room()
         {
-            users = new List<string>();
-            name = Guid.NewGuid().ToString();
+            Name = Guid.NewGuid().ToString();
+            Users = new List<User>();
+            Table = new GameTable(6, 4);
         }
 
         public Room(string name)
         {
-            users = new List<string>();
-            this.name = name;
+            Name = name;
+            Users = new List<User>();
+            Table = new GameTable(6, 4);
         }
 
-        public void addUser(string user)
+        public void addUser(User user)
         {
-            if (users.Count <= MAXPLAYERS)
+            if (Users.Count <= Room.MAXPLAYERS)
             {
-                users.Add(user);
+                Users.Add(user);
             }
-            else throw new OverflowException("Too much users in " + name + " room!");
+            else throw new OverflowException("Too much users in " + Name + " room!");
+        }
+
+        public void start()
+        {
+            foreach (Cell c in Table.Table)
+            {
+                if (c.Col == 0 && c.Row == 0) c.Owner = Users[0];
+                else if (c.Col == 0 && c.Row == 1) c.Owner = Users[0];
+                else if (c.Col == 0 && c.Row == 4) c.Owner = Users[1];
+                else if (c.Col == 0 && c.Row == 5) c.Owner = Users[1];
+                else if (c.Col == 3 && c.Row == 0) c.Owner = Users[2];
+                else if (c.Col == 3 && c.Row == 1) c.Owner = Users[2];
+
+                else if (c.Col == 3 && c.Row == 4) c.Owner = Users[3];
+                else if (c.Col == 3 && c.Row == 5) c.Owner = Users[3];
+                else c.Owner = new User() { Color = new byte[3] { 100, 100, 100 } };
+
+
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using iqchampion_design.ServiceReference;
-using ServiceLibrary;
+using IQChampionsServiceLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +24,7 @@ namespace iqchampion_design
 
         public string User
         {
-            get { return parent.User; }
+            get { return Login.User; }
         }
         public IQServiceClient Client
         {

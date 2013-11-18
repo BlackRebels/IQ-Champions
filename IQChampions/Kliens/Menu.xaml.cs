@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using iqchampion_design.ServiceReference;
-using ServiceLibrary;
+using IQChampionsServiceLibrary;
 
 namespace iqchampion_design
 {
@@ -27,13 +27,17 @@ namespace iqchampion_design
         private BackgroundWorker queueworker = null;
         private Thread APIpingThread = null;
 
-        public string User
+        private string User
         {
-            get { return parent.User; }
+            get { return Login.User; }
         }
-        public IQServiceClient Client
+        private IQServiceClient Client
         {
             get { return Login.Client; }
+        }
+        private int PingPeriod
+        {
+            get { return Login.PingPeriod; }
         }
 
         public Menu(Login parent)
@@ -41,15 +45,11 @@ namespace iqchampion_design
             InitializeComponent();
             this.parent = parent;
             this.Title = "Bejelentkezve mint " + User;
-        }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
             pingworker = new BackgroundWorker();
             pingworker.WorkerSupportsCancellation = true;
             pingworker.DoWork += ping;
             pingworker.RunWorkerCompleted += timeout;
-            pingworker.RunWorkerAsync();
 
             queueworker = new BackgroundWorker();
             queueworker.WorkerSupportsCancellation = true;
@@ -58,7 +58,19 @@ namespace iqchampion_design
             queueworker.ProgressChanged += queueProgressChanged;
             queueworker.RunWorkerCompleted += startGame;
         }
-            
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            pingworker.RunWorkerAsync();
+
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length > 2 && args[2].Equals("Play"))
+            {
+                Thread.Sleep(1000);
+                ButtonClickGameRandom(this, null);
+            }
+        }
+
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             if (queueworker.IsBusy)
@@ -79,7 +91,7 @@ namespace iqchampion_design
             while (true)
             {
                 int sleepdur = 250;
-                for (int i = 0; i < Login.PingPeriod / sleepdur; i++)
+                for (int i = 0; i < PingPeriod / sleepdur; i++)
                 {
                     if ((sender as BackgroundWorker).CancellationPending)
                     {
@@ -103,14 +115,14 @@ namespace iqchampion_design
 
         private void queueCheck(object sender, DoWorkEventArgs e)
         {
-            while (!Client.roomFound(User))
+            while (!Client.haveRoom(User))
             {
                 if ((sender as BackgroundWorker).CancellationPending)
                 {
                     return;
                 }
                 (sender as BackgroundWorker).ReportProgress(0, Client.getQueuePosition(User));
-                Thread.Sleep(Login.PingPeriod);
+                Thread.Sleep(PingPeriod);
             }
         }
 

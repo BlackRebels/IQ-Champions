@@ -23,7 +23,7 @@ namespace iqchampion_design
     {
         private static int pingPeriod = -1;
         private static IQServiceClient client = new IQServiceClient();
-        private string user = null;
+        private static string user = null;
 
         public static int PingPeriod
         {
@@ -33,14 +33,22 @@ namespace iqchampion_design
         {
             get { return Login.client; }
         }
-        public string User
+        public static string User
         {
-            get { return this.user; }
+            get { return user; }
         }
 
         public Login()
         {
             InitializeComponent();
+
+
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length > 1)
+            {
+                TextBoxUser.Text = args[1];
+                ButtonClickLogin(this, null);
+            }
         }
 
         public void ClearFields()

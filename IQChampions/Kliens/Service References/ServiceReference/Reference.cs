@@ -15,15 +15,15 @@ namespace iqchampion_design.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Room", Namespace="http://schemas.datacontract.org/2004/07/ServiceLibrary")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameTable", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
     [System.SerializableAttribute()]
-    public partial class Room : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class GameTable : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] UsersField;
+        private iqchampion_design.ServiceReference.Cell[] TableField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -36,14 +36,14 @@ namespace iqchampion_design.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] Users {
+        public iqchampion_design.ServiceReference.Cell[] Table {
             get {
-                return this.UsersField;
+                return this.TableField;
             }
             set {
-                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
-                    this.UsersField = value;
-                    this.RaisePropertyChanged("Users");
+                if ((object.ReferenceEquals(this.TableField, value) != true)) {
+                    this.TableField = value;
+                    this.RaisePropertyChanged("Table");
                 }
             }
         }
@@ -60,12 +60,21 @@ namespace iqchampion_design.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GameTable", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Cell", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
     [System.SerializableAttribute()]
-    public partial class GameTable : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Cell : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ColField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private iqchampion_design.ServiceReference.User OwnerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RowField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -74,6 +83,45 @@ namespace iqchampion_design.ServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Col {
+            get {
+                return this.ColField;
+            }
+            set {
+                if ((this.ColField.Equals(value) != true)) {
+                    this.ColField = value;
+                    this.RaisePropertyChanged("Col");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public iqchampion_design.ServiceReference.User Owner {
+            get {
+                return this.OwnerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OwnerField, value) != true)) {
+                    this.OwnerField = value;
+                    this.RaisePropertyChanged("Owner");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Row {
+            get {
+                return this.RowField;
+            }
+            set {
+                if ((this.RowField.Equals(value) != true)) {
+                    this.RowField = value;
+                    this.RaisePropertyChanged("Row");
+                }
             }
         }
         
@@ -89,12 +137,21 @@ namespace iqchampion_design.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Question", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
     [System.SerializableAttribute()]
-    public partial class Question : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] ColorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool OnlineField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -103,6 +160,45 @@ namespace iqchampion_design.ServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Color {
+            get {
+                return this.ColorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ColorField, value) != true)) {
+                    this.ColorField = value;
+                    this.RaisePropertyChanged("Color");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Online {
+            get {
+                return this.OnlineField;
+            }
+            set {
+                if ((this.OnlineField.Equals(value) != true)) {
+                    this.OnlineField = value;
+                    this.RaisePropertyChanged("Online");
+                }
             }
         }
         
@@ -117,230 +213,62 @@ namespace iqchampion_design.ServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://iqchampions.com", ConfigurationName="ServiceReference.IIQService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IIQService")]
     public interface IIQService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/PingPeriod", ReplyAction="http://iqchampions.com/IIQService/PingPeriodResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/PingPeriod", ReplyAction="http://tempuri.org/IIQService/PingPeriodResponse")]
         int PingPeriod();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/PingPeriod", ReplyAction="http://iqchampions.com/IIQService/PingPeriodResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/PingPeriod", ReplyAction="http://tempuri.org/IIQService/PingPeriodResponse")]
         System.Threading.Tasks.Task<int> PingPeriodAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/Login", ReplyAction="http://iqchampions.com/IIQService/LoginResponse")]
-        bool Login(string Name, string Password);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/Login", ReplyAction="http://tempuri.org/IIQService/LoginResponse")]
+        bool Login(string user, string Password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/Login", ReplyAction="http://iqchampions.com/IIQService/LoginResponse")]
-        System.Threading.Tasks.Task<bool> LoginAsync(string Name, string Password);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/Login", ReplyAction="http://tempuri.org/IIQService/LoginResponse")]
+        System.Threading.Tasks.Task<bool> LoginAsync(string user, string Password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/Logout", ReplyAction="http://iqchampions.com/IIQService/LogoutResponse")]
-        bool Logout(string Name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/Logout", ReplyAction="http://tempuri.org/IIQService/LogoutResponse")]
+        bool Logout(string user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/Logout", ReplyAction="http://iqchampions.com/IIQService/LogoutResponse")]
-        System.Threading.Tasks.Task<bool> LogoutAsync(string Name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/Logout", ReplyAction="http://tempuri.org/IIQService/LogoutResponse")]
+        System.Threading.Tasks.Task<bool> LogoutAsync(string user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/Ping", ReplyAction="http://iqchampions.com/IIQService/PingResponse")]
-        bool Ping(string Name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/Ping", ReplyAction="http://tempuri.org/IIQService/PingResponse")]
+        bool Ping(string user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/Ping", ReplyAction="http://iqchampions.com/IIQService/PingResponse")]
-        System.Threading.Tasks.Task<bool> PingAsync(string Name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/Ping", ReplyAction="http://tempuri.org/IIQService/PingResponse")]
+        System.Threading.Tasks.Task<bool> PingAsync(string user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/SendAll", ReplyAction="http://iqchampions.com/IIQService/SendAllResponse")]
-        void SendAll(string name, string message);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/joinQueue", ReplyAction="http://tempuri.org/IIQService/joinQueueResponse")]
+        void joinQueue(string user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/SendAll", ReplyAction="http://iqchampions.com/IIQService/SendAllResponse")]
-        System.Threading.Tasks.Task SendAllAsync(string name, string message);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/joinQueue", ReplyAction="http://tempuri.org/IIQService/joinQueueResponse")]
+        System.Threading.Tasks.Task joinQueueAsync(string user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getAllMesages", ReplyAction="http://iqchampions.com/IIQService/getAllMesagesResponse")]
-        string[] getAllMesages();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/leaveQueue", ReplyAction="http://tempuri.org/IIQService/leaveQueueResponse")]
+        void leaveQueue(string user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getAllMesages", ReplyAction="http://iqchampions.com/IIQService/getAllMesagesResponse")]
-        System.Threading.Tasks.Task<string[]> getAllMesagesAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/leaveQueue", ReplyAction="http://tempuri.org/IIQService/leaveQueueResponse")]
+        System.Threading.Tasks.Task leaveQueueAsync(string user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/SendPrivate", ReplyAction="http://iqchampions.com/IIQService/SendPrivateResponse")]
-        void SendPrivate(string from, string to, string message);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/getQueuePosition", ReplyAction="http://tempuri.org/IIQService/getQueuePositionResponse")]
+        int getQueuePosition(string user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/SendPrivate", ReplyAction="http://iqchampions.com/IIQService/SendPrivateResponse")]
-        System.Threading.Tasks.Task SendPrivateAsync(string from, string to, string message);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/getQueuePosition", ReplyAction="http://tempuri.org/IIQService/getQueuePositionResponse")]
+        System.Threading.Tasks.Task<int> getQueuePositionAsync(string user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getPrivateMesages", ReplyAction="http://iqchampions.com/IIQService/getPrivateMesagesResponse")]
-        string[] getPrivateMesages(string from);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/haveRoom", ReplyAction="http://tempuri.org/IIQService/haveRoomResponse")]
+        bool haveRoom(string user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getPrivateMesages", ReplyAction="http://iqchampions.com/IIQService/getPrivateMesagesResponse")]
-        System.Threading.Tasks.Task<string[]> getPrivateMesagesAsync(string from);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/haveRoom", ReplyAction="http://tempuri.org/IIQService/haveRoomResponse")]
+        System.Threading.Tasks.Task<bool> haveRoomAsync(string user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/SendRoom", ReplyAction="http://iqchampions.com/IIQService/SendRoomResponse")]
-        void SendRoom(string name, string message, string szobanev);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/getGameTable", ReplyAction="http://tempuri.org/IIQService/getGameTableResponse")]
+        iqchampion_design.ServiceReference.GameTable getGameTable(string user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/SendRoom", ReplyAction="http://iqchampions.com/IIQService/SendRoomResponse")]
-        System.Threading.Tasks.Task SendRoomAsync(string name, string message, string szobanev);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getRoomMesages", ReplyAction="http://iqchampions.com/IIQService/getRoomMesagesResponse")]
-        string[] getRoomMesages(string szobanev);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getRoomMesages", ReplyAction="http://iqchampions.com/IIQService/getRoomMesagesResponse")]
-        System.Threading.Tasks.Task<string[]> getRoomMesagesAsync(string szobanev);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/GetUsers", ReplyAction="http://iqchampions.com/IIQService/GetUsersResponse")]
-        string[] GetUsers();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/GetUsers", ReplyAction="http://iqchampions.com/IIQService/GetUsersResponse")]
-        System.Threading.Tasks.Task<string[]> GetUsersAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/GetStatistic", ReplyAction="http://iqchampions.com/IIQService/GetStatisticResponse")]
-        string[] GetStatistic(string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/GetStatistic", ReplyAction="http://iqchampions.com/IIQService/GetStatisticResponse")]
-        System.Threading.Tasks.Task<string[]> GetStatisticAsync(string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/UpdateStatistic", ReplyAction="http://iqchampions.com/IIQService/UpdateStatisticResponse")]
-        bool UpdateStatistic(string name, int kerdeszam, int helyesvalasz);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/UpdateStatistic", ReplyAction="http://iqchampions.com/IIQService/UpdateStatisticResponse")]
-        System.Threading.Tasks.Task<bool> UpdateStatisticAsync(string name, int kerdeszam, int helyesvalasz);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/APIping", ReplyAction="http://iqchampions.com/IIQService/APIpingResponse")]
-        ServiceLibrary.APIenum APIping(string name, string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/APIping", ReplyAction="http://iqchampions.com/IIQService/APIpingResponse")]
-        System.Threading.Tasks.Task<ServiceLibrary.APIenum> APIpingAsync(string name, string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/createRoom", ReplyAction="http://iqchampions.com/IIQService/createRoomResponse")]
-        bool createRoom(string name, string roomname, string[] beállítások);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/createRoom", ReplyAction="http://iqchampions.com/IIQService/createRoomResponse")]
-        System.Threading.Tasks.Task<bool> createRoomAsync(string name, string roomname, string[] beállítások);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/joinRoom", ReplyAction="http://iqchampions.com/IIQService/joinRoomResponse")]
-        bool joinRoom(string name, string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/joinRoom", ReplyAction="http://iqchampions.com/IIQService/joinRoomResponse")]
-        System.Threading.Tasks.Task<bool> joinRoomAsync(string name, string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getMyRoom", ReplyAction="http://iqchampions.com/IIQService/getMyRoomResponse")]
-        iqchampion_design.ServiceReference.Room getMyRoom(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getMyRoom", ReplyAction="http://iqchampions.com/IIQService/getMyRoomResponse")]
-        System.Threading.Tasks.Task<iqchampion_design.ServiceReference.Room> getMyRoomAsync(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getRooms", ReplyAction="http://iqchampions.com/IIQService/getRoomsResponse")]
-        string[] getRooms();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getRooms", ReplyAction="http://iqchampions.com/IIQService/getRoomsResponse")]
-        System.Threading.Tasks.Task<string[]> getRoomsAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getRoom", ReplyAction="http://iqchampions.com/IIQService/getRoomResponse")]
-        iqchampion_design.ServiceReference.Room getRoom(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getRoom", ReplyAction="http://iqchampions.com/IIQService/getRoomResponse")]
-        System.Threading.Tasks.Task<iqchampion_design.ServiceReference.Room> getRoomAsync(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/joinQueue", ReplyAction="http://iqchampions.com/IIQService/joinQueueResponse")]
-        void joinQueue(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/joinQueue", ReplyAction="http://iqchampions.com/IIQService/joinQueueResponse")]
-        System.Threading.Tasks.Task joinQueueAsync(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/leaveQueue", ReplyAction="http://iqchampions.com/IIQService/leaveQueueResponse")]
-        void leaveQueue(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/leaveQueue", ReplyAction="http://iqchampions.com/IIQService/leaveQueueResponse")]
-        System.Threading.Tasks.Task leaveQueueAsync(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getQueuePosition", ReplyAction="http://iqchampions.com/IIQService/getQueuePositionResponse")]
-        int getQueuePosition(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getQueuePosition", ReplyAction="http://iqchampions.com/IIQService/getQueuePositionResponse")]
-        System.Threading.Tasks.Task<int> getQueuePositionAsync(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/roomFound", ReplyAction="http://iqchampions.com/IIQService/roomFoundResponse")]
-        bool roomFound(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/roomFound", ReplyAction="http://iqchampions.com/IIQService/roomFoundResponse")]
-        System.Threading.Tasks.Task<bool> roomFoundAsync(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/startGame", ReplyAction="http://iqchampions.com/IIQService/startGameResponse")]
-        bool startGame(string name, string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/startGame", ReplyAction="http://iqchampions.com/IIQService/startGameResponse")]
-        System.Threading.Tasks.Task<bool> startGameAsync(string name, string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getGameTable", ReplyAction="http://iqchampions.com/IIQService/getGameTableResponse")]
-        iqchampion_design.ServiceReference.GameTable getGameTable(string name, string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getGameTable", ReplyAction="http://iqchampions.com/IIQService/getGameTableResponse")]
-        System.Threading.Tasks.Task<iqchampion_design.ServiceReference.GameTable> getGameTableAsync(string name, string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/refreshGameTable", ReplyAction="http://iqchampions.com/IIQService/refreshGameTableResponse")]
-        iqchampion_design.ServiceReference.GameTable refreshGameTable(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/refreshGameTable", ReplyAction="http://iqchampions.com/IIQService/refreshGameTableResponse")]
-        System.Threading.Tasks.Task<iqchampion_design.ServiceReference.GameTable> refreshGameTableAsync(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getActualPlayer", ReplyAction="http://iqchampions.com/IIQService/getActualPlayerResponse")]
-        string getActualPlayer(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getActualPlayer", ReplyAction="http://iqchampions.com/IIQService/getActualPlayerResponse")]
-        System.Threading.Tasks.Task<string> getActualPlayerAsync(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getMoveRemainingTime", ReplyAction="http://iqchampions.com/IIQService/getMoveRemainingTimeResponse")]
-        int getMoveRemainingTime(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getMoveRemainingTime", ReplyAction="http://iqchampions.com/IIQService/getMoveRemainingTimeResponse")]
-        System.Threading.Tasks.Task<int> getMoveRemainingTimeAsync(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/chooseCell", ReplyAction="http://iqchampions.com/IIQService/chooseCellResponse")]
-        bool chooseCell(int x, int y);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/chooseCell", ReplyAction="http://iqchampions.com/IIQService/chooseCellResponse")]
-        System.Threading.Tasks.Task<bool> chooseCellAsync(int x, int y);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getIfMoved", ReplyAction="http://iqchampions.com/IIQService/getIfMovedResponse")]
-        bool getIfMoved(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getIfMoved", ReplyAction="http://iqchampions.com/IIQService/getIfMovedResponse")]
-        System.Threading.Tasks.Task<bool> getIfMovedAsync(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getQuestion", ReplyAction="http://iqchampions.com/IIQService/getQuestionResponse")]
-        iqchampion_design.ServiceReference.Question getQuestion(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getQuestion", ReplyAction="http://iqchampions.com/IIQService/getQuestionResponse")]
-        System.Threading.Tasks.Task<iqchampion_design.ServiceReference.Question> getQuestionAsync(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getAnswerRemainingTime", ReplyAction="http://iqchampions.com/IIQService/getAnswerRemainingTimeResponse")]
-        int getAnswerRemainingTime(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getAnswerRemainingTime", ReplyAction="http://iqchampions.com/IIQService/getAnswerRemainingTimeResponse")]
-        System.Threading.Tasks.Task<int> getAnswerRemainingTimeAsync(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/chooseAnswer", ReplyAction="http://iqchampions.com/IIQService/chooseAnswerResponse")]
-        bool chooseAnswer(string name, string roomname, short sorszam);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/chooseAnswer", ReplyAction="http://iqchampions.com/IIQService/chooseAnswerResponse")]
-        System.Threading.Tasks.Task<bool> chooseAnswerAsync(string name, string roomname, short sorszam);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getIfAnswered", ReplyAction="http://iqchampions.com/IIQService/getIfAnsweredResponse")]
-        bool getIfAnswered(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getIfAnswered", ReplyAction="http://iqchampions.com/IIQService/getIfAnsweredResponse")]
-        System.Threading.Tasks.Task<bool> getIfAnsweredAsync(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getAnswerResults", ReplyAction="http://iqchampions.com/IIQService/getAnswerResultsResponse")]
-        string[] getAnswerResults(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getAnswerResults", ReplyAction="http://iqchampions.com/IIQService/getAnswerResultsResponse")]
-        System.Threading.Tasks.Task<string[]> getAnswerResultsAsync(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getStatistics", ReplyAction="http://iqchampions.com/IIQService/getStatisticsResponse")]
-        string[] getStatistics(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/getStatistics", ReplyAction="http://iqchampions.com/IIQService/getStatisticsResponse")]
-        System.Threading.Tasks.Task<string[]> getStatisticsAsync(string roomname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/returnToLobby", ReplyAction="http://iqchampions.com/IIQService/returnToLobbyResponse")]
-        bool returnToLobby(string roomname, bool lobby);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://iqchampions.com/IIQService/returnToLobby", ReplyAction="http://iqchampions.com/IIQService/returnToLobbyResponse")]
-        System.Threading.Tasks.Task<bool> returnToLobbyAsync(string roomname, bool lobby);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/getGameTable", ReplyAction="http://tempuri.org/IIQService/getGameTableResponse")]
+        System.Threading.Tasks.Task<iqchampion_design.ServiceReference.GameTable> getGameTableAsync(string user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -378,292 +306,68 @@ namespace iqchampion_design.ServiceReference {
             return base.Channel.PingPeriodAsync();
         }
         
-        public bool Login(string Name, string Password) {
-            return base.Channel.Login(Name, Password);
+        public bool Login(string user, string Password) {
+            return base.Channel.Login(user, Password);
         }
         
-        public System.Threading.Tasks.Task<bool> LoginAsync(string Name, string Password) {
-            return base.Channel.LoginAsync(Name, Password);
+        public System.Threading.Tasks.Task<bool> LoginAsync(string user, string Password) {
+            return base.Channel.LoginAsync(user, Password);
         }
         
-        public bool Logout(string Name) {
-            return base.Channel.Logout(Name);
+        public bool Logout(string user) {
+            return base.Channel.Logout(user);
         }
         
-        public System.Threading.Tasks.Task<bool> LogoutAsync(string Name) {
-            return base.Channel.LogoutAsync(Name);
+        public System.Threading.Tasks.Task<bool> LogoutAsync(string user) {
+            return base.Channel.LogoutAsync(user);
         }
         
-        public bool Ping(string Name) {
-            return base.Channel.Ping(Name);
+        public bool Ping(string user) {
+            return base.Channel.Ping(user);
         }
         
-        public System.Threading.Tasks.Task<bool> PingAsync(string Name) {
-            return base.Channel.PingAsync(Name);
+        public System.Threading.Tasks.Task<bool> PingAsync(string user) {
+            return base.Channel.PingAsync(user);
         }
         
-        public void SendAll(string name, string message) {
-            base.Channel.SendAll(name, message);
+        public void joinQueue(string user) {
+            base.Channel.joinQueue(user);
         }
         
-        public System.Threading.Tasks.Task SendAllAsync(string name, string message) {
-            return base.Channel.SendAllAsync(name, message);
+        public System.Threading.Tasks.Task joinQueueAsync(string user) {
+            return base.Channel.joinQueueAsync(user);
         }
         
-        public string[] getAllMesages() {
-            return base.Channel.getAllMesages();
+        public void leaveQueue(string user) {
+            base.Channel.leaveQueue(user);
         }
         
-        public System.Threading.Tasks.Task<string[]> getAllMesagesAsync() {
-            return base.Channel.getAllMesagesAsync();
+        public System.Threading.Tasks.Task leaveQueueAsync(string user) {
+            return base.Channel.leaveQueueAsync(user);
         }
         
-        public void SendPrivate(string from, string to, string message) {
-            base.Channel.SendPrivate(from, to, message);
+        public int getQueuePosition(string user) {
+            return base.Channel.getQueuePosition(user);
         }
         
-        public System.Threading.Tasks.Task SendPrivateAsync(string from, string to, string message) {
-            return base.Channel.SendPrivateAsync(from, to, message);
+        public System.Threading.Tasks.Task<int> getQueuePositionAsync(string user) {
+            return base.Channel.getQueuePositionAsync(user);
         }
         
-        public string[] getPrivateMesages(string from) {
-            return base.Channel.getPrivateMesages(from);
+        public bool haveRoom(string user) {
+            return base.Channel.haveRoom(user);
         }
         
-        public System.Threading.Tasks.Task<string[]> getPrivateMesagesAsync(string from) {
-            return base.Channel.getPrivateMesagesAsync(from);
+        public System.Threading.Tasks.Task<bool> haveRoomAsync(string user) {
+            return base.Channel.haveRoomAsync(user);
         }
         
-        public void SendRoom(string name, string message, string szobanev) {
-            base.Channel.SendRoom(name, message, szobanev);
+        public iqchampion_design.ServiceReference.GameTable getGameTable(string user) {
+            return base.Channel.getGameTable(user);
         }
         
-        public System.Threading.Tasks.Task SendRoomAsync(string name, string message, string szobanev) {
-            return base.Channel.SendRoomAsync(name, message, szobanev);
-        }
-        
-        public string[] getRoomMesages(string szobanev) {
-            return base.Channel.getRoomMesages(szobanev);
-        }
-        
-        public System.Threading.Tasks.Task<string[]> getRoomMesagesAsync(string szobanev) {
-            return base.Channel.getRoomMesagesAsync(szobanev);
-        }
-        
-        public string[] GetUsers() {
-            return base.Channel.GetUsers();
-        }
-        
-        public System.Threading.Tasks.Task<string[]> GetUsersAsync() {
-            return base.Channel.GetUsersAsync();
-        }
-        
-        public string[] GetStatistic(string username) {
-            return base.Channel.GetStatistic(username);
-        }
-        
-        public System.Threading.Tasks.Task<string[]> GetStatisticAsync(string username) {
-            return base.Channel.GetStatisticAsync(username);
-        }
-        
-        public bool UpdateStatistic(string name, int kerdeszam, int helyesvalasz) {
-            return base.Channel.UpdateStatistic(name, kerdeszam, helyesvalasz);
-        }
-        
-        public System.Threading.Tasks.Task<bool> UpdateStatisticAsync(string name, int kerdeszam, int helyesvalasz) {
-            return base.Channel.UpdateStatisticAsync(name, kerdeszam, helyesvalasz);
-        }
-        
-        public ServiceLibrary.APIenum APIping(string name, string roomname) {
-            return base.Channel.APIping(name, roomname);
-        }
-        
-        public System.Threading.Tasks.Task<ServiceLibrary.APIenum> APIpingAsync(string name, string roomname) {
-            return base.Channel.APIpingAsync(name, roomname);
-        }
-        
-        public bool createRoom(string name, string roomname, string[] beállítások) {
-            return base.Channel.createRoom(name, roomname, beállítások);
-        }
-        
-        public System.Threading.Tasks.Task<bool> createRoomAsync(string name, string roomname, string[] beállítások) {
-            return base.Channel.createRoomAsync(name, roomname, beállítások);
-        }
-        
-        public bool joinRoom(string name, string roomname) {
-            return base.Channel.joinRoom(name, roomname);
-        }
-        
-        public System.Threading.Tasks.Task<bool> joinRoomAsync(string name, string roomname) {
-            return base.Channel.joinRoomAsync(name, roomname);
-        }
-        
-        public iqchampion_design.ServiceReference.Room getMyRoom(string name) {
-            return base.Channel.getMyRoom(name);
-        }
-        
-        public System.Threading.Tasks.Task<iqchampion_design.ServiceReference.Room> getMyRoomAsync(string name) {
-            return base.Channel.getMyRoomAsync(name);
-        }
-        
-        public string[] getRooms() {
-            return base.Channel.getRooms();
-        }
-        
-        public System.Threading.Tasks.Task<string[]> getRoomsAsync() {
-            return base.Channel.getRoomsAsync();
-        }
-        
-        public iqchampion_design.ServiceReference.Room getRoom(string roomname) {
-            return base.Channel.getRoom(roomname);
-        }
-        
-        public System.Threading.Tasks.Task<iqchampion_design.ServiceReference.Room> getRoomAsync(string roomname) {
-            return base.Channel.getRoomAsync(roomname);
-        }
-        
-        public void joinQueue(string name) {
-            base.Channel.joinQueue(name);
-        }
-        
-        public System.Threading.Tasks.Task joinQueueAsync(string name) {
-            return base.Channel.joinQueueAsync(name);
-        }
-        
-        public void leaveQueue(string name) {
-            base.Channel.leaveQueue(name);
-        }
-        
-        public System.Threading.Tasks.Task leaveQueueAsync(string name) {
-            return base.Channel.leaveQueueAsync(name);
-        }
-        
-        public int getQueuePosition(string name) {
-            return base.Channel.getQueuePosition(name);
-        }
-        
-        public System.Threading.Tasks.Task<int> getQueuePositionAsync(string name) {
-            return base.Channel.getQueuePositionAsync(name);
-        }
-        
-        public bool roomFound(string name) {
-            return base.Channel.roomFound(name);
-        }
-        
-        public System.Threading.Tasks.Task<bool> roomFoundAsync(string name) {
-            return base.Channel.roomFoundAsync(name);
-        }
-        
-        public bool startGame(string name, string roomname) {
-            return base.Channel.startGame(name, roomname);
-        }
-        
-        public System.Threading.Tasks.Task<bool> startGameAsync(string name, string roomname) {
-            return base.Channel.startGameAsync(name, roomname);
-        }
-        
-        public iqchampion_design.ServiceReference.GameTable getGameTable(string name, string roomname) {
-            return base.Channel.getGameTable(name, roomname);
-        }
-        
-        public System.Threading.Tasks.Task<iqchampion_design.ServiceReference.GameTable> getGameTableAsync(string name, string roomname) {
-            return base.Channel.getGameTableAsync(name, roomname);
-        }
-        
-        public iqchampion_design.ServiceReference.GameTable refreshGameTable(string roomname) {
-            return base.Channel.refreshGameTable(roomname);
-        }
-        
-        public System.Threading.Tasks.Task<iqchampion_design.ServiceReference.GameTable> refreshGameTableAsync(string roomname) {
-            return base.Channel.refreshGameTableAsync(roomname);
-        }
-        
-        public string getActualPlayer(string roomname) {
-            return base.Channel.getActualPlayer(roomname);
-        }
-        
-        public System.Threading.Tasks.Task<string> getActualPlayerAsync(string roomname) {
-            return base.Channel.getActualPlayerAsync(roomname);
-        }
-        
-        public int getMoveRemainingTime(string roomname) {
-            return base.Channel.getMoveRemainingTime(roomname);
-        }
-        
-        public System.Threading.Tasks.Task<int> getMoveRemainingTimeAsync(string roomname) {
-            return base.Channel.getMoveRemainingTimeAsync(roomname);
-        }
-        
-        public bool chooseCell(int x, int y) {
-            return base.Channel.chooseCell(x, y);
-        }
-        
-        public System.Threading.Tasks.Task<bool> chooseCellAsync(int x, int y) {
-            return base.Channel.chooseCellAsync(x, y);
-        }
-        
-        public bool getIfMoved(string roomname) {
-            return base.Channel.getIfMoved(roomname);
-        }
-        
-        public System.Threading.Tasks.Task<bool> getIfMovedAsync(string roomname) {
-            return base.Channel.getIfMovedAsync(roomname);
-        }
-        
-        public iqchampion_design.ServiceReference.Question getQuestion(string roomname) {
-            return base.Channel.getQuestion(roomname);
-        }
-        
-        public System.Threading.Tasks.Task<iqchampion_design.ServiceReference.Question> getQuestionAsync(string roomname) {
-            return base.Channel.getQuestionAsync(roomname);
-        }
-        
-        public int getAnswerRemainingTime(string roomname) {
-            return base.Channel.getAnswerRemainingTime(roomname);
-        }
-        
-        public System.Threading.Tasks.Task<int> getAnswerRemainingTimeAsync(string roomname) {
-            return base.Channel.getAnswerRemainingTimeAsync(roomname);
-        }
-        
-        public bool chooseAnswer(string name, string roomname, short sorszam) {
-            return base.Channel.chooseAnswer(name, roomname, sorszam);
-        }
-        
-        public System.Threading.Tasks.Task<bool> chooseAnswerAsync(string name, string roomname, short sorszam) {
-            return base.Channel.chooseAnswerAsync(name, roomname, sorszam);
-        }
-        
-        public bool getIfAnswered(string roomname) {
-            return base.Channel.getIfAnswered(roomname);
-        }
-        
-        public System.Threading.Tasks.Task<bool> getIfAnsweredAsync(string roomname) {
-            return base.Channel.getIfAnsweredAsync(roomname);
-        }
-        
-        public string[] getAnswerResults(string roomname) {
-            return base.Channel.getAnswerResults(roomname);
-        }
-        
-        public System.Threading.Tasks.Task<string[]> getAnswerResultsAsync(string roomname) {
-            return base.Channel.getAnswerResultsAsync(roomname);
-        }
-        
-        public string[] getStatistics(string roomname) {
-            return base.Channel.getStatistics(roomname);
-        }
-        
-        public System.Threading.Tasks.Task<string[]> getStatisticsAsync(string roomname) {
-            return base.Channel.getStatisticsAsync(roomname);
-        }
-        
-        public bool returnToLobby(string roomname, bool lobby) {
-            return base.Channel.returnToLobby(roomname, lobby);
-        }
-        
-        public System.Threading.Tasks.Task<bool> returnToLobbyAsync(string roomname, bool lobby) {
-            return base.Channel.returnToLobbyAsync(roomname, lobby);
+        public System.Threading.Tasks.Task<iqchampion_design.ServiceReference.GameTable> getGameTableAsync(string user) {
+            return base.Channel.getGameTableAsync(user);
         }
     }
 }

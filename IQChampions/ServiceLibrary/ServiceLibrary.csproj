@@ -50,6 +50,9 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cell.cs" />
+    <Compile Include="Question.cs" />
+    <Compile Include="GameTable.cs" />
     <Compile Include="IIQService.cs" />
     <Compile Include="IQService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

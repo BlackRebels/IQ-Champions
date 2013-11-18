@@ -1,5 +1,4 @@
-﻿using ServiceLibrary;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -8,7 +7,7 @@ using System.Text;
 
 namespace IQChampionsServiceLibrary
 {
-    [ServiceContract(Namespace = "http://iqchampions.com")]
+    [ServiceContract]
     public interface IIQService
     {
 
@@ -18,19 +17,21 @@ namespace IQChampionsServiceLibrary
         int PingPeriod();
 
         [OperationContract]
-        bool Login(string Name, string Password);
-        
-        [OperationContract]
-        bool Logout(string Name);
+        bool Login(string user, string Password);
 
         [OperationContract]
-        bool Ping(string Name);
+        bool Logout(string user);
+
+        [OperationContract]
+        bool Ping(string user);
         #endregion
-        
+
+        /*
         #region Chat
+        
         //közös chat
         [OperationContract]
-        void SendAll(string name, string message); //közös chat
+        void SendAll(string user, string message); //közös chat
 
         [OperationContract]
         List<string> getAllMesages(); //ő az aki megkérdezi h van -e uj üzenet
@@ -44,109 +45,108 @@ namespace IQChampionsServiceLibrary
 
         //szoba cuccok
         [OperationContract]
-        void SendRoom(string name, string message, string szobanev);
+        void SendRoom(string user, string message, string szobanev);
 
         [OperationContract]
         List<string> getRoomMesages(string szobanev);
+        
         #endregion
-
+        
         #region Statisztika
+        
         [OperationContract]
         List<string> GetUsers(); //visszaadja az online játékosok nevét
 
         [OperationContract]
-        string[] GetStatistic(string username); //megadott user statisztikájának megtekintése
+        string[] GetStatistic(string useruser); //megadott user statisztikájának megtekintése
 
         [OperationContract]
-        bool UpdateStatistic(string name, int kerdeszam, int helyesvalasz); //saját offline statisztika feltöltése
-
+        bool UpdateStatistic(string user, int kerdeszam, int helyesvalasz); //saját offline statisztika feltöltése
+        
         #endregion
-
-        #region APIkezelő
-
-        [OperationContract]
-        APIenum APIping(String name, String roomname);
-
+                 
         #region SzobaKezelő
+        
         [OperationContract]
-        Boolean createRoom(String name, String roomname, String[] beállítások);
+        Boolean createRoom(string user, string roomuser, string[] beállítások);
             
         [OperationContract]
-        Boolean joinRoom(String name, String roomname);
+        Boolean joinRoom(string user, string roomuser);
                
         [OperationContract]
-        Room getMyRoom(String name);
+        Room getMyRoom(string user);
 
         [OperationContract]
-        List<String> getRooms();
+        List<string> getRooms();
    
         [OperationContract]
-        Room getRoom(String roomname);
+        Room getRoom(string roomuser);
        
         #endregion
+        */
 
         #region SorKezelő
-       
-        [OperationContract]
-        void joinQueue(String name);
 
         [OperationContract]
-        void leaveQueue(String name);
-       
+        void joinQueue(string user);
+
         [OperationContract]
-        int getQueuePosition(String name);
-       
+        void leaveQueue(string user);
+
         [OperationContract]
-        bool roomFound(String name);
+        int getQueuePosition(string user);
+
+        [OperationContract]
+        bool haveRoom(string user);
 
         #endregion
 
         #region JátékkezelőKezelő
+        /*
+        [OperationContract]
+        Boolean startGame(string user, string roomuser);
+        */
+        [OperationContract]
+        GameTable getGameTable(string user);
 
-        [OperationContract]
-        Boolean startGame(String name, String roomname);
-    
-        [OperationContract]
-        GameTable getGameTable(String name, String roomname);
-       
-        [OperationContract]
-        GameTable refreshGameTable(String roomname);
+        /*
+         [OperationContract]
+         GameTable refreshGameTable(string roomuser);
           
-        [OperationContract]
-        String getActualPlayer(String roomname);
+         [OperationContract]
+         string getActualPlayer(string roomuser);
              
-        [OperationContract]
-        Int32 getMoveRemainingTime(String roomname);
+         [OperationContract]
+         Int32 getMoveRemainingTime(string roomuser);
               
-        [OperationContract]
-        Boolean chooseCell(int x, int y);
+         [OperationContract]
+         Boolean chooseCell(int x, int y);
               
-        [OperationContract]
-        Boolean getIfMoved(String roomname);
+         [OperationContract]
+         Boolean getIfMoved(string roomuser);
                
-        [OperationContract]
-        Question getQuestion(String roomname);
+         [OperationContract]
+         Question getQuestion(string roomuser);
                           
-        [OperationContract]
-        Int32 getAnswerRemainingTime(String roomname);
+         [OperationContract]
+         Int32 getAnswerRemainingTime(string roomuser);
                                    
-        [OperationContract]
-        Boolean chooseAnswer(String name, String roomname, Int16 sorszam);
+         [OperationContract]
+         Boolean chooseAnswer(string user, string roomuser, Int16 sorszam);
                                       
-        [OperationContract]
-        Boolean getIfAnswered(String roomname);
+         [OperationContract]
+         Boolean getIfAnswered(string roomuser);
                                           
-        [OperationContract]
-        String[] getAnswerResults(String roomname);
+         [OperationContract]
+         string[] getAnswerResults(string roomuser);
                                                
-        [OperationContract]
-        String[] getStatistics(String roomname);
+         [OperationContract]
+         string[] getStatistics(string roomuser);
                                           
-        [OperationContract]
-        Boolean returnToLobby(String roomname, Boolean lobby);
-
+         [OperationContract]
+         Boolean returnToLobby(string roomuser, Boolean lobby);
+         */
         #endregion
-        
-        #endregion
+    
     }
 }

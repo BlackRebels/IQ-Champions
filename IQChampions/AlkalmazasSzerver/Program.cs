@@ -11,13 +11,23 @@ namespace AlkalmazasSzerver
 {
     class Program
     {
+        private static ServiceHost host = null;
         static void Main(string[] args)
         {
-            using (ServiceHost host = new ServiceHost(typeof(IQService)))
+            try
             {
+                host = new ServiceHost(typeof(IQService));
+
                 host.Open();
                 Logger.log(Errorlevel.INFO, "Waiting for connections...");
-                Console.ReadLine();
+                Console.ReadKey();
+                host.Close();
+            }
+            catch (Exception ex)
+            {
+                Logger.log(Errorlevel.ERROR, ex.Message + "\r\n" + ex.StackTrace);
+                host.Close();
+                Console.ReadKey();
             }
         }
     }

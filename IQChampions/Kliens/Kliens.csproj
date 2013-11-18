@@ -143,21 +143,11 @@
     <None Include="Service References\ServiceReference\iqchampion_design.ServiceReference.GameTable.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference\iqchampion_design.ServiceReference.Question.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference\iqchampion_design.ServiceReference.Room.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\ServiceReference\IQService.wsdl" />
-    <None Include="Service References\ServiceReference\item.wsdl" />
     <None Include="Service References\ServiceReference\item.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference\item1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference\item2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -180,10 +170,7 @@
     <None Include="Service References\ServiceReference\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference\item3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference\item31.xsd">
+    <None Include="Service References\ServiceReference\item2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference\Reference.svcmap">

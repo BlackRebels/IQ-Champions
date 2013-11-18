@@ -1,5 +1,6 @@
 start AlkalmazasSzerver\bin\Debug\AlkalmazasSzerver.exe
-FOR %%A IN (1 2 3 4) DO START Kliens\bin\Debug\iqchampion_design.exe
+TIMEOUT /T 1
+FOR /L %%A IN (0,1,3) DO START Kliens\bin\Debug\iqchampion_design.exe %%A Play
 
 PAUSE
 

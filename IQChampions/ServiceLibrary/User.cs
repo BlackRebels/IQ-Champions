@@ -6,30 +6,28 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceLibrary
+namespace IQChampionsServiceLibrary
 {
-    [ServiceContract]
-    [DataContract]
     public class User
     {
-        private string name = null;
-        private bool isonline = false;
+        public string Name { get; set; }
+        public byte[] Color { get; set; }
+        public bool Online { get; set; }
+
+        public User()
+        {
+            Color = new byte[3];
+            IQService.rand.NextBytes(Color);
+            Online = true;
+        }
 
         public User(String name)
         {
-            this.name = name;
-            isonline = true;
+            Name = name;
+            Color = new byte[3];
+            IQService.rand.NextBytes(Color);
+            Online = true;
         }
 
-        [DataMember]
-        public string getName
-        {
-            get { return name; }
-        }
-        public bool isOnline
-        {
-            get { return isonline; }
-            set { isonline = value; }
-        }
     }
 }
