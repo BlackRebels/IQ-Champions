@@ -9,10 +9,15 @@ namespace IQChampionsServiceLibrary
     public class Room
     {
         public const int MAXPLAYERS = 4;
+        public static readonly byte[] defaultcolor = new byte[] { 225, 225, 225 };
 
         public GameTable Table { get; set; }
         public string Name { get; set; }
         public List<User> Users { get; set; }
+
+        private List<User> rollable;
+        private User actualPlayer = new User();
+        private Cell actualCell = null;
 
         public Room()
         {
@@ -50,10 +55,65 @@ namespace IQChampionsServiceLibrary
 
                 else if (c.Col == 3 && c.Row == 4) c.Owner = Users[3];
                 else if (c.Col == 3 && c.Row == 5) c.Owner = Users[3];
-                else c.Owner = new User() { Color = new byte[3] { 100, 100, 100 } };
+                else c.Owner = new User() { Color = defaultcolor };
+            }
+            newTurn();
+        }
 
 
+
+        public void newTurn()
+        {
+            actualPlayer.State = States.IDLE;
+            if (rollable == null || rollable.Count == 0)
+            {
+                rollable = new List<User>();
+                rollable.AddRange(Users);
+            }
+
+            int r = IQService.rand.Next(rollable.Count);
+            actualPlayer = rollable[r];
+            rollable.RemoveAt(r);
+
+            actualPlayer.State = States.MOVE;
+        }
+
+        public bool Move(int x, int y)
+        {
+            actualCell = Table.Table.Find(c => c.Row == x && c.Col == y);
+            if (actualCell.Owner.Name == null)
+            {
+                // Üres mező, kérdést dob
+                actualPlayer.State = States.ANSWER;
+                return true;
+            }
+            else
+            {
+                actualCell = null;
+                return false;
             }
         }
+
+        public bool Answer(int id)
+        {
+            try
+            {
+                actualPlayer.State = States.IDLE;
+                if (id == 0) // helyes
+                {
+                    actualCell.Owner = actualPlayer;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            finally
+            {
+                newTurn();
+            }
+        }
+
     }
 }

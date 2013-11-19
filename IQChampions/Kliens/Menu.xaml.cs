@@ -25,7 +25,6 @@ namespace iqchampion_design
         private Login parent = null;
         private BackgroundWorker pingworker = null;
         private BackgroundWorker queueworker = null;
-        private Thread APIpingThread = null;
 
         private string User
         {
@@ -129,7 +128,6 @@ namespace iqchampion_design
         void queueProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             //kiiratni csicsa picsa
-
             ButtonJatek.Content = ((int)e.UserState < 1 ? "Még " + ((int)e.UserState * -1) + " játékos kell" : e.UserState + ". vagy a sorban");
         }
 
@@ -183,29 +181,5 @@ namespace iqchampion_design
             parent.ClearFields();
             pingworker.CancelAsync();
         }
-
-        public void usingAPI(APIenum api)
-        {
-
-            switch (api)
-            {
-                case APIenum.QUEUE_STANDBY:
-                    break;
-
-                case APIenum.ROOM_FOUND:
-                    break;
-
-                case APIenum.GAME_STARTED:
-                    break;
-
-                default:
-                    MessageBox.Show("" + api.ToString());
-                    break;
-            }
-        }
-
-
-
-
     }
 }

@@ -22,6 +22,7 @@ namespace iqchampion_design
     {
         private Menu parent = null;
         private BackgroundWorker refreshworker = null;
+        private bool enableMoving = false;
 
         private string User
         {
@@ -47,36 +48,18 @@ namespace iqchampion_design
             refreshworker.WorkerReportsProgress = true;
             refreshworker.DoWork += refresh;
             refreshworker.ProgressChanged += setCellColor;
-
+            refreshworker.RunWorkerCompleted += doActivity;
         }
+
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
             refreshworker.RunWorkerAsync();
-
-
-            /*
-            APIenum ret = Client.APIping(User, null);
-            while (ret != APIenum.YOU_CAN_MOVE || ret != APIenum.WAITING_FOR_MOVE)
-            {
-                // nem te jösz, sötét, de látsz mindent
-                ret = Client.APIping(User, null);
-                Thread.Sleep(Login.PingPeriod);
-            }
-            */
-            // itt te jösz
-            // lépsz, stb
-
-
-            /*
-            APIenum.PLAYER_CAN_MOVE;    nem te jösz
-            APIenum.YOU_CAN_MOVE        te jösz
-            */
         }
 
         private void refresh(object sender, DoWorkEventArgs e)
         {
-            while (!(sender as BackgroundWorker).CancellationPending)
+            do
             {
                 ServiceReference.GameTable table = Client.getGameTable(User);
                 foreach (Cell c in table.Table)
@@ -84,7 +67,7 @@ namespace iqchampion_design
                     (sender as BackgroundWorker).ReportProgress(0, c);
                 }
                 Thread.Sleep(PingPeriod);
-            }
+            } while ((States)(e.Result = Client.getMyState(User)) == States.IDLE);
         }
 
         private void setCellColor(object sender, ProgressChangedEventArgs e)
@@ -92,9 +75,50 @@ namespace iqchampion_design
             Cell c = e.UserState as Cell;
             ((Rectangle)GridGameTable.FindName("cell" + c.Row + c.Col)).Fill =
                            new SolidColorBrush(Color.FromRgb(c.Owner.Color[0], c.Owner.Color[1], c.Owner.Color[2]));
-
         }
 
+        private void doActivity(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if ((States)e.Result == States.ANSWER)
+            {
+                //get the question here
+            }
+            else
+            {
+                enableMoving = true;
+                GridGameTable.Opacity = 100;
+                MessageBox.Show("Te jösz!");
+            }
+        }
+
+        private void cellMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (enableMoving)
+            {
+                string rname = (sender as Rectangle).Name;
+                if (Client.Move(User, int.Parse(rname.Substring(4, 1)), int.Parse(rname.Substring(5, 1))))
+                {
+                    GridGameTable.Opacity = 60;
+                    enableMoving = false;
+                    MessageBox.Show(Client.getQuestion(User).Questionn);
+                    // megválaszolta...
+                    bool good = Client.answerQuestion(User, 0);
+                    refreshworker.RunWorkerAsync();
+                    if (good)
+                    {
+                        MessageBox.Show("Helyes válasz");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Rossz válasz");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Rossz mező!");
+                }
+            }
+        }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -110,66 +134,5 @@ namespace iqchampion_design
         {
 
         }
-
-
-        public void usingAPI(APIenum api)
-        {
-
-            switch (api)
-            {
-                case APIenum.STANDBY:
-
-                    break;
-
-                case APIenum.GAME_STANDBY:
-
-                    break;
-
-                case APIenum.GAME_REFRESH:
-
-                    break;
-
-                case APIenum.GAME_ENDED:
-
-                    break;
-
-                case APIenum.PLAYER_CAN_MOVE:
-
-                    break;
-
-                case APIenum.YOU_CAN_MOVE:
-
-                    break;
-
-                case APIenum.WAITING_FOR_MOVE:
-
-                    break;
-
-                case APIenum.PLAYER_MOVED:
-
-                    break;
-
-                case APIenum.YOU_CAN_ANSWER:
-
-                    break;
-
-                case APIenum.WAITING_FOR_ANSWER:
-
-                    break;
-
-                case APIenum.PLAYERS_ANSWERED:
-
-                    break;
-
-                default:
-
-                    break;
-            }
-        }
-
-
-
-
-
     }
 }

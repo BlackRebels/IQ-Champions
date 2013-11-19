@@ -61,6 +61,30 @@
   <wsdl:message name="IIQService_getGameTable_OutputMessage">
     <wsdl:part name="parameters" element="tns:getGameTableResponse" />
   </wsdl:message>
+  <wsdl:message name="IIQService_getMyState_InputMessage">
+    <wsdl:part name="parameters" element="tns:getMyState" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getMyState_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getMyStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Move_InputMessage">
+    <wsdl:part name="parameters" element="tns:Move" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Move_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MoveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:getQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_answerQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:answerQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_answerQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:answerQuestionResponse" />
+  </wsdl:message>
   <wsdl:portType name="IIQService">
     <wsdl:operation name="PingPeriod">
       <wsdl:input wsaw:Action="http://tempuri.org/IIQService/PingPeriod" message="tns:IIQService_PingPeriod_InputMessage" />
@@ -97,6 +121,22 @@
     <wsdl:operation name="getGameTable">
       <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getGameTable" message="tns:IIQService_getGameTable_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getGameTableResponse" message="tns:IIQService_getGameTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMyState">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getMyState" message="tns:IIQService_getMyState_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getMyStateResponse" message="tns:IIQService_getMyState_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Move">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/Move" message="tns:IIQService_Move_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/MoveResponse" message="tns:IIQService_Move_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getQuestion" message="tns:IIQService_getQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getQuestionResponse" message="tns:IIQService_getQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="answerQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/answerQuestion" message="tns:IIQService_answerQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/answerQuestionResponse" message="tns:IIQService_answerQuestion_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IIQService" type="tns:IIQService">
@@ -175,6 +215,42 @@
     </wsdl:operation>
     <wsdl:operation name="getGameTable">
       <soap:operation soapAction="http://tempuri.org/IIQService/getGameTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMyState">
+      <soap:operation soapAction="http://tempuri.org/IIQService/getMyState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Move">
+      <soap:operation soapAction="http://tempuri.org/IIQService/Move" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getQuestion">
+      <soap:operation soapAction="http://tempuri.org/IIQService/getQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="answerQuestion">
+      <soap:operation soapAction="http://tempuri.org/IIQService/answerQuestion" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

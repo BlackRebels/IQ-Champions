@@ -57,6 +57,7 @@
     <Compile Include="IQService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Room.cs" />
+    <Compile Include="States.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>

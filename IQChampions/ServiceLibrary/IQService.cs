@@ -219,5 +219,37 @@ namespace IQChampionsServiceLibrary
                 return null;
             }
         }
+
+        private User getUserByUserName(string user)
+        {
+            return onlineUsers.Find(x => x.Name.Equals(user));
+        }
+        
+        public States getMyState(string user)
+        {
+            return getUserByUserName(user).State;
+        }
+        
+        public bool Move(string user, int x, int y)
+        {
+            return getRoomByUserName(user).Move(x, y);
+        }
+        
+        public Question getQuestion(string user)
+        {
+            return new Question()
+            {
+                Questionn = "Példakérdés",
+                GoodAnswer = "Jóválasz",
+                BadAnswer1 = "Rosszválasz 1",
+                BadAnswer2 = "Rosszválasz 2",
+                BadAnswer3 = "Rosszválasz 3"
+            };
+        }
+        
+        public bool answerQuestion(string user, int id)
+        {
+            return getRoomByUserName(user).Answer(id);
+        }
     }
 }

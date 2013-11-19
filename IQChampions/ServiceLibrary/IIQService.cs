@@ -109,9 +109,18 @@ namespace IQChampionsServiceLibrary
         [OperationContract]
         GameTable getGameTable(string user);
 
-        /*
-         [OperationContract]
-         GameTable refreshGameTable(string roomuser);
+        [OperationContract]
+        States getMyState(string user);
+
+        [OperationContract]
+        bool Move(string user, int x, int y);
+
+        [OperationContract]
+        Question getQuestion(string user);
+
+        [OperationContract]
+        bool answerQuestion(string user, int id);
+        /*         
           
          [OperationContract]
          string getActualPlayer(string roomuser);
@@ -147,6 +156,6 @@ namespace IQChampionsServiceLibrary
          Boolean returnToLobby(string roomuser, Boolean lobby);
          */
         #endregion
-    
+
     }
 }

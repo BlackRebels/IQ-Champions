@@ -10,6 +10,14 @@ namespace IQChampionsServiceLibrary
 {
     public class Question
     {
+        public string Questionn { get; set; }
+        public string GoodAnswer { get; set; }
+        public string BadAnswer1 { get; set; }
+        public string BadAnswer2 { get; set; }
+        public string BadAnswer3 { get; set; }
 
+        public Question()
+        {                
+        }
     }
 }

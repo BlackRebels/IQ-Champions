@@ -10,7 +10,7 @@ namespace IQChampionsServiceLibrary
 {
     public class GameTable
     {
-        public Cell[] Table { get; set; }
+        public List<Cell> Table { get; set; }
 
         public GameTable()
         {
@@ -18,15 +18,11 @@ namespace IQChampionsServiceLibrary
 
         public GameTable(int x, int y)
         {
-            Table = new Cell[x * y];
-            int k = 0;
-            for (int i = 0; i < x; i++)
-            {
-                for (int j = 0; j < y; j++)
+            Table = new List<Cell>();
+            for (int i = 0; i < x; i++) for (int j = 0; j < y; j++)
                 {
-                    Table[k++] = new Cell(i, j);
+                    Table.Add(new Cell(i, j));
                 }
-            }
         }
     }
 }

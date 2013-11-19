@@ -153,6 +153,9 @@ namespace iqchampion_design.ServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool OnlineField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private iqchampion_design.ServiceReference.States StateField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -198,6 +201,142 @@ namespace iqchampion_design.ServiceReference {
                 if ((this.OnlineField.Equals(value) != true)) {
                     this.OnlineField = value;
                     this.RaisePropertyChanged("Online");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public iqchampion_design.ServiceReference.States State {
+            get {
+                return this.StateField;
+            }
+            set {
+                if ((this.StateField.Equals(value) != true)) {
+                    this.StateField = value;
+                    this.RaisePropertyChanged("State");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="States", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
+    public enum States : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        IDLE = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MOVE = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ANSWER = 2,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Question", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
+    [System.SerializableAttribute()]
+    public partial class Question : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BadAnswer1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BadAnswer2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BadAnswer3Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GoodAnswerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string QuestionnField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BadAnswer1 {
+            get {
+                return this.BadAnswer1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BadAnswer1Field, value) != true)) {
+                    this.BadAnswer1Field = value;
+                    this.RaisePropertyChanged("BadAnswer1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BadAnswer2 {
+            get {
+                return this.BadAnswer2Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BadAnswer2Field, value) != true)) {
+                    this.BadAnswer2Field = value;
+                    this.RaisePropertyChanged("BadAnswer2");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BadAnswer3 {
+            get {
+                return this.BadAnswer3Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BadAnswer3Field, value) != true)) {
+                    this.BadAnswer3Field = value;
+                    this.RaisePropertyChanged("BadAnswer3");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GoodAnswer {
+            get {
+                return this.GoodAnswerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GoodAnswerField, value) != true)) {
+                    this.GoodAnswerField = value;
+                    this.RaisePropertyChanged("GoodAnswer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Questionn {
+            get {
+                return this.QuestionnField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.QuestionnField, value) != true)) {
+                    this.QuestionnField = value;
+                    this.RaisePropertyChanged("Questionn");
                 }
             }
         }
@@ -269,6 +408,30 @@ namespace iqchampion_design.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/getGameTable", ReplyAction="http://tempuri.org/IIQService/getGameTableResponse")]
         System.Threading.Tasks.Task<iqchampion_design.ServiceReference.GameTable> getGameTableAsync(string user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/getMyState", ReplyAction="http://tempuri.org/IIQService/getMyStateResponse")]
+        iqchampion_design.ServiceReference.States getMyState(string user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/getMyState", ReplyAction="http://tempuri.org/IIQService/getMyStateResponse")]
+        System.Threading.Tasks.Task<iqchampion_design.ServiceReference.States> getMyStateAsync(string user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/Move", ReplyAction="http://tempuri.org/IIQService/MoveResponse")]
+        bool Move(string user, int x, int y);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/Move", ReplyAction="http://tempuri.org/IIQService/MoveResponse")]
+        System.Threading.Tasks.Task<bool> MoveAsync(string user, int x, int y);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/getQuestion", ReplyAction="http://tempuri.org/IIQService/getQuestionResponse")]
+        iqchampion_design.ServiceReference.Question getQuestion(string user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/getQuestion", ReplyAction="http://tempuri.org/IIQService/getQuestionResponse")]
+        System.Threading.Tasks.Task<iqchampion_design.ServiceReference.Question> getQuestionAsync(string user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/answerQuestion", ReplyAction="http://tempuri.org/IIQService/answerQuestionResponse")]
+        bool answerQuestion(string user, int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/answerQuestion", ReplyAction="http://tempuri.org/IIQService/answerQuestionResponse")]
+        System.Threading.Tasks.Task<bool> answerQuestionAsync(string user, int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -368,6 +531,38 @@ namespace iqchampion_design.ServiceReference {
         
         public System.Threading.Tasks.Task<iqchampion_design.ServiceReference.GameTable> getGameTableAsync(string user) {
             return base.Channel.getGameTableAsync(user);
+        }
+        
+        public iqchampion_design.ServiceReference.States getMyState(string user) {
+            return base.Channel.getMyState(user);
+        }
+        
+        public System.Threading.Tasks.Task<iqchampion_design.ServiceReference.States> getMyStateAsync(string user) {
+            return base.Channel.getMyStateAsync(user);
+        }
+        
+        public bool Move(string user, int x, int y) {
+            return base.Channel.Move(user, x, y);
+        }
+        
+        public System.Threading.Tasks.Task<bool> MoveAsync(string user, int x, int y) {
+            return base.Channel.MoveAsync(user, x, y);
+        }
+        
+        public iqchampion_design.ServiceReference.Question getQuestion(string user) {
+            return base.Channel.getQuestion(user);
+        }
+        
+        public System.Threading.Tasks.Task<iqchampion_design.ServiceReference.Question> getQuestionAsync(string user) {
+            return base.Channel.getQuestionAsync(user);
+        }
+        
+        public bool answerQuestion(string user, int id) {
+            return base.Channel.answerQuestion(user, id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> answerQuestionAsync(string user, int id) {
+            return base.Channel.answerQuestionAsync(user, id);
         }
     }
 }
