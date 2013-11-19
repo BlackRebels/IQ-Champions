@@ -145,6 +145,9 @@ namespace iqchampion_design.ServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private iqchampion_design.ServiceReference.AnswerResult AnswerResultField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte[] ColorField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -152,6 +155,9 @@ namespace iqchampion_design.ServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool OnlineField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PointField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private iqchampion_design.ServiceReference.States StateField;
@@ -163,6 +169,19 @@ namespace iqchampion_design.ServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public iqchampion_design.ServiceReference.AnswerResult AnswerResult {
+            get {
+                return this.AnswerResultField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnswerResultField, value) != true)) {
+                    this.AnswerResultField = value;
+                    this.RaisePropertyChanged("AnswerResult");
+                }
             }
         }
         
@@ -206,6 +225,19 @@ namespace iqchampion_design.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Point {
+            get {
+                return this.PointField;
+            }
+            set {
+                if ((this.PointField.Equals(value) != true)) {
+                    this.PointField = value;
+                    this.RaisePropertyChanged("Point");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public iqchampion_design.ServiceReference.States State {
             get {
                 return this.StateField;
@@ -214,6 +246,67 @@ namespace iqchampion_design.ServiceReference {
                 if ((this.StateField.Equals(value) != true)) {
                     this.StateField = value;
                     this.RaisePropertyChanged("State");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AnswerResult", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
+    [System.SerializableAttribute()]
+    public partial class AnswerResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AnswerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime TimeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Answer {
+            get {
+                return this.AnswerField;
+            }
+            set {
+                if ((this.AnswerField.Equals(value) != true)) {
+                    this.AnswerField = value;
+                    this.RaisePropertyChanged("Answer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Time {
+            get {
+                return this.TimeField;
+            }
+            set {
+                if ((this.TimeField.Equals(value) != true)) {
+                    this.TimeField = value;
+                    this.RaisePropertyChanged("Time");
                 }
             }
         }
@@ -240,6 +333,9 @@ namespace iqchampion_design.ServiceReference {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         ANSWER = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FINISHED = 3,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -351,6 +447,51 @@ namespace iqchampion_design.ServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Statistic", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
+    [System.SerializableAttribute()]
+    public partial class Statistic : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private iqchampion_design.ServiceReference.User[] UsersField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public iqchampion_design.ServiceReference.User[] Users {
+            get {
+                return this.UsersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
+                    this.UsersField = value;
+                    this.RaisePropertyChanged("Users");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IIQService")]
     public interface IIQService {
@@ -432,6 +573,12 @@ namespace iqchampion_design.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/answerQuestion", ReplyAction="http://tempuri.org/IIQService/answerQuestionResponse")]
         System.Threading.Tasks.Task<bool> answerQuestionAsync(string user, int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/getStatistics", ReplyAction="http://tempuri.org/IIQService/getStatisticsResponse")]
+        iqchampion_design.ServiceReference.Statistic getStatistics(string user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/getStatistics", ReplyAction="http://tempuri.org/IIQService/getStatisticsResponse")]
+        System.Threading.Tasks.Task<iqchampion_design.ServiceReference.Statistic> getStatisticsAsync(string user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -563,6 +710,14 @@ namespace iqchampion_design.ServiceReference {
         
         public System.Threading.Tasks.Task<bool> answerQuestionAsync(string user, int id) {
             return base.Channel.answerQuestionAsync(user, id);
+        }
+        
+        public iqchampion_design.ServiceReference.Statistic getStatistics(string user) {
+            return base.Channel.getStatistics(user);
+        }
+        
+        public System.Threading.Tasks.Task<iqchampion_design.ServiceReference.Statistic> getStatisticsAsync(string user) {
+            return base.Channel.getStatisticsAsync(user);
         }
     }
 }

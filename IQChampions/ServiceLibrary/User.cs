@@ -14,31 +14,26 @@ namespace IQChampionsServiceLibrary
         public byte[] Color { get; set; }
         public bool Online { get; set; }
         public States State { get; set; }
+        public int Point { get; set; }
+        public AnswerResult AnswerResult { get; set; }
 
         public User()
         {
-            Color = new byte[3];
-            IQService.rand.NextBytes(Color);
-            Online = true;
-            State = States.IDLE;
+            init();
         }
 
         public User(String name)
         {
             Name = name;
-            Color = new byte[3];
-            IQService.rand.NextBytes(Color);
-
-            //Szürkés színek kiszűrése
-            int avg = (Color[0] + Color[1] + Color[2]) / 3;
-            int dif = 20;
-            while (Math.Abs(Color[0] - avg) < dif && Math.Abs(Color[1] - avg) < dif && Math.Abs(Color[2] - avg) < dif)
-            {
-                IQService.rand.NextBytes(Color);
-            }
-
-            Online = true;
+            init();
         }
-
+        private void init()
+        {
+            Color = new byte[3];
+            Online = true;
+            State = States.IDLE;
+            Point = 0;
+            AnswerResult = null;
+        }
     }
 }

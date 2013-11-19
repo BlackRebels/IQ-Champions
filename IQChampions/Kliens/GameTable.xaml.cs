@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.Collections;
 
 namespace iqchampion_design
 {
@@ -22,6 +23,7 @@ namespace iqchampion_design
     {
         private Menu parent = null;
         private BackgroundWorker refreshworker = null;
+        private BackgroundWorker activityworker = null;
         private bool enableMoving = false;
 
         private string User
@@ -47,34 +49,71 @@ namespace iqchampion_design
             refreshworker.WorkerSupportsCancellation = true;
             refreshworker.WorkerReportsProgress = true;
             refreshworker.DoWork += refresh;
-            refreshworker.ProgressChanged += setCellColor;
-            refreshworker.RunWorkerCompleted += doActivity;
+            refreshworker.ProgressChanged += refreshUi;
+
+            activityworker = new BackgroundWorker();
+            activityworker.WorkerSupportsCancellation = true;
+            activityworker.DoWork += wait;
+            activityworker.RunWorkerCompleted += doActivity;
         }
+
+
 
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
             refreshworker.RunWorkerAsync();
+            activityworker.RunWorkerAsync();
         }
 
         private void refresh(object sender, DoWorkEventArgs e)
         {
             do
             {
-                ServiceReference.GameTable table = Client.getGameTable(User);
-                foreach (Cell c in table.Table)
-                {
-                    (sender as BackgroundWorker).ReportProgress(0, c);
-                }
+                (sender as BackgroundWorker).ReportProgress(0, Client.getGameTable(User));
+                (sender as BackgroundWorker).ReportProgress(0, Client.getStatistics(User));
                 Thread.Sleep(PingPeriod);
-            } while ((States)(e.Result = Client.getMyState(User)) == States.IDLE);
+            } while (!(sender as BackgroundWorker).CancellationPending);
         }
 
-        private void setCellColor(object sender, ProgressChangedEventArgs e)
+        private void refreshUi(object sender, ProgressChangedEventArgs e)
         {
-            Cell c = e.UserState as Cell;
-            ((Rectangle)GridGameTable.FindName("cell" + c.Row + c.Col)).Fill =
-                           new SolidColorBrush(Color.FromRgb(c.Owner.Color[0], c.Owner.Color[1], c.Owner.Color[2]));
+            if (e.UserState == null) return;
+            else if (e.UserState is ServiceReference.GameTable)
+            {
+                foreach (Cell c in (e.UserState as ServiceReference.GameTable).Table)
+                {
+                    ((Rectangle)GridGameTable.FindName("cell" + c.Row + c.Col)).Fill =
+                                   new SolidColorBrush(Color.FromRgb(c.Owner.Color[0], c.Owner.Color[1], c.Owner.Color[2]));
+                }
+            }
+            else if (e.UserState is Statistic)
+            {
+                Statistic stat = e.UserState as Statistic;
+                LabelActualPlayer.Content = "Aktív: ";
+                foreach (User u in stat.Users)
+                {
+                    if (u.State != States.IDLE) LabelActualPlayer.Content += u.Name + " ";
+                }
+
+                for (int i = 0; i < 4; i++)
+                {
+                    Label l = (WindowGrid.FindName("LabelScore" + i) as Label);
+                    User u = stat.Users[i];
+
+                    l.Foreground = new SolidColorBrush(Color.FromRgb(u.Color[0], u.Color[1], u.Color[2]));
+                    if (u.Name.Equals(User)) l.Content = "Én: " + u.Point + " pont";
+                    else l.Content = u.Name + ": " + u.Point + " pont";
+                }
+            }
+        }
+
+        private void wait(object sender, DoWorkEventArgs e)
+        {
+            while ((States)(e.Result = Client.getMyState(User)) == States.IDLE)
+            {
+                Thread.Sleep(PingPeriod);
+            }
         }
 
         private void doActivity(object sender, RunWorkerCompletedEventArgs e)
@@ -82,46 +121,73 @@ namespace iqchampion_design
             if ((States)e.Result == States.ANSWER)
             {
                 //get the question here
+                MessageBox.Show(Client.getQuestion(User).Questionn);
+
+                bool good = Client.answerQuestion(User, 0);
+                activityworker.RunWorkerAsync();
+                if (good)
+                {
+                    MessageBox.Show("Helyes válasz");
+                }
+                else
+                {
+                    MessageBox.Show("Rossz válasz");
+                }
             }
-            else
+            else if ((States)e.Result == States.MOVE)
             {
                 enableMoving = true;
-                GridGameTable.Opacity = 100;
-                MessageBox.Show("Te jösz!");
+                GridGameTable.Opacity = 1;
+                //MessageBox.Show("Te jösz!");
+            }
+            else if ((States)e.Result == States.FINISHED)
+            {
+                refreshworker.CancelAsync();
+                GridGameTable.Opacity = 1;
+
+                MessageBox.Show("Játék vége!\r\n" + Client.getStatistics(User).Users[0].Name + " megnyerte a játékot!");
             }
         }
 
         private void cellMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (enableMoving)
+            try
             {
-                string rname = (sender as Rectangle).Name;
-                if (Client.Move(User, int.Parse(rname.Substring(4, 1)), int.Parse(rname.Substring(5, 1))))
+                if (enableMoving)
                 {
-                    GridGameTable.Opacity = 60;
-                    enableMoving = false;
-                    MessageBox.Show(Client.getQuestion(User).Questionn);
-                    // megválaszolta...
-                    bool good = Client.answerQuestion(User, 0);
-                    refreshworker.RunWorkerAsync();
-                    if (good)
+                    string rname = (sender as Rectangle).Name;
+                    if (Client.Move(User, int.Parse(rname.Substring(4, 1)), int.Parse(rname.Substring(5, 1))))
                     {
-                        MessageBox.Show("Helyes válasz");
+                        GridGameTable.Opacity = 0.3;
+                        enableMoving = false;
+                        MessageBox.Show(Client.getQuestion(User).Questionn);
+                        // megválaszolta...
+                        bool good = Client.answerQuestion(User, 0);
+                        activityworker.RunWorkerAsync();
+                        if (good)
+                        {
+                            MessageBox.Show("Helyes válasz");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Rossz válasz");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Rossz válasz");
+                        MessageBox.Show("Rossz mező!");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Rossz mező!");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\r\n" + ex.StackTrace);
             }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            parent.ClearFields();
             parent.Show();
         }
 

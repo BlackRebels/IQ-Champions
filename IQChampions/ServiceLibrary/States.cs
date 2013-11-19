@@ -9,6 +9,7 @@ namespace IQChampionsServiceLibrary
     {
         IDLE,
         MOVE,
-        ANSWER
+        ANSWER,
+        FINISHED
     }
 }

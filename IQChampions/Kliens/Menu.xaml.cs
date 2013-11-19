@@ -58,6 +58,11 @@ namespace iqchampion_design
             queueworker.RunWorkerCompleted += startGame;
         }
 
+        public void ClearFields()
+        {
+            ButtonJatek.Content = "Játék";
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             pingworker.RunWorkerAsync();
@@ -65,7 +70,6 @@ namespace iqchampion_design
             string[] args = Environment.GetCommandLineArgs();
             if (args.Length > 2 && args[2].Equals("Play"))
             {
-                Thread.Sleep(1000);
                 ButtonClickGameRandom(this, null);
             }
         }

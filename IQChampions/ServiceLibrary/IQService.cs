@@ -13,12 +13,14 @@ namespace IQChampionsServiceLibrary
 {
     public class IQService : IIQService
     {
+        public static Random rand = new Random();
+        public const int pingperiod = 1000;
+
         private static List<User> onlineUsers = null;
         private static List<string> queue = null;
         private static List<Room> rooms = null;
         private const int timeout = 500000;
         private static Object lockObject = new Object();
-        public static Random rand = new Random();
 
         static IQService()
         {
@@ -30,10 +32,30 @@ namespace IQChampionsServiceLibrary
             kick.IsBackground = true;
             kick.Start();
 
+            Thread roomWatcher = new Thread(new ThreadStart(closeRooms));
+            roomWatcher.IsBackground = true;
+            roomWatcher.Start();
+
             Logger.log(Errorlevel.INFO, "Initialized successful!");
         }
 
         #region Felhasználó kezelő
+
+        private static void closeRooms()
+        {
+            while (true)
+            {
+                Thread.Sleep(pingperiod);
+                Parallel.ForEach(rooms, new Action<Room>((r) =>
+                {
+                    if (r.Finished)
+                    {
+                        rooms.Remove(r);
+                        Logger.log(Errorlevel.INFO, r.Name + " room finished!");
+                    }
+                }));
+            }
+        }
 
         private static void kickOffline()
         {
@@ -74,7 +96,7 @@ namespace IQChampionsServiceLibrary
                 Logger.log(Errorlevel.INFO, user + " tried to log in twice");
                 return false;
             }
-            else if (user.Length < 6)
+            else if (user.Length < 10)
             {
                 User login = new User(user);
                 onlineUsers.Add(login);
@@ -109,7 +131,7 @@ namespace IQChampionsServiceLibrary
 
         public int PingPeriod()
         {
-            return 1000;
+            return pingperiod;
         }
 
         public bool Ping(string user)
@@ -211,7 +233,7 @@ namespace IQChampionsServiceLibrary
         {
             try
             {
-                Room ret = rooms.Find(x => x.Users.Find(y => y.Name.Equals(user)) != null);
+                Room ret = rooms.Find(x => x.Players.Find(y => y.Name.Equals(user)) != null);
                 return ret;
             }
             catch (NullReferenceException)
@@ -224,32 +246,39 @@ namespace IQChampionsServiceLibrary
         {
             return onlineUsers.Find(x => x.Name.Equals(user));
         }
-        
+
         public States getMyState(string user)
         {
             return getUserByUserName(user).State;
         }
-        
+
         public bool Move(string user, int x, int y)
         {
-            return getRoomByUserName(user).Move(x, y);
+            try
+            {
+                return getRoomByUserName(user).Move(x, y);
+            }
+            catch (Exception ex)
+            {
+                Logger.log(Errorlevel.ERROR, ex.Message + "\r\n" + ex.StackTrace);
+                return false;
+            }
         }
-        
+
         public Question getQuestion(string user)
         {
-            return new Question()
-            {
-                Questionn = "Példakérdés",
-                GoodAnswer = "Jóválasz",
-                BadAnswer1 = "Rosszválasz 1",
-                BadAnswer2 = "Rosszválasz 2",
-                BadAnswer3 = "Rosszválasz 3"
-            };
+            return getRoomByUserName(user).Question;
         }
-        
+
         public bool answerQuestion(string user, int id)
         {
-            return getRoomByUserName(user).Answer(id);
+            return getRoomByUserName(user).Answer(getUserByUserName(user), id);
+        }
+
+
+        public Statistic getStatistics(string user)
+        {
+            return new Statistic(getRoomByUserName(user));
         }
     }
 }

@@ -120,6 +120,9 @@ namespace IQChampionsServiceLibrary
 
         [OperationContract]
         bool answerQuestion(string user, int id);
+
+        [OperationContract]
+        Statistic getStatistics(string user);
         /*         
           
          [OperationContract]
@@ -149,8 +152,7 @@ namespace IQChampionsServiceLibrary
          [OperationContract]
          string[] getAnswerResults(string roomuser);
                                                
-         [OperationContract]
-         string[] getStatistics(string roomuser);
+         
                                           
          [OperationContract]
          Boolean returnToLobby(string roomuser, Boolean lobby);

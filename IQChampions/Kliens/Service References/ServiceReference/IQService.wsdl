@@ -85,6 +85,12 @@
   <wsdl:message name="IIQService_answerQuestion_OutputMessage">
     <wsdl:part name="parameters" element="tns:answerQuestionResponse" />
   </wsdl:message>
+  <wsdl:message name="IIQService_getStatistics_InputMessage">
+    <wsdl:part name="parameters" element="tns:getStatistics" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getStatistics_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getStatisticsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IIQService">
     <wsdl:operation name="PingPeriod">
       <wsdl:input wsaw:Action="http://tempuri.org/IIQService/PingPeriod" message="tns:IIQService_PingPeriod_InputMessage" />
@@ -137,6 +143,10 @@
     <wsdl:operation name="answerQuestion">
       <wsdl:input wsaw:Action="http://tempuri.org/IIQService/answerQuestion" message="tns:IIQService_answerQuestion_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IIQService/answerQuestionResponse" message="tns:IIQService_answerQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getStatistics">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getStatistics" message="tns:IIQService_getStatistics_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getStatisticsResponse" message="tns:IIQService_getStatistics_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IIQService" type="tns:IIQService">
@@ -251,6 +261,15 @@
     </wsdl:operation>
     <wsdl:operation name="answerQuestion">
       <soap:operation soapAction="http://tempuri.org/IIQService/answerQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStatistics">
+      <soap:operation soapAction="http://tempuri.org/IIQService/getStatistics" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

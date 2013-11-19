@@ -149,6 +149,9 @@
     <None Include="Service References\ServiceReference\iqchampion_design.ServiceReference.States.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ServiceReference\iqchampion_design.ServiceReference.Statistic.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ServiceReference\IQService.wsdl" />
     <None Include="Service References\ServiceReference\item.xsd">
       <SubType>Designer</SubType>
