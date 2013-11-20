@@ -15,15 +15,21 @@ namespace iqchampion_design.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GameTable", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
     [System.SerializableAttribute()]
-    public partial class GameTable : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Message : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private iqchampion_design.ServiceReference.Cell[] TableField;
+        private string MsgField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private iqchampion_design.ServiceReference.User SenderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime TimeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -36,91 +42,40 @@ namespace iqchampion_design.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public iqchampion_design.ServiceReference.Cell[] Table {
+        public string Msg {
             get {
-                return this.TableField;
+                return this.MsgField;
             }
             set {
-                if ((object.ReferenceEquals(this.TableField, value) != true)) {
-                    this.TableField = value;
-                    this.RaisePropertyChanged("Table");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Cell", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
-    [System.SerializableAttribute()]
-    public partial class Cell : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ColField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private iqchampion_design.ServiceReference.User OwnerField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RowField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Col {
-            get {
-                return this.ColField;
-            }
-            set {
-                if ((this.ColField.Equals(value) != true)) {
-                    this.ColField = value;
-                    this.RaisePropertyChanged("Col");
+                if ((object.ReferenceEquals(this.MsgField, value) != true)) {
+                    this.MsgField = value;
+                    this.RaisePropertyChanged("Msg");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public iqchampion_design.ServiceReference.User Owner {
+        public iqchampion_design.ServiceReference.User Sender {
             get {
-                return this.OwnerField;
+                return this.SenderField;
             }
             set {
-                if ((object.ReferenceEquals(this.OwnerField, value) != true)) {
-                    this.OwnerField = value;
-                    this.RaisePropertyChanged("Owner");
+                if ((object.ReferenceEquals(this.SenderField, value) != true)) {
+                    this.SenderField = value;
+                    this.RaisePropertyChanged("Sender");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Row {
+        public System.DateTime Time {
             get {
-                return this.RowField;
+                return this.TimeField;
             }
             set {
-                if ((this.RowField.Equals(value) != true)) {
-                    this.RowField = value;
-                    this.RaisePropertyChanged("Row");
+                if ((this.TimeField.Equals(value) != true)) {
+                    this.TimeField = value;
+                    this.RaisePropertyChanged("Time");
                 }
             }
         }
@@ -340,6 +295,128 @@ namespace iqchampion_design.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameTable", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
+    [System.SerializableAttribute()]
+    public partial class GameTable : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private iqchampion_design.ServiceReference.Cell[] TableField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public iqchampion_design.ServiceReference.Cell[] Table {
+            get {
+                return this.TableField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TableField, value) != true)) {
+                    this.TableField = value;
+                    this.RaisePropertyChanged("Table");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Cell", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
+    [System.SerializableAttribute()]
+    public partial class Cell : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ColField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private iqchampion_design.ServiceReference.User OwnerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RowField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Col {
+            get {
+                return this.ColField;
+            }
+            set {
+                if ((this.ColField.Equals(value) != true)) {
+                    this.ColField = value;
+                    this.RaisePropertyChanged("Col");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public iqchampion_design.ServiceReference.User Owner {
+            get {
+                return this.OwnerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OwnerField, value) != true)) {
+                    this.OwnerField = value;
+                    this.RaisePropertyChanged("Owner");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Row {
+            get {
+                return this.RowField;
+            }
+            set {
+                if ((this.RowField.Equals(value) != true)) {
+                    this.RowField = value;
+                    this.RaisePropertyChanged("Row");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Question", Namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary")]
     [System.SerializableAttribute()]
     public partial class Question : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -520,6 +597,18 @@ namespace iqchampion_design.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/Ping", ReplyAction="http://tempuri.org/IIQService/PingResponse")]
         System.Threading.Tasks.Task<bool> PingAsync(string user);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/Send", ReplyAction="http://tempuri.org/IIQService/SendResponse")]
+        void Send(string user, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/Send", ReplyAction="http://tempuri.org/IIQService/SendResponse")]
+        System.Threading.Tasks.Task SendAsync(string user, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/getMesages", ReplyAction="http://tempuri.org/IIQService/getMesagesResponse")]
+        iqchampion_design.ServiceReference.Message[] getMesages(string user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/getMesages", ReplyAction="http://tempuri.org/IIQService/getMesagesResponse")]
+        System.Threading.Tasks.Task<iqchampion_design.ServiceReference.Message[]> getMesagesAsync(string user);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/joinQueue", ReplyAction="http://tempuri.org/IIQService/joinQueueResponse")]
         void joinQueue(string user);
         
@@ -638,6 +727,22 @@ namespace iqchampion_design.ServiceReference {
         
         public System.Threading.Tasks.Task<bool> PingAsync(string user) {
             return base.Channel.PingAsync(user);
+        }
+        
+        public void Send(string user, string message) {
+            base.Channel.Send(user, message);
+        }
+        
+        public System.Threading.Tasks.Task SendAsync(string user, string message) {
+            return base.Channel.SendAsync(user, message);
+        }
+        
+        public iqchampion_design.ServiceReference.Message[] getMesages(string user) {
+            return base.Channel.getMesages(user);
+        }
+        
+        public System.Threading.Tasks.Task<iqchampion_design.ServiceReference.Message[]> getMesagesAsync(string user) {
+            return base.Channel.getMesagesAsync(user);
         }
         
         public void joinQueue(string user) {

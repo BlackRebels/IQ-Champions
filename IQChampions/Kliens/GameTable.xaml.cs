@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Collections;
+using IQUtil;
 
 namespace iqchampion_design
 {
@@ -43,6 +44,7 @@ namespace iqchampion_design
             InitializeComponent();
             this.parent = parent;
             this.Title = parent.Title;
+            ListBoxChatMessages.Items.Clear();
 
             refreshworker = new BackgroundWorker();
             refreshworker.WorkerSupportsCancellation = true;
@@ -71,6 +73,7 @@ namespace iqchampion_design
             {
                 (sender as BackgroundWorker).ReportProgress(0, Client.getGameTable(User));
                 (sender as BackgroundWorker).ReportProgress(0, Client.getStatistics(User));
+                (sender as BackgroundWorker).ReportProgress(0, Client.getMesages(User));
                 Thread.Sleep(PingPeriod);
             } while (!(sender as BackgroundWorker).CancellationPending);
         }
@@ -105,7 +108,22 @@ namespace iqchampion_design
                     else l.Content = u.Name + ": " + u.Point + " pont";
                 }
             }
+            else if (e.UserState is Message[])
+            {
+                Message[] chat = (e.UserState as Message[]);
+                ListBoxChatMessages.Items.Clear();
+                for (int i = chat.Length - 1; i >= 0; i--)
+                {
+                    User u = chat[i].Sender;
+                    Label l = new Label();
+                    l.Foreground = new SolidColorBrush(Color.FromRgb(u.Color[0], u.Color[1], u.Color[2]));
+                    string s = chat[i].Time.ToString("HH:mm") + " [" + u.Name + "] " + chat[i].Msg;
+                    l.Content = StringExtensions.MultiInsert(s, "\r\n  ", 30);
+                    ListBoxChatMessages.Items.Add(l);
+                }
+            }
         }
+
 
         private void wait(object sender, DoWorkEventArgs e)
         {
@@ -197,7 +215,16 @@ namespace iqchampion_design
 
         private void TextEntered(object sender, KeyEventArgs e)
         {
+            if (e.Key == Key.Enter)
+            {
+                Client.Send(User, TextBoxChatWrite.Text);
+                TextBoxChatWrite.Text = "";
+            }
+        }
 
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBoxChatWrite.Text = "";
         }
     }
 }

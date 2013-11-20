@@ -16,6 +16,7 @@ namespace IQChampionsServiceLibrary
         public GameTable Table { get; set; }
         public string Name { get; set; }
         public List<User> Players { get; set; }
+        public List<Message> Chat { get; set; }
         public Question Question { get { return question; } }
         public bool Finished { get { return finished; } }
 
@@ -26,7 +27,7 @@ namespace IQChampionsServiceLibrary
             new byte[] { 0, 0, 255 },   // Blue
             new byte[] { 0, 255, 0 },   // Green
             new byte[] { 255, 0, 0 },   // Red
-            new byte[] { 255, 255, 0 }  // Yellow
+            new byte[] { 255, 175, 0 }  // Orange
         };
 
         private BackgroundWorker turnworker = null;
@@ -47,7 +48,6 @@ namespace IQChampionsServiceLibrary
         {
             init();
             Name = name;
-
         }
 
         private void init()
@@ -56,6 +56,7 @@ namespace IQChampionsServiceLibrary
             Table = new GameTable(6, 4);
             turnworker = new BackgroundWorker();
             turnworker.DoWork += turn;
+            Chat = new List<Message>();
         }
 
         public void addUser(User user)

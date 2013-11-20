@@ -143,6 +143,9 @@
     <None Include="Service References\ServiceReference\iqchampion_design.ServiceReference.GameTable.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ServiceReference\iqchampion_design.ServiceReference.Message.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ServiceReference\iqchampion_design.ServiceReference.Question.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

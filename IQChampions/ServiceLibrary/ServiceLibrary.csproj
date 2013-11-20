@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="AnswerResult.cs" />
     <Compile Include="Cell.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="GameTable.cs" />
     <Compile Include="IIQService.cs" />

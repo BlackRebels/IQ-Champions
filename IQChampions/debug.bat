@@ -1,8 +1,10 @@
-start AlkalmazasSzerver\bin\Debug\AlkalmazasSzerver.exe
-FOR %%A IN ("Egyeske" "Ketteske" "Harmaska" "Negyeske" "a" "b" "c" "d") DO (
-rem 
-	TIMEOUT /T 1
-	START Kliens\bin\Debug\iqchampion_design.exe %%A Play	
+cd AlkalmazasSzerver\bin\Debug
+start AlkalmazasSzerver.exe
+TIMEOUT /T 1
+cd ..\..\..\Kliens\bin\Debug
+FOR %%A IN ("Egyeske" "Ketteske" "Harmaska"   "Negyeske") DO (
+rem "a" "b" "c" "d"	
+	START iqchampion_design.exe %%A Play	
 )
 
 PAUSE

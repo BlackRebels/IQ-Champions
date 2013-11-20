@@ -56,6 +56,33 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Send">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="user" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getMesages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="user" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getMesagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getMesagesResult" nillable="true" type="q1:ArrayOfMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="joinQueue">
     <xs:complexType>
       <xs:sequence>
@@ -118,7 +145,7 @@
   <xs:element name="getGameTableResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getGameTableResult" nillable="true" type="q1:GameTable" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getGameTableResult" nillable="true" type="q2:GameTable" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -132,7 +159,7 @@
   <xs:element name="getMyStateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getMyStateResult" type="q2:States" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getMyStateResult" type="q3:States" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -162,7 +189,7 @@
   <xs:element name="getQuestionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getQuestionResult" nillable="true" type="q3:Question" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getQuestionResult" nillable="true" type="q4:Question" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -191,7 +218,7 @@
   <xs:element name="getStatisticsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getStatisticsResult" nillable="true" type="q4:Statistic" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getStatisticsResult" nillable="true" type="q5:Statistic" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

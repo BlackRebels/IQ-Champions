@@ -26,9 +26,15 @@ namespace IQChampionsServiceLibrary
         bool Ping(string user);
         #endregion
 
-        /*
-        #region Chat
         
+        #region Chat
+        [OperationContract]
+        void Send(string user, string message);
+
+        [OperationContract]
+        List<Message> getMesages(string user);
+
+        /*
         //közös chat
         [OperationContract]
         void SendAll(string user, string message); //közös chat
@@ -62,11 +68,11 @@ namespace IQChampionsServiceLibrary
 
         [OperationContract]
         bool UpdateStatistic(string user, int kerdeszam, int helyesvalasz); //saját offline statisztika feltöltése
-        
+        */
         #endregion
                  
         #region SzobaKezelő
-        
+        /*
         [OperationContract]
         Boolean createRoom(string user, string roomuser, string[] beállítások);
             
@@ -81,9 +87,9 @@ namespace IQChampionsServiceLibrary
    
         [OperationContract]
         Room getRoom(string roomuser);
-       
+       */
         #endregion
-        */
+        
 
         #region SorKezelő
 
@@ -102,10 +108,7 @@ namespace IQChampionsServiceLibrary
         #endregion
 
         #region JátékkezelőKezelő
-        /*
-        [OperationContract]
-        Boolean startGame(string user, string roomuser);
-        */
+        
         [OperationContract]
         GameTable getGameTable(string user);
 
@@ -123,40 +126,7 @@ namespace IQChampionsServiceLibrary
 
         [OperationContract]
         Statistic getStatistics(string user);
-        /*         
-          
-         [OperationContract]
-         string getActualPlayer(string roomuser);
-             
-         [OperationContract]
-         Int32 getMoveRemainingTime(string roomuser);
-              
-         [OperationContract]
-         Boolean chooseCell(int x, int y);
-              
-         [OperationContract]
-         Boolean getIfMoved(string roomuser);
-               
-         [OperationContract]
-         Question getQuestion(string roomuser);
-                          
-         [OperationContract]
-         Int32 getAnswerRemainingTime(string roomuser);
-                                   
-         [OperationContract]
-         Boolean chooseAnswer(string user, string roomuser, Int16 sorszam);
-                                      
-         [OperationContract]
-         Boolean getIfAnswered(string roomuser);
-                                          
-         [OperationContract]
-         string[] getAnswerResults(string roomuser);
-                                               
-         
-                                          
-         [OperationContract]
-         Boolean returnToLobby(string roomuser, Boolean lobby);
-         */
+        
         #endregion
 
     }

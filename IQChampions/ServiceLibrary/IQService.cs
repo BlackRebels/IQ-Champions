@@ -262,6 +262,7 @@ namespace IQChampionsServiceLibrary
 
         #endregion
 
+        #region Játék kezelő
         public GameTable getGameTable(string user)
         {
             try
@@ -320,10 +321,22 @@ namespace IQChampionsServiceLibrary
             return getRoomByUserName(user).Answer(getUserByUserName(user), id);
         }
 
-
         public Statistic getStatistics(string user)
         {
             return new Statistic(getRoomByUserName(user));
         }
+        #endregion
+
+        #region Chat
+        public void Send(string user, string message)
+        {
+            getRoomByUserName(user).Chat.Add(new Message(DateTime.Now,getUserByUserName(user), message));
+        }
+        public List<Message> getMesages(string user)
+        {
+            return getRoomByUserName(user).Chat;
+        }
+        #endregion
+
     }
 }
