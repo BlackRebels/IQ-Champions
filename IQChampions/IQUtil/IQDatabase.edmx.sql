@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 11/14/2013 11:09:44
--- Generated from EDMX file: C:\Users\hallgato\Documents\GitHub\IQ-Champions\IQChampions\IQUtil\DataModel.edmx
+-- Date Created: 11/20/2013 01:53:24
+-- Generated from EDMX file: C:\Users\Ádám\Documents\GitHub\IQ-Champions\IQChampions\IQUtil\IQDatabase.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [aspnet-IQWebApp-20131024110038];
+USE [IQChampions];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -22,19 +22,30 @@ GO
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[UserSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[UserSet];
+IF OBJECT_ID(N'[dbo].[dbQuestionSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[dbQuestionSet];
 GO
-IF OBJECT_ID(N'[dbo].[QuestionsSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[QuestionsSet];
+IF OBJECT_ID(N'[IQChampionsModelStoreContainer].[dbUserSet]', 'U') IS NOT NULL
+    DROP TABLE [IQChampionsModelStoreContainer].[dbUserSet];
 GO
 
 -- --------------------------------------------------
 -- Creating all tables
 -- --------------------------------------------------
 
--- Creating table 'UserSet'
-CREATE TABLE [dbo].[UserSet] (
+-- Creating table 'dbQuestionSet'
+CREATE TABLE [dbo].[dbQuestionSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [question] nvarchar(max)  NOT NULL,
+    [goodanswer] nvarchar(max)  NOT NULL,
+    [badanswer1] nvarchar(max)  NOT NULL,
+    [badanswer2] nvarchar(max)  NOT NULL,
+    [badanswer3] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'dbUserSet'
+CREATE TABLE [dbo].[dbUserSet] (
     [name] nvarchar(max)  NOT NULL,
     [pass] nvarchar(max)  NOT NULL,
     [email] nvarchar(max)  NOT NULL,
@@ -45,31 +56,20 @@ CREATE TABLE [dbo].[UserSet] (
 );
 GO
 
--- Creating table 'QuestionsSet'
-CREATE TABLE [dbo].[QuestionsSet] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [question] nvarchar(max)  NOT NULL,
-    [goodanswer] nvarchar(max)  NOT NULL,
-    [badanswer1] nvarchar(max)  NOT NULL,
-    [badanswer2] nvarchar(max)  NOT NULL,
-    [badanswer3] nvarchar(max)  NOT NULL
-);
-GO
-
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
 
--- Creating primary key on [name] in table 'UserSet'
-ALTER TABLE [dbo].[UserSet]
-ADD CONSTRAINT [PK_UserSet]
-    PRIMARY KEY CLUSTERED ([name] ASC);
+-- Creating primary key on [Id] in table 'dbQuestionSet'
+ALTER TABLE [dbo].[dbQuestionSet]
+ADD CONSTRAINT [PK_dbQuestionSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'QuestionsSet'
-ALTER TABLE [dbo].[QuestionsSet]
-ADD CONSTRAINT [PK_QuestionsSet]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
+-- Creating primary key on [name], [pass] in table 'dbUserSet'
+ALTER TABLE [dbo].[dbUserSet]
+ADD CONSTRAINT [PK_dbUserSet]
+    PRIMARY KEY CLUSTERED ([name], [pass] ASC);
 GO
 
 -- --------------------------------------------------

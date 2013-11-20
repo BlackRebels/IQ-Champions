@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using IQUtil;
 
 namespace IQChampionsServiceLibrary
 {
@@ -18,6 +19,14 @@ namespace IQChampionsServiceLibrary
 
         public Question()
         {                
+        }
+        public Question(dbQuestionSet question)
+        {
+            Questionn = question.question;
+            GoodAnswer = question.goodanswer;
+            BadAnswer1 = question.badanswer1;
+            BadAnswer2 = question.badanswer2;
+            BadAnswer3 = question.badanswer3;
         }
     }
 }

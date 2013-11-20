@@ -14,7 +14,7 @@ namespace IQUtil
     {
         public static void log(Errorlevel level, string message)
         {
-            Console.WriteLine(DateTime.Now.ToString().PadRight(23) + "[" + level + "] " + message);
+            Console.WriteLine(DateTime.Now.ToString().PadRight(21) + "[" + level + "] " + message);
         }
     }
 }

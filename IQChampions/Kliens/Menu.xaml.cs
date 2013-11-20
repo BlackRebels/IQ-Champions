@@ -16,7 +16,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using iqchampion_design.ServiceReference;
-using IQChampionsServiceLibrary;
 
 namespace iqchampion_design
 {

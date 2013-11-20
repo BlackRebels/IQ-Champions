@@ -13,10 +13,10 @@ namespace IQUtil
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DataModelContainer : DbContext
+    public partial class IQChampionsEntities : DbContext
     {
-        public DataModelContainer()
-            : base("name=DataModelContainer")
+        public IQChampionsEntities()
+            : base("name=IQChampionsEntities")
         {
         }
     
@@ -25,7 +25,7 @@ namespace IQUtil
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<dbUser> dbUserSet { get; set; }
-        public DbSet<dbQuestion> dbQuestionSet { get; set; }
+        public DbSet<dbQuestionSet> dbQuestionSet { get; set; }
+        public DbSet<dbUserSet> dbUserSet { get; set; }
     }
 }

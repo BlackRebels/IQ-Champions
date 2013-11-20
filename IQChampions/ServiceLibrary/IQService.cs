@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
@@ -14,19 +15,63 @@ namespace IQChampionsServiceLibrary
     public class IQService : IIQService
     {
         public static Random rand = new Random();
-        public const int pingperiod = 1000;
+        public static IQChampionsEntities database = null;
+        public static int Pingperiod { get { return pingperiod; } }
+        public static int Timeout { get { return timeout; } }
 
         private static List<User> onlineUsers = null;
         private static List<string> queue = null;
         private static List<Room> rooms = null;
-        private const int timeout = 500000;
+
         private static Object lockObject = new Object();
+        private static int pingperiod = 1000;
+        private static int timeout = 10000;
 
         static IQService()
         {
             onlineUsers = new List<User>();
             queue = new List<string>();
             rooms = new List<Room>();
+            database = new IQChampionsEntities();
+
+            var data = new Dictionary<string, string>();
+            try
+            {
+                foreach (var row in File.ReadAllLines(".\\properties.txt"))
+                {
+                    string[] split = row.Split('=');
+                    try
+                    {
+                        data.Add(split[0], split[1]);
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        Logger.log(Errorlevel.ERROR, "Property format error, missing \"=\" " + row);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.log(Errorlevel.ERROR, ex.Message);
+            }
+            try
+            {
+                pingperiod = int.Parse(data["pingperiod"]);
+                Logger.log(Errorlevel.INFO, "Picked up property pingperiod=" + pingperiod);
+            }
+            catch (Exception)
+            {
+                Logger.log(Errorlevel.ERROR, "Property error at pingperiod, using default value " + pingperiod);
+            }
+            try
+            {
+                timeout = int.Parse(data["timeout"]);
+                Logger.log(Errorlevel.INFO, "Picked up property timeout=" + timeout);
+            }
+            catch (Exception)
+            {
+                Logger.log(Errorlevel.ERROR, "Property error at timeout, using default value " + timeout);
+            }
 
             Thread kick = new Thread(new ThreadStart(kickOffline));
             kick.IsBackground = true;

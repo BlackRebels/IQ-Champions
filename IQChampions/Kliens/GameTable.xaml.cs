@@ -1,5 +1,4 @@
 ﻿using iqchampion_design.ServiceReference;
-using IQChampionsServiceLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;

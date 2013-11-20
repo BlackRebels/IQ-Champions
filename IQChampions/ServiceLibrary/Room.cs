@@ -93,20 +93,14 @@ namespace IQChampionsServiceLibrary
             {
                 actualPlayer = null;
                 actualCell = null;
-                question = new Question()
-                     {
-                         Questionn = "Példakérdés",
-                         GoodAnswer = "Jóválasz",
-                         BadAnswer1 = "Rosszválasz 1",
-                         BadAnswer2 = "Rosszválasz 2",
-                         BadAnswer3 = "Rosszválasz 3"
-                     };
+
+                question = new Question(IQService.database.dbQuestionSet.OrderBy(r => Guid.NewGuid()).First());
                 selectNextMove();
 
                 Stopwatch stopper = new Stopwatch();
                 stopper.Start();
                 // Lépésre vár
-                while (stopper.ElapsedMilliseconds < turnTimeout && actualCell == null) Thread.Sleep(IQService.pingperiod);
+                while (stopper.ElapsedMilliseconds < turnTimeout && actualCell == null) Thread.Sleep(IQService.Pingperiod);
 
                 if (actualCell != null)
                 {
@@ -118,7 +112,7 @@ namespace IQChampionsServiceLibrary
                         (actualPlayer.State == States.ANSWER ||
                         (actualCell.Owner.State == States.ANSWER && actualCell.Owner.Name != null)))
                     {
-                        Thread.Sleep(IQService.pingperiod);
+                        Thread.Sleep(IQService.Pingperiod);
                     }
 
                     // Lejárt az idő: a válasz rossz
@@ -154,6 +148,7 @@ namespace IQChampionsServiceLibrary
             {
                 u.State = States.FINISHED;
             }
+            Thread.Sleep(IQService.Timeout);
             finished = true;
         }
 
