@@ -1,0 +1,45 @@
+Tegyük fel, hogy a fiókban van 40 kék, és 40 barna zokni. Habenyúl a fiókba anélkül, hogy odanézne, mennyi az a legkisebbdarabszám, amit ki kell húzni ahhoz, hogy abban biztos legyen egypár azonos színu zokni? 	3	1	4	40
+Egy utcában 25 ház van. Tíz háznak kevesebb, mint 6 szobája van.Tíznek több, mint 7 szobája van. Négynek több, mint 8 szobája.Összesen hány 6,7 vagy 8 szobás ház van az utcában? 	11	5	9	15
+Melyik egészíti ki a hasonlatot? Épület : Church, akárcsak 	a múzeum a régiségeknek	a tánc a balettnek	a költészet a szonettnek	az etika a moralitásnak
+Mi a sorozatban a következo szám: 0 0 1 2 2 4 3 6 4 8 5 ... 	10	6	8	12
+Melyik egészíti ki a hasonlatot? George Washington : cseresznyefa, akárcsak 	John Hancock az aláíráshoz	Albert Einstein az atombombához	Abraham Lincoln az emancipációhoz	Thomas Jefferson az Alkotmányhoz
+A, b és c egy háromszög oldalai. Melyik állítás igaz? 	c mínusz b mindig kisebb, mint a	c mínusz b mindig nagyobb, mint a	c miniusz b mindig egyenlõ a-val	nem lehet egyenlõséget felállítani c-b és a között
+Egy szobában öt kékszemu, szoke ember tartózkodik. Ha aszobában összesen 14 szoke és 8 kékszemu ember van, akkor hányanvannak a szobában? 	17	3	11	22
+Tegyük fel, hogy olyan digitális órának van, ami csak olyanidopontokat tud megjeleníteni, ahol az óra és a perc megegyezik. Például: 10:10, 9:09, stb. Mi a legkisebb idokülönbség két, azóra számára elfogadható idopillanat között?	49 perc	101 perc	60 perc	11 perc
+Az ABCO négyzet egy O középpontú negyedkörben található. Az egyikvízszintes oldal az O-ban kezdodik. Mi a hossza a négyzet AC átlójának, ha a kör sugara 5?	5	3	6	Ennyi adatból nem számolható ki
+Egy hajó kétszer annyi idos, mint ahány éves a hajó kazánja voltakkor, amikor a hajó annyi idõs volt, mint a kazán most. A kazánkorának aránya a hajó korához:	3/4	2/3	4/5	5/6
+Melyik a nagyobb? 50-szer önmaga 100-szor, vagy 100-szor önmaga50-szer. Esetleg a két mennyiség egyenlo?	50-szer önmaga 100-szor a nagyobb	100-szor önmaga 50-szer a nagyobb	a két mennyiség megegyezik	Egyik sem
+Adva van egy ABC háromszög, mely AB oldala egyenlo AC oldallal.Rajzoljon egy vonalat C-bol AB oldalra, és nevezze el CD-nek. Mostrajzoljon egy vonalat B-bol AC-re, és ezt nevezze BE-nek. Ha az EBCszög 60 fok, a BCD 70 fok, az ABE 20 fok és a DCE 10 fok, akkor hányfokos az EDC szög? 	20 fok	15 fok	25 fok	Egyik sem
+Van olyan hónap amiben 30 nap van és van olyan amiben 31. Vajon hány hónapban van 28 nap? 	12	1	7	6
+Ha az orvos 3 tablettát ad és azt mondja, hogy fél óránként vegyél be egyet, hány óra alatt fog elfogyni mind a három?	1	0,5	1,5	2
+ Este nyolckor fekszem le. Reggel kilenckor akarok kelni ezért a vekkert kilencre húzom. Hány órát fogok így aludni?	1	3	11	7
+X-et megfeleztük, így 30-at kaptunk. Hányat kapunk ha X-hez 10-et hozzáadunk? 	70	60	25	40
+Egy gazdának 17 birkája volt. Kilencet kivéve elpusztultak. Hány élo birka maradt? 	9	8	17	10
+Egy gyufád maradt! Bezárnak egy HIDEG és SÖTÉT szobába ahol egy olaj radiátor, egy olajlámpa és egy gyertya van. Melyiket gyújtod meg eloször?	Gyufa	Gyertya	Olajradiátor	Olajlámpa
+Egy férfi felépít egy házat ami minden szempontból hagyományos. A ház minden oldalának déli fekvése van! Arra jár egy nagy medve. Milyen a színe?	Fehér	Barna	Szürke	Fekete
+Vegyen két almát három almából. Mennyi almája lesz?	2	1	3	0
+Hány állatot vitt Mózes magával bárkájára fajonként?	0	2	3	1
+Hány kilences van a számok között 0-tól 100-ig?	20	1	10	11
+Ki írh híres regényt a Notre Dame toronyõrérõl?	Victor Hugo	Emilie Zola	Victor Hugo	Goethe
+Ki írt zongoraversenyt balkézre?	Ravel	Liszt Ferenc	Rahmanyikov	Chopin
+Honnan indult el végzetes útjára a Titanic?	Southampton	London	New York	Liverpool
+Hány István néven uralkodó magyar király volt?	5	4	1	2
+Kit szokás a niklai remetének emlegetni?	Berzsenyi Dániel	Kölcsey Ferenc	Kossuth Lajos	
+Mi a neve Bánk Bán feleségének a drámában?	Melinda	Izabella	Gertrúd	Gizella
+Kicsoda Marica Kálmán Imre operettjében?	grófnõ	királynõ	bárónõ	hercegnõ
+Melyik ország fõvárosa Rabat?	Marokkó	Nepál	Angola	Peru
+Melyik film zeneszerzõje Vangelis?	Száryas fejvadás	Csillagok háborúja	Az ötödik elem	Világok harca
+Melyik város nevezetessége az Alhambra?	Granada	Sevilla	Cordoba	Madrid
+Milyen állatok a narválok?	Cetek	Krokodilok	Tüdõs halak	Teknõsök
+Melyik országban született Fédéric Chopin?	Lengyelország	Olaszország	Ausztria	Franciaország
+Milyen foglalkozást ûzött még Csontváry, a festõ?	Gyógyszerész	Tanár	Sebész	Zenész
+Hány évesen lett tábornok Bonaparte Napóleon?	24	33	46	21
+Melyik tó partján fekszik Chicago?	Michigan-tó	Huron-tó	Erie-tó	Ontario-tó
+Kinek a mûve az Egy õrült naplója?	Gogol	Gajdar	Puskin	Chehov
+Melyik városunkban van a Csontváry Múzeum?	Pécs	Budapest	Gyõr	Szentendre
+Ki volt Polüphémosz?	Egyszemû óriás	filozófus	Trójai hõs	Krétai király
+Melyik növénycsaládba tartozik a bambusz	Pázsitfûfélék	Pálmafélék	Vafûfélék	Korpafûfélék
+Ki alkotta meg az Etelka nevünket?	Dugonics András	Vörösmarty Mihály	Arany János	Jókai Mór
+Melyik Beethoven egyetlen operája?	Fidelio	A varázsfuvola	Rigoletto	Prométehusz
+Ki írta a Befejezetlen szimfóniát?	Schubert	Brahms	Schumann	Mendelssohn
+Melyik feltaláló munkatársa volt Puskás Tivadar	Thomas Edison	Graham Bell	Werner Siemens	Heinrich Hertz
