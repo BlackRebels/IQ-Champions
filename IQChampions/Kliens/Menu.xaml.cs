@@ -151,18 +151,36 @@ namespace iqchampion_design
             debugbutton.Content = "Pinging is " + (stop ? "off" : "on");
         }
 
+        bool alreadyclicked = false;
+
         private void ButtonClickGameRandom(object sender, RoutedEventArgs e)
         {
+          if (!alreadyclicked)
+               {
+
             if (queueworker.IsBusy)
             {
                 Client.leaveQueue(User);
                 queueworker.CancelAsync();
                 ButtonJatek.Content = "Játék";
             }
+
             else
             {
-                Client.joinQueue(User);
-                queueworker.RunWorkerAsync();
+                    Client.joinQueue(User);
+                    queueworker.RunWorkerAsync();
+                    alreadyclicked = true;
+                }
+          }
+                else {
+                    if(MessageBox.Show("Valóban ki akarsz lépni a sorból?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes);
+                    {
+                        Client.leaveQueue(User);
+                        queueworker.CancelAsync();
+                        ButtonJatek.Content = "Játék";
+                        alreadyclicked = false;
+                    }
+                
             }
         }
 
@@ -175,7 +193,7 @@ namespace iqchampion_design
 
         private void ButtonClickProfil(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://index.hu"); // Link to user profile
+            System.Diagnostics.Process.Start("http://localhost:3032/Account/Register"); // Link to user profile
         }
 
         private void ButtonClickLogout(object sender, RoutedEventArgs e)

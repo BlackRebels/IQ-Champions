@@ -338,5 +338,25 @@ namespace IQChampionsServiceLibrary
         }
         #endregion
 
+
+
+        public List<string> getUserList()
+        {
+            List<String> vissza = new List<String>();
+
+            foreach(User u in onlineUsers)
+            {
+                vissza.Add(u.Name);
+            }
+            return vissza;
+        }
+
+
+        public string[] getUserStats(string username)
+        {
+            User u = onlineUsers.Find(x => x.Name.Equals(username));
+            string[] vissza = { u.Name, u.Online.ToString(), u.Point.ToString(), u.State.ToString() };
+            return vissza;
+        }
     }
 }

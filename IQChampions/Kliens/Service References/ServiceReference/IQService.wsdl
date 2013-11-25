@@ -4,7 +4,8 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IIQService_PingPeriod_InputMessage">
@@ -30,6 +31,18 @@
   </wsdl:message>
   <wsdl:message name="IIQService_Ping_OutputMessage">
     <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getUserList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getUserList" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getUserList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getUserListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getUserStats_InputMessage">
+    <wsdl:part name="parameters" element="tns:getUserStats" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getUserStats_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getUserStatsResponse" />
   </wsdl:message>
   <wsdl:message name="IIQService_Send_InputMessage">
     <wsdl:part name="parameters" element="tns:Send" />
@@ -120,6 +133,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IIQService/Ping" message="tns:IIQService_Ping_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IIQService/PingResponse" message="tns:IIQService_Ping_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="getUserList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getUserList" message="tns:IIQService_getUserList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getUserListResponse" message="tns:IIQService_getUserList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserStats">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getUserStats" message="tns:IIQService_getUserStats_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getUserStatsResponse" message="tns:IIQService_getUserStats_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Send">
       <wsdl:input wsaw:Action="http://tempuri.org/IIQService/Send" message="tns:IIQService_Send_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IIQService/SendResponse" message="tns:IIQService_Send_OutputMessage" />
@@ -200,6 +221,24 @@
     </wsdl:operation>
     <wsdl:operation name="Ping">
       <soap:operation soapAction="http://tempuri.org/IIQService/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserList">
+      <soap:operation soapAction="http://tempuri.org/IIQService/getUserList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserStats">
+      <soap:operation soapAction="http://tempuri.org/IIQService/getUserStats" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

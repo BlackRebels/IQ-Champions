@@ -24,6 +24,13 @@ namespace IQChampionsServiceLibrary
 
         [OperationContract]
         bool Ping(string user);
+
+        [OperationContract]
+        List<String> getUserList();
+
+        [OperationContract]
+        String[] getUserStats(string username);
+
         #endregion
 
         

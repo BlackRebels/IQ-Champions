@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" />
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" />
   <xs:element name="PingPeriod">
     <xs:complexType>
       <xs:sequence />
@@ -56,6 +57,32 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="getUserList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUserListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getUserListResult" nillable="true" type="q1:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUserStats">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUserStatsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="getUserStatsResult" nillable="true" type="q2:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Send">
     <xs:complexType>
       <xs:sequence>
@@ -79,7 +106,7 @@
   <xs:element name="getMesagesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getMesagesResult" nillable="true" type="q1:ArrayOfMessage" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getMesagesResult" nillable="true" type="q3:ArrayOfMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -145,7 +172,7 @@
   <xs:element name="getGameTableResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getGameTableResult" nillable="true" type="q2:GameTable" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getGameTableResult" nillable="true" type="q4:GameTable" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -159,7 +186,7 @@
   <xs:element name="getMyStateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getMyStateResult" type="q3:States" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getMyStateResult" type="q5:States" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -189,7 +216,7 @@
   <xs:element name="getQuestionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getQuestionResult" nillable="true" type="q4:Question" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getQuestionResult" nillable="true" type="q6:Question" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -218,7 +245,7 @@
   <xs:element name="getStatisticsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getStatisticsResult" nillable="true" type="q5:Statistic" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" minOccurs="0" name="getStatisticsResult" nillable="true" type="q7:Statistic" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

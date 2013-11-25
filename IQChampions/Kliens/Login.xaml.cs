@@ -59,32 +59,37 @@ namespace iqchampion_design
 
         private void ButtonClickLogin(object sender, RoutedEventArgs e)
         {
-            Cursor = Cursors.Wait;
-            try
+            if (TextBoxUser.Text == "") { MessageBox.Show("Hibás felhasználónév vagy jelszó!"); }
+            else
             {
-                pingPeriod = client.PingPeriod();
-                bool authenticated = client.Login(TextBoxUser.Text, Hash.generate(TextBoxPass.Password));
-                if (authenticated)
+
+                Cursor = Cursors.Wait;
+                try
                 {
-                    user = TextBoxUser.Text;
-                    Menu menuWindow = new Menu(this);
-                    menuWindow.Show();
-                    this.Hide();
+                    pingPeriod = client.PingPeriod();
+                    bool authenticated = client.Login(TextBoxUser.Text, Hash.generate(TextBoxPass.Password));
+                    if (authenticated)
+                    {
+                        user = TextBoxUser.Text;
+                        Menu menuWindow = new Menu(this);
+                        menuWindow.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hibás felhasználónév vagy jelszó!");
+                        TextBoxUser.Text = null;
+                        TextBoxPass.Password = null;
+                    }
                 }
-                else
+                catch (Exception)
                 {
-                    MessageBox.Show("Hibás felhasználónév vagy jelszó!");
-                    TextBoxUser.Text = null;
-                    TextBoxPass.Password = null;
+                    MessageBox.Show("A szerver jelenleg nem elérhető!");
                 }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("A szerver jelenleg nem elérhető!");
-            }
-            finally
-            {
-                Cursor = Cursors.Arrow;
+                finally
+                {
+                    Cursor = Cursors.Arrow;
+                }
             }
         }
 

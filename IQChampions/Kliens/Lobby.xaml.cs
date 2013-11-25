@@ -60,6 +60,7 @@ namespace iqchampion_design
         {
             FelhasznaloPage page = new FelhasznaloPage();
             pageContainer.Content = page;
+            
         }
 
         private void onSzobaClicked(object sender, RoutedEventArgs e)
@@ -70,7 +71,13 @@ namespace iqchampion_design
 
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
-        {/*
+        {
+            String[] users = Client.getUserList();
+            foreach (string s in users)
+            {
+                FelhazsnaloList.Items.Add(s);
+            }
+            /*
             while (true)
             {
                 //Client.refreshRoomList();
