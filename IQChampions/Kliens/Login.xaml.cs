@@ -57,6 +57,11 @@ namespace iqchampion_design
             TextBoxPass.Password = null;
         }
 
+        private void ButtonClose(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
         private void ButtonClickLogin(object sender, RoutedEventArgs e)
         {
             if (TextBoxUser.Text == "") { MessageBox.Show("Hibás felhasználónév vagy jelszó!"); }

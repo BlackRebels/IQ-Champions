@@ -6,12 +6,15 @@
       mc:Ignorable="d" 
       d:DesignHeight="154" d:DesignWidth="256"
 	Title="SzobaPage">
-    <Grid  Background="#FFC7C7C7" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" Height="154" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="256">
+    <Grid  Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" Height="154" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="256">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/keret.png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="83*"/>
             <RowDefinition Height="84*"/>
         </Grid.RowDefinitions>
-        <Button Content="Létrehoz/Indít" HorizontalAlignment="Left" Margin="153,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button Content="Létrehoz" HorizontalAlignment="Left" Margin="153,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
         <Button Content="Kilépés" HorizontalAlignment="Left" Margin="153,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
         <Label Content="Név" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Max" HorizontalAlignment="Left" Margin="9,66,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>

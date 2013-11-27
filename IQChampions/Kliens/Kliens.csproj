@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
@@ -198,6 +199,48 @@
       <Project>{39853d47-541f-4109-9cb8-40cb3f3f8f7d}</Project>
       <Name>IQUtil</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_backarrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_chatsend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_closebutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\keret.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\korong_base.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\korong_base_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\korong_base_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\korong_base_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\korong_base_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\korong_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\korong_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\korong_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\korong_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\korong_yellow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

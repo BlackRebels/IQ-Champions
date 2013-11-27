@@ -7,18 +7,20 @@
       d:DesignHeight="152"
 	Title="FelhasznaloPage" Width="256">
 
-    <Grid Background="#FFC7C7C7" Grid.Row="1" Grid.Column="1">
+    <Grid  Grid.Row="1" Grid.Column="1">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/keret.png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="83*"/>
             <RowDefinition Height="84*"/>
         </Grid.RowDefinitions>
         <Button Content="Meghívás" HorizontalAlignment="Left" Margin="153,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Barát/Tiltás" HorizontalAlignment="Left" Margin="153,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
         <Label Content="Felhasználónév" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Stat1" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
         <Label Content="Stat2" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
         <Label Content="Stat3" HorizontalAlignment="Left" Margin="10,13,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Stat4" HorizontalAlignment="Left" Margin="10,39,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Button Content="Chat" HorizontalAlignment="Left" Margin="153,43,0,10" Width="75"/>
+        <Button Content="Chat" HorizontalAlignment="Left" Margin="153,0,0,53" Width="75" Grid.Row="1"/>
     </Grid>
 </Page>

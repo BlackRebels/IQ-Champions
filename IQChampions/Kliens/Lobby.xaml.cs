@@ -86,5 +86,10 @@ namespace iqchampion_design
             }*/
         }
 
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }
