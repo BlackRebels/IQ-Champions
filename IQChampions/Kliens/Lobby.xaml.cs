@@ -58,15 +58,13 @@ namespace iqchampion_design
 
         private void onFelhasznaloClicked(object sender, MouseButtonEventArgs e)
         {
-            FelhasznaloPage page = new FelhasznaloPage();
-            pageContainer.Content = page;
+            var item = ItemsControl.ContainerFromElement(listBox, e.OriginalSource as DependencyObject) as ListBoxItem;
+            if (item != null)
+            {
+                FelhasznaloPage page = new FelhasznaloPage();
+                pageContainer.Content = page;
+            }
             
-        }
-
-        private void onSzobaClicked(object sender, RoutedEventArgs e)
-        {
-            SzobaPage szoba = new SzobaPage();
-            pageContainer.Content = szoba;
         }
 
 
@@ -89,6 +87,16 @@ namespace iqchampion_design
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void onSzobaClicked(object sender, MouseButtonEventArgs e)
+        {
+            var item = ItemsControl.ContainerFromElement(listBox, e.OriginalSource as DependencyObject) as ListBoxItem;
+            if (item != null)
+            {
+                SzobaPage szoba = new SzobaPage();
+                pageContainer.Content = szoba;
+            }
         }
 
     }

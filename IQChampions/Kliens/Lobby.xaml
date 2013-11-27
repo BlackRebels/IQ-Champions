@@ -19,76 +19,15 @@
             <RowDefinition Height="191*"/>
         </Grid.RowDefinitions>
         <ListBox Margin="40,40,0,107" Name="chatWindow" HorizontalAlignment="Left" Width="198" Grid.RowSpan="2"/>
-        <ListBox x:Name="FelhazsnaloList" Margin="0,40,40,40" Grid.Column="2" Grid.RowSpan="2"/>
-        <ListBox Margin="40" Grid.Column="1" >
+        <ListBox x:Name="FelhazsnaloList" Margin="0,40,40,40" Grid.Column="2" Grid.RowSpan="2" PreviewMouseDown="onFelhasznaloClicked"/>
+        <ListBox Margin="40" Grid.Column="1" PreviewMouseDown="onSzobaClicked" >
             <Label Content="Szoba Létrehozása" Foreground="#FF013A3E" MouseLeftButtonDown="onSzobaClicked" Background="Transparent" BorderThickness="0" Height="39" Width="177" FontSize="20" HorizontalAlignment="Left" />
         </ListBox>
         <Frame x:Name="pageContainer" Margin="40,0,40,40"  Height="162" VerticalAlignment="Bottom" Grid.Column="1" Grid.RowSpan="2" NavigationUIVisibility="Hidden"/>
-        <Grid Margin="3,0,0,-207" Background="#FFC7C7C7" Grid.Row="1" Height="150" VerticalAlignment="Bottom">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="83*"/>
-                <RowDefinition Height="84*"/>
-            </Grid.RowDefinitions>
-            <Button Content="Kilépés" HorizontalAlignment="Left" Margin="153,43,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-            <Button Content="Menü" HorizontalAlignment="Left" Margin="153,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-            <Label Content="Nevem" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="Stat1" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-            <Label Content="Stat2" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-            <Label Content="Stat3" HorizontalAlignment="Left" Margin="10,18,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-            <Label Content="Stat4" HorizontalAlignment="Left" Margin="10,44,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        </Grid>
         <TextBox Foreground="#FF013A3E" x:Name="chatText" HorizontalAlignment="Left" Height="46" Margin="40,94,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Írj ide szöveget, entterrel pedig küldesz  /közös /szoba /pm [név]" VerticalAlignment="Top" Width="198" KeyDown="enterMessage"/>
         <Label Foreground="#FF013A3E" Content="Chat" HorizontalAlignment="Left" Margin="40,4,0,0" VerticalAlignment="Top" FontSize="16" Height="36"/>
         <Label Foreground="#FF013A3E" Content="Szobák" Grid.Column="1" HorizontalAlignment="Left" Margin="40,9,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Foreground="#FF013A3E" Content="Felhasználók" Grid.Column="2" HorizontalAlignment="Left" Margin="0,9,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Grid Margin="271,0,50,-207" Background="#FFC7C7C7" Grid.Row="1" Height="150" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="83*"/>
-                <RowDefinition Height="84*"/>
-            </Grid.RowDefinitions>
-            <Button Content="Létrehoz/Indít" HorizontalAlignment="Left" Margin="153,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-            <Button Content="Kilépés" HorizontalAlignment="Left" Margin="153,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-            <Label Content="Név" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="Max" HorizontalAlignment="Left" Margin="9,66,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-            <Label Content="Típus" HorizontalAlignment="Left" Margin="9,41,0,0" Height="26" VerticalAlignment="Top"/>
-            <Label Content="Kérdés" HorizontalAlignment="Left" Margin="10,0,0,32" Grid.Row="1" VerticalAlignment="Bottom"/>
-            <Label Content="Privát" HorizontalAlignment="Left" Margin="9,43,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Height="26" Margin="56,7,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" FontSize="16" Text="Új Szoba"/>
-            <ComboBox HorizontalAlignment="Left" Margin="55,70,0,0" VerticalAlignment="Top" Width="92" Grid.RowSpan="2"/>
-            <ComboBox HorizontalAlignment="Left" Margin="55,21,0,0" VerticalAlignment="Top" Width="93" Grid.Row="1"/>
-            <CheckBox Content="" HorizontalAlignment="Left" Margin="55,49,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-            <ComboBox HorizontalAlignment="Left" Margin="56,43,0,0" VerticalAlignment="Top" Width="172"/>
-        </Grid>
-        <Grid Margin="264,0,-263,-396" Background="#FFC7C7C7" Grid.Row="1" Height="150" VerticalAlignment="Bottom" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="83*"/>
-                <RowDefinition Height="84*"/>
-            </Grid.RowDefinitions>
-            <Button Content="Meghívás" HorizontalAlignment="Left" Margin="153,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-            <Button Content="Barát/Tiltás" HorizontalAlignment="Left" Margin="153,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-            <Label Content="Felhasználónév" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="Stat1" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
-            <Label Content="Stat2" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-            <Label Content="Stat3" HorizontalAlignment="Left" Margin="10,13,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-            <Label Content="Stat4" HorizontalAlignment="Left" Margin="10,39,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-            <Button Content="Chat" HorizontalAlignment="Left" Margin="153,43,0,10" Width="75"/>
-        </Grid>
-        <Label Content="Én magam" HorizontalAlignment="Left" Height="30" Margin="3,218,0,-57" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Felhasználó" HorizontalAlignment="Left" Height="42" Margin="16,219,0,-70" Grid.Row="1" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label Content="Saját szoba" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="271,218,0,-59" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="121"/>
-        <Grid Margin="207,0,-204,-205" Background="#FFC7C7C7" Grid.Row="1" Height="150" VerticalAlignment="Bottom" Grid.Column="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="83*"/>
-                <RowDefinition Height="84*"/>
-            </Grid.RowDefinitions>
-            <Button Content="Belépés" HorizontalAlignment="Left" Margin="153,43,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-            <Label Content="Szobanév" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="Játéktípus" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-            <Label Content="Max létszám" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-            <Label Content="Kérdéskör" HorizontalAlignment="Left" Margin="10,18,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-            <Label Content="Privát" HorizontalAlignment="Left" Margin="10,44,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        </Grid>
-        <Label Content="Egyéb Szoba" Grid.Column="2" HorizontalAlignment="Left" Height="32" Margin="207,216,-87,-57" Grid.Row="1" VerticalAlignment="Top" Width="121"/>
         <Button Foreground="#FF013A3E" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Click="Button_Click_1" Height="30" Margin="4,4,0,0">
             <Button.Background >
                 <ImageBrush ImageSource="/Resources/icon_backarrow.png"/>
