@@ -33,6 +33,20 @@ namespace iqchampion_design
         public Lobby(Menu parent)
         {
             InitializeComponent();
+
+
+            InitializeComponent();
+            ImageBrush myBrush = new ImageBrush();
+            myBrush.ImageSource = new BitmapImage(new Uri(".\\Resources\\icon_backarrow.png", UriKind.Relative));
+            bekk.Background = myBrush;
+
+            ImageBrush myBrush2 = new ImageBrush();
+            myBrush2.ImageSource = new BitmapImage(new Uri(".\\Resources\\icon_closebutton.png", UriKind.Relative));
+            klóz.Background = myBrush2;
+
+
+
+
             this.parent = parent;
         }
 

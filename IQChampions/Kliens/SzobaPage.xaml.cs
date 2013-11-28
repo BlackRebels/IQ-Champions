@@ -23,6 +23,9 @@ namespace iqchampion_design
         public SzobaPage()
         {
             InitializeComponent();
+            ImageBrush myBrush = new ImageBrush();
+            myBrush.ImageSource = new BitmapImage(new Uri(".\\Resources\\keret.png", UriKind.Relative));
+            this.Background = myBrush;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

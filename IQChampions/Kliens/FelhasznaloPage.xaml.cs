@@ -23,6 +23,9 @@ namespace iqchampion_design
         public FelhasznaloPage()
         {
             InitializeComponent();
+            ImageBrush myBrush = new ImageBrush();
+            myBrush.ImageSource = new BitmapImage(new Uri(".\\Resources\\keret.png", UriKind.Relative));
+            this.Background = myBrush;
         }
     }
 }

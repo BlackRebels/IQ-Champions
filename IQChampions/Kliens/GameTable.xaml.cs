@@ -56,6 +56,17 @@ namespace iqchampion_design
             activityworker.WorkerSupportsCancellation = true;
             activityworker.DoWork += wait;
             activityworker.RunWorkerCompleted += doActivity;
+
+
+
+            ImageBrush myBrush = new ImageBrush();
+            myBrush.ImageSource = new BitmapImage(new Uri(".\\Resources\\keret.png", UriKind.Relative));
+            kérdéskártya.Background = myBrush;
+
+            ImageBrush myBrush2 = new ImageBrush();
+            myBrush2.ImageSource = new BitmapImage(new Uri(".\\Resources\\icon_closebutton.png", UriKind.Relative));
+            klóz.Background = myBrush2;
+
         }
 
 

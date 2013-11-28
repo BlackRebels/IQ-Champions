@@ -7,9 +7,6 @@
       d:DesignHeight="154" d:DesignWidth="256"
 	Title="SzobaPage">
     <Grid  Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" Height="154" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="256">
-        <Grid.Background>
-            <ImageBrush ImageSource="/Resources/keret.png"/>
-        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="83*"/>
             <RowDefinition Height="84*"/>

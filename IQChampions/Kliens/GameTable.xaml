@@ -21,10 +21,8 @@
         <Label x:Name="LabelScore2" Content="Én 20" HorizontalAlignment="Left" Margin="10,174,0,0" VerticalAlignment="Top" Grid.Row="1" Height="37" Width="223" FontSize="16"/>
         <Label x:Name="LabelScore3" Content="Harmadik helyezett 10" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top" FontSize="16" Grid.Row="1" Height="31" Width="223"/>
         <Label Foreground="#FF013A3E" Content="Játéktér" Grid.Column="1" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" FontSize="16" Height="31" Width="65"/>
-        <Grid Margin="3,0,1,-237" Grid.Row="1" Height="150" VerticalAlignment="Bottom">
-            <Grid.Background>
-                <ImageBrush ImageSource="/Resources/keret.png"/>
-            </Grid.Background>
+        <Grid x:Name="kérdéskártya"
+            Margin="3,0,1,-237" Grid.Row="1" Height="150" VerticalAlignment="Bottom">
             <Grid.RowDefinitions>
                 <RowDefinition Height="83*"/>
                 <RowDefinition Height="84*"/>
@@ -38,10 +36,7 @@
             <Label Content="Kérdés" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
             <Label Content="0:08" HorizontalAlignment="Left" Margin="192,10,0,0" VerticalAlignment="Top" FontSize="16"/>
         </Grid>
-        <Button  Grid.Column="1" HorizontalAlignment="Left" Margin="522,4,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="Button_Click_1">
-        <Button.Background >
-            <ImageBrush ImageSource="/Resources/icon_closebutton.png"/>
-        </Button.Background>
+        <Button x:Name="klóz" Grid.Column="1" HorizontalAlignment="Left" Margin="522,4,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="Button_Click_1">
         </Button>
         <Grid x:Name="GridGameTable" Grid.Column="1" Margin="0,122,50,90" Grid.RowSpan="2" Opacity="0.3" HorizontalAlignment="Right" Width="450" Height="300">
             <Grid.RowDefinitions>
@@ -58,42 +53,18 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Rectangle x:Name="cell00" Grid.Column="0" Grid.Row="0" MouseLeftButtonDown="cellMouseLeftButtonDown" >
-                <Rectangle.Fill>
-
-                    <ImageBrush ImageSource="/Resources/korong_base_red.png"/>
-
-                </Rectangle.Fill>
-            </Rectangle>
+            <Rectangle x:Name="cell00" Grid.Column="0" Grid.Row="0" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell10" Grid.Column="1" Grid.Row="0" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell20" Grid.Column="2" Grid.Row="0" MouseLeftButtonDown="cellMouseLeftButtonDown" />
-            <Rectangle x:Name="cell30" Grid.Column="3" Grid.Row="0" MouseLeftButtonDown="cellMouseLeftButtonDown" >
-                <Rectangle.Fill>
-
-                    <ImageBrush ImageSource="/Resources/korong_base_blue.png"/>
-
-                </Rectangle.Fill>
-            </Rectangle>
+            <Rectangle x:Name="cell30" Grid.Column="3" Grid.Row="0" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell40" Grid.Column="4" Grid.Row="0" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell50" Grid.Column="5" Grid.Row="0" MouseLeftButtonDown="cellMouseLeftButtonDown" />
-            <Rectangle x:Name="cell01" Grid.Column="0" Grid.Row="1" MouseLeftButtonDown="cellMouseLeftButtonDown" >
-                <Rectangle.Fill>
-
-                    <ImageBrush ImageSource="/Resources/korong_normal.png"/>
-
-                </Rectangle.Fill>
-            </Rectangle>
+            <Rectangle x:Name="cell01" Grid.Column="0" Grid.Row="1" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell11" Grid.Column="1" Grid.Row="1" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell21" Grid.Column="2" Grid.Row="1" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell31" Grid.Column="3" Grid.Row="1" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell41" Grid.Column="4" Grid.Row="1" MouseLeftButtonDown="cellMouseLeftButtonDown" />
-            <Rectangle x:Name="cell51" Grid.Column="5" Grid.Row="1" MouseLeftButtonDown="cellMouseLeftButtonDown" >
-                <Rectangle.Fill>
-
-                    <ImageBrush ImageSource="/Resources/korong_base_green.png"/>
-
-                </Rectangle.Fill>
-            </Rectangle>
+            <Rectangle x:Name="cell51" Grid.Column="5" Grid.Row="1" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell02" Grid.Column="0" Grid.Row="2" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell12" Grid.Column="1" Grid.Row="2" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell22" Grid.Column="2" Grid.Row="2" MouseLeftButtonDown="cellMouseLeftButtonDown" />
@@ -102,13 +73,7 @@
             <Rectangle x:Name="cell52" Grid.Column="5" Grid.Row="2" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell03" Grid.Column="0" Grid.Row="3" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell13" Grid.Column="1" Grid.Row="3" MouseLeftButtonDown="cellMouseLeftButtonDown" />
-            <Rectangle x:Name="cell23" Grid.Column="2" Grid.Row="3" MouseLeftButtonDown="cellMouseLeftButtonDown" >
-                <Rectangle.Fill>
-
-                    <ImageBrush ImageSource="/Resources/korong_base_yellow.png"/>
-
-                </Rectangle.Fill>
-            </Rectangle>
+            <Rectangle x:Name="cell23" Grid.Column="2" Grid.Row="3" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell33" Grid.Column="3" Grid.Row="3" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell43" Grid.Column="4" Grid.Row="3" MouseLeftButtonDown="cellMouseLeftButtonDown" />
             <Rectangle x:Name="cell53" Grid.Column="5" Grid.Row="3" MouseLeftButtonDown="cellMouseLeftButtonDown" />
