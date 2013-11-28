@@ -1,0 +1,2 @@
+pingperiod=500
+timeout=5000

@@ -1,0 +1,29 @@
+﻿<Window x:Class="iqchampion_design.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Background="Transparent"  Height="313.83" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" IsVisibleChanged="LoginVisibleChanged">
+    <Grid Margin="1,1,0,0" HorizontalAlignment="Left" Width="439">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/keret.png"/>
+        </Grid.Background>
+        <Button Background="#FFFFFF" Foreground="#FF013A3E" Content="Bejelentkezés" HorizontalAlignment="Left" Margin="255,220,0,-20" VerticalAlignment="Top" Width="160" Height="40" FontSize="20" Click="ButtonClickLogin"/>
+        <TextBox Foreground="#FF013A3E" x:Name="TextBoxUser" HorizontalAlignment="Left" Height="40" Margin="10,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="311" FontSize="20" KeyDown="EnterKeyDown" MaxLines="2" />
+        <PasswordBox Foreground="#FF013A3E" x:Name="TextBoxPass" HorizontalAlignment="Left" Height="40" Margin="10,169,0,0" VerticalAlignment="Top" Width="311" FontSize="20" KeyDown="EnterKeyDown"/>
+        <Label Foreground="#FF013A3E" Content="Felhasználónév" HorizontalAlignment="Left" Margin="50,67,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Foreground="#FF013A3E" Content="Jelszó" HorizontalAlignment="Left" Margin="50,138,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="50,220,0,-1" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Foreground="#FF003AFF">
+        <Hyperlink Foreground="#FF045A47" RequestNavigate="RegistrationRequestNavigate" NavigateUri="http://localhost:3032/Account/Register">
+            Regisztráció
+            </Hyperlink>
+        </TextBlock>
+        <TextBlock Foreground="#FF013A3E" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" Height="52">
+            <Run Language="hu-hu" Text="IQ Champions"/>
+            <LineBreak/>
+            <Run Language="hu-hu"/>
+        </TextBlock>
+        <Button HorizontalAlignment="Left" Margin="397,12,0,0" VerticalAlignment="Top" Width="30" Height="30" FontSize="20" Click="ButtonClose">
+            <Button.Background >
+                <ImageBrush ImageSource="/Resources/icon_closebutton.png"/>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>

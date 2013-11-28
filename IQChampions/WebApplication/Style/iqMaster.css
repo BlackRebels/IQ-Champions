@@ -1,0 +1,64 @@
+﻿body {
+    background-color:#63D2B9;
+    color: #fff;
+    font-family:DokChampa;
+    padding: 0px;
+    margin: 0px;
+}
+
+a {
+    color: #fff;
+}
+
+.menu h2 {
+    display: inline;
+}
+
+.content {
+    border: 1px solid white;
+    width: 900px;
+    margin: 0px auto;
+}
+
+.header {
+    height: 125px;
+    background-color: #003f2c;
+    padding: 0px 20px;
+}
+
+.menu {
+    float: left;
+    width: 190px;
+    height: 500px;
+    border: 1px solid white;
+    padding: 5px;
+    background-color: #237B68;
+}
+
+.mainContent {
+    float:left;
+    width:686px;
+    height: 500px;
+    border: 1px solid white;
+    padding: 5px;
+    background-color: #07A481;
+}
+
+.iqLogo {
+    width: 200px;
+    height: 125px;
+    vertical-align: middle;
+    display: inline;
+}
+
+h1 {
+    display: inline;
+    margin: 0px 0px 0px 70px;
+}
+
+.footer {
+    background-color: #003f2c;
+    border: 1px solid #fff;
+    text-align:center;
+    font-weight:bold;    
+}

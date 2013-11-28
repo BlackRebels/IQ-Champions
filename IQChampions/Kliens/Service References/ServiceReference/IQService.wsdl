@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="IQService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/IQChampionsServiceLibrary" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IIQService_PingPeriod_InputMessage">
+    <wsdl:part name="parameters" element="tns:PingPeriod" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_PingPeriod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingPeriodResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Logout_InputMessage">
+    <wsdl:part name="parameters" element="tns:Logout" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Logout_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Ping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getUserList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getUserList" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getUserList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getUserListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getUserStats_InputMessage">
+    <wsdl:part name="parameters" element="tns:getUserStats" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getUserStats_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getUserStatsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Send_InputMessage">
+    <wsdl:part name="parameters" element="tns:Send" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Send_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getMesages_InputMessage">
+    <wsdl:part name="parameters" element="tns:getMesages" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getMesages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getMesagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_joinQueue_InputMessage">
+    <wsdl:part name="parameters" element="tns:joinQueue" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_joinQueue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:joinQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_leaveQueue_InputMessage">
+    <wsdl:part name="parameters" element="tns:leaveQueue" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_leaveQueue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:leaveQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getQueuePosition_InputMessage">
+    <wsdl:part name="parameters" element="tns:getQueuePosition" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getQueuePosition_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getQueuePositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_haveRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:haveRoom" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_haveRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:haveRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getGameTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:getGameTable" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getGameTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getGameTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getMyState_InputMessage">
+    <wsdl:part name="parameters" element="tns:getMyState" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getMyState_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getMyStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Move_InputMessage">
+    <wsdl:part name="parameters" element="tns:Move" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_Move_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MoveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:getQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_answerQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:answerQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_answerQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:answerQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getStatistics_InputMessage">
+    <wsdl:part name="parameters" element="tns:getStatistics" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getStatistics_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IIQService">
+    <wsdl:operation name="PingPeriod">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/PingPeriod" message="tns:IIQService_PingPeriod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/PingPeriodResponse" message="tns:IIQService_PingPeriod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/Login" message="tns:IIQService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/LoginResponse" message="tns:IIQService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/Logout" message="tns:IIQService_Logout_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/LogoutResponse" message="tns:IIQService_Logout_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/Ping" message="tns:IIQService_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/PingResponse" message="tns:IIQService_Ping_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getUserList" message="tns:IIQService_getUserList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getUserListResponse" message="tns:IIQService_getUserList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserStats">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getUserStats" message="tns:IIQService_getUserStats_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getUserStatsResponse" message="tns:IIQService_getUserStats_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Send">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/Send" message="tns:IIQService_Send_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/SendResponse" message="tns:IIQService_Send_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMesages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getMesages" message="tns:IIQService_getMesages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getMesagesResponse" message="tns:IIQService_getMesages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="joinQueue">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/joinQueue" message="tns:IIQService_joinQueue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/joinQueueResponse" message="tns:IIQService_joinQueue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="leaveQueue">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/leaveQueue" message="tns:IIQService_leaveQueue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/leaveQueueResponse" message="tns:IIQService_leaveQueue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getQueuePosition">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getQueuePosition" message="tns:IIQService_getQueuePosition_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getQueuePositionResponse" message="tns:IIQService_getQueuePosition_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="haveRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/haveRoom" message="tns:IIQService_haveRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/haveRoomResponse" message="tns:IIQService_haveRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getGameTable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getGameTable" message="tns:IIQService_getGameTable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getGameTableResponse" message="tns:IIQService_getGameTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMyState">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getMyState" message="tns:IIQService_getMyState_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getMyStateResponse" message="tns:IIQService_getMyState_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Move">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/Move" message="tns:IIQService_Move_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/MoveResponse" message="tns:IIQService_Move_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getQuestion" message="tns:IIQService_getQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getQuestionResponse" message="tns:IIQService_getQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="answerQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/answerQuestion" message="tns:IIQService_answerQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/answerQuestionResponse" message="tns:IIQService_answerQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getStatistics">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getStatistics" message="tns:IIQService_getStatistics_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getStatisticsResponse" message="tns:IIQService_getStatistics_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IIQService" type="tns:IIQService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PingPeriod">
+      <soap:operation soapAction="http://tempuri.org/IIQService/PingPeriod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IIQService/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap:operation soapAction="http://tempuri.org/IIQService/Logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://tempuri.org/IIQService/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserList">
+      <soap:operation soapAction="http://tempuri.org/IIQService/getUserList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserStats">
+      <soap:operation soapAction="http://tempuri.org/IIQService/getUserStats" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Send">
+      <soap:operation soapAction="http://tempuri.org/IIQService/Send" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMesages">
+      <soap:operation soapAction="http://tempuri.org/IIQService/getMesages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="joinQueue">
+      <soap:operation soapAction="http://tempuri.org/IIQService/joinQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="leaveQueue">
+      <soap:operation soapAction="http://tempuri.org/IIQService/leaveQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getQueuePosition">
+      <soap:operation soapAction="http://tempuri.org/IIQService/getQueuePosition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="haveRoom">
+      <soap:operation soapAction="http://tempuri.org/IIQService/haveRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGameTable">
+      <soap:operation soapAction="http://tempuri.org/IIQService/getGameTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMyState">
+      <soap:operation soapAction="http://tempuri.org/IIQService/getMyState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Move">
+      <soap:operation soapAction="http://tempuri.org/IIQService/Move" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getQuestion">
+      <soap:operation soapAction="http://tempuri.org/IIQService/getQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="answerQuestion">
+      <soap:operation soapAction="http://tempuri.org/IIQService/answerQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStatistics">
+      <soap:operation soapAction="http://tempuri.org/IIQService/getStatistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IQService">
+    <wsdl:port name="BasicHttpBinding_IIQService" binding="tns:BasicHttpBinding_IIQService">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/IQChampionsServiceLibrary/Service1/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
