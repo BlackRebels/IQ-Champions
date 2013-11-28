@@ -41,7 +41,13 @@ namespace iqchampion_design
         public Login()
         {
             InitializeComponent();
+                ImageBrush myBrush = new ImageBrush();
+        myBrush.ImageSource = new BitmapImage(new Uri(".\\Resources\\keret.png", UriKind.Relative));
+        this.Background = myBrush;
 
+        ImageBrush myBrush2 = new ImageBrush();
+        myBrush2.ImageSource = new BitmapImage(new Uri(".\\Resources\\icon_closebutton.png", UriKind.Relative));
+        klóz.Background = myBrush2;
 
             string[] args = Environment.GetCommandLineArgs();
             if (args.Length > 1)

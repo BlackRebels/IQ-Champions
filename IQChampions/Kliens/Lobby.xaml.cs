@@ -58,7 +58,7 @@ namespace iqchampion_design
 
         private void onFelhasznaloClicked(object sender, MouseButtonEventArgs e)
         {
-            var item = ItemsControl.ContainerFromElement(listBox, e.OriginalSource as DependencyObject) as ListBoxItem;
+            var item = ItemsControl.ContainerFromElement(FelhazsnaloList, e.OriginalSource as DependencyObject) as ListBoxItem;
             if (item != null)
             {
                 FelhasznaloPage page = new FelhasznaloPage();
@@ -91,7 +91,7 @@ namespace iqchampion_design
 
         private void onSzobaClicked(object sender, MouseButtonEventArgs e)
         {
-            var item = ItemsControl.ContainerFromElement(listBox, e.OriginalSource as DependencyObject) as ListBoxItem;
+            var item = ItemsControl.ContainerFromElement(roomList, e.OriginalSource as DependencyObject) as ListBoxItem;
             if (item != null)
             {
                 SzobaPage szoba = new SzobaPage();
