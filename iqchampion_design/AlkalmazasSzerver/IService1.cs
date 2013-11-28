@@ -30,21 +30,21 @@ namespace AlkalmazasSzerver
         void Send(string name, string message); //közös chat
         
         [OperationContract]
-        List<string> getMesages(); //ő az aki megkérdezi h van -e uj üzenet
+        List<string> getMessages(); //ő az aki megkérdezi h van -e uj üzenet
 
         //privát chat
         [OperationContract]
-        void Send(string from, string to, string message);
+        void SendPrivate(string from, string to, string message);
         
         [OperationContract]
-        List<string> getMesages(string from);
+        List<string> getMessagesFrom(string from);
 
         //szoba cuccok
         [OperationContract]
-        void Send(string name, string message, string szobanev);
+        void SendRoom(string name, string message, string szobanev);
        
         [OperationContract]
-        List<string> getMesages(string szobanev);
+        List<string> getMessagesRoom(string szobanev);
         #endregion
 
         #region Statisztika
@@ -64,10 +64,10 @@ namespace AlkalmazasSzerver
         void Szobaletrehozas();
 
         [OperationContract]
-        bool Szobacsatlakozas(string usernev, string szobanev);
+        bool SzobaCsatlakozas(string usernev, string szobanev);
 
         [OperationContract]
-        void Szobakilepes(string username, string szobanev);
+        void SzobaKilepes(string username, string szobanev);
 
         [OperationContract]
         void SzobaInditas(string szobanev);
