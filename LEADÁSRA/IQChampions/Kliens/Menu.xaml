@@ -1,0 +1,23 @@
+﻿<Window x:Class="iqchampion_design.Menu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      Height="350" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#52AD98" WindowStyle="ToolWindow"
+
+    mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="Menu" Loaded="Window_Loaded" Closing="Window_Closing">
+
+    <Grid Margin="0,0,-6,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Margin="0,10,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" Height="52" HorizontalAlignment="Center" Foreground="#FF013A3E"><Run Language="hu-hu" Text="Menü"/></TextBlock>
+        <Button Background="White" Foreground="#FF013A3E" Content="Profil" Margin="132,187,133,0" VerticalAlignment="Top" Height="40" FontSize="20" Click="ButtonClickProfil"/>
+        <Button Background="White" Foreground="#FF013A3E" IsEnabled="true" Content="Játék Barátokkal" Margin="132,126,133,0" VerticalAlignment="Top" Height="40" FontSize="20" Click="ButtonClickGameWithFriends"/>
+        <Button Background="White" Foreground="#FF013A3E" x:Name="ButtonJatek" Content="Játék" Margin="132,67,133,0" VerticalAlignment="Top" Height="40" FontSize="20" Click="ButtonClickGameRandom"/>
+        <Button Background="White" Foreground="#FF013A3E" Content="Kijelentkezés" Margin="132,244,133,0" VerticalAlignment="Top" Height="40" FontSize="20" Click="ButtonClickLogout"/>
+        <Button Visibility="Hidden" IsEnabled="False" x:Name="debugbutton" Content="Pinging is on" HorizontalAlignment="Left" Margin="46,52,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+    </Grid>
+</Window>

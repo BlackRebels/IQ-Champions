@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="iqMaster.master.cs" Inherits="WebApplication.iqMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>IQ Champions - Legyen a te elméd a bajnok!</title>
+    <link href="Style/iqMaster.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="content">
+            <div class="header">
+                <asp:Image runat="server" ID="iqLogo" ImageUrl="~/Images/logo.jpg" CssClass="iqLogo"/>
+                <h1>Legyen a te elméd a bajnok!</h1>
+                <asp:ContentPlaceHolder ID="head" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div class="middle">
+                <div class="menu">
+                    <h2>Menü</h2>
+                    <asp:TreeView ID="tvMenu" runat="server">
+                        <Nodes>
+                            <asp:TreeNode Text="Főoldal" NavigateUrl="~/index.aspx"></asp:TreeNode>
+                        </Nodes>
+                    </asp:TreeView>
+                    <asp:ContentPlaceHolder ID="portletPlace" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div class="mainContent">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div class="footer">
+                Black Rebels - 2013 - Objektum Orientált Szoftverfejlesztés 
+            </div>
+        </div>
+    </form>
+</body>
+</html>
