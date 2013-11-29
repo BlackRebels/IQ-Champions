@@ -62,3 +62,13 @@ h1 {
     text-align:center;
     font-weight:bold;    
 }
+
+.loginPortlet {
+    background-color: #60D6A9;
+    padding: 0px 5px;
+    border: 1px solid #fff;
+}
+
+    .loginPortlet div input {
+        width: 100px;
+    }

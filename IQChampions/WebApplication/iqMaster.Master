@@ -24,6 +24,8 @@
                             <asp:TreeNode Text="Főoldal" NavigateUrl="~/index.aspx"></asp:TreeNode>
                         </Nodes>
                     </asp:TreeView>
+                    <asp:ContentPlaceHolder ID="portletPlace" runat="server">
+                    </asp:ContentPlaceHolder>
                 </div>
                 <div class="mainContent">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
