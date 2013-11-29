@@ -252,6 +252,7 @@ namespace iqchampion_design
             }
             else if ((States)e.Result == States.MOVE)
             {
+                LabelActualPlayer.Content = "Te választhatsz!";
                 enableMoving = true;
                 GridGameTable.Opacity = 1;
                 //MessageBox.Show("Te jösz!");
