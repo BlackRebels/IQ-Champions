@@ -10,11 +10,13 @@
             <RowDefinition Height="83*"/>
             <RowDefinition Height="84*"/>
         </Grid.RowDefinitions>
-        <Button IsEnabled="False" Content="Meghívás" Height="20" HorizontalAlignment="Left" Margin="153,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-        <Label x:Name="uname" Content="Kérdés" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label x:Name="stat1" Content="Stat1" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="stat2" Content="Stat2" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <Label x:Name="stat3" Content="Stat3" HorizontalAlignment="Left" Margin="10,13,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label x:Name="stat4" Content="Stat4" HorizontalAlignment="Left" Margin="10,39,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Button x:Name="valaszbutton"  Content="Válasz" Height="20" HorizontalAlignment="Left" Margin="153,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="valasz"/>
+        <Label x:Name="kerdess" Content="Kérdés" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <RadioButton x:Name="valasz1" Content="a" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="valasz2" Content="b" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <RadioButton x:Name="valasz3" Content="c" HorizontalAlignment="Left" Margin="10,13,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <RadioButton x:Name="valasz4" Content="d" HorizontalAlignment="Left" Margin="10,39,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label x:Name="time" Content="0:00" HorizontalAlignment="Left" Margin="175,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
     </Grid>
 </Page>

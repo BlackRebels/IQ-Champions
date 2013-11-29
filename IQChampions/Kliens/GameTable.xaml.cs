@@ -102,8 +102,6 @@ namespace iqchampion_design
             initImages();
 
 
-            kérdéskártya.Background = myBrush;
-
         }
 
 
@@ -236,10 +234,16 @@ namespace iqchampion_design
         {
             if ((States)e.Result == States.ANSWER)
             {
-                //get the question here
-                MessageBox.Show(Client.getQuestion(User).Questionn);
+                LabelActualPlayer.Content = "Válaszolj!!";
 
-                bool good = Client.answerQuestion(User, 0);
+                //get the question here
+                KerdesKartya kartya = new KerdesKartya(true);
+                Question kerdes = Client.getQuestion(User);
+                String[] valaszok = {kerdes.GoodAnswer, kerdes.BadAnswer1, kerdes.BadAnswer2, kerdes.BadAnswer3};
+                kartya.setKerdes(kerdes.Questionn, valaszok);
+                kartyahelye.Content = kartya;
+
+                bool good = Client.answerQuestion(User, kartya.sorszam);
                 activityworker.RunWorkerAsync();
                 if (good)
                 {
@@ -249,6 +253,7 @@ namespace iqchampion_design
                 {
                     MessageBox.Show("Rossz válasz");
                 }
+                kartyahelye.Content = "";
             }
             else if ((States)e.Result == States.MOVE)
             {
@@ -277,18 +282,18 @@ namespace iqchampion_design
                     {
                         GridGameTable.Opacity = 0.3;
                         enableMoving = false;
-                        MessageBox.Show(Client.getQuestion(User).Questionn);
-                        // megválaszolta...
-                        bool good = Client.answerQuestion(User, 0);
-                        activityworker.RunWorkerAsync();
-                        if (good)
-                        {
-                            MessageBox.Show("Helyes válasz");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Rossz válasz");
-                        }
+                        //MessageBox.Show(Client.getQuestion(User).Questionn);
+                        //// megválaszolta...
+                        //bool good = Client.answerQuestion(User, 0);
+                        //activityworker.RunWorkerAsync();
+                        //if (good)
+                        //{
+                        //    MessageBox.Show("Helyes válasz");
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show("Rossz válasz");
+                        //}
                     }
                     else
                     {

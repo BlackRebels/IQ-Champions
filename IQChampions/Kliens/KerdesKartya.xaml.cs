@@ -20,9 +20,54 @@ namespace iqchampion_design
     /// </summary>
     public partial class KerdesKartya : Page
     {
+        public int sorszam;
+
+        public void setTime(string time)
+        {
+            this.time.Content = time; 
+        }
+
+        public void setKerdes(string kerdes, string[] valaszok)
+        {
+            kerdess.Content = kerdes;
+            valasz1.Content = valaszok[0];
+            valasz2.Content = valaszok[1];
+            valasz3.Content = valaszok[2];
+            valasz4.Content = valaszok[3];
+        }
+
+        public KerdesKartya(Boolean valaszolhatsz)
+        {
+            InitializeComponent();
+
+            ImageBrush myBrush = new ImageBrush();
+            myBrush.ImageSource = new BitmapImage(new Uri(".\\Resources\\keret.png", UriKind.Relative));
+            this.Background = myBrush;
+
+            if(valaszolhatsz)
+            {
+                valaszbutton.IsEnabled = true;
+            }
+            else
+            {
+                valaszbutton.IsEnabled = false;
+            }
+        }
+
         public KerdesKartya()
         {
             InitializeComponent();
+            ImageBrush myBrush = new ImageBrush();
+            myBrush.ImageSource = new BitmapImage(new Uri(".\\Resources\\keret.png", UriKind.Relative));
+            this.Background = myBrush;
+        }
+
+        private void valasz(object sender, RoutedEventArgs e)
+        {
+            if (valasz1.IsChecked == true) sorszam = 0;
+            if (valasz2.IsChecked == true) sorszam = 1;
+            if (valasz3.IsChecked == true) sorszam = 2;
+            if (valasz4.IsChecked == true) sorszam = 3;
         }
     }
 }
