@@ -4,20 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="IQChampionsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="IQChampionsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="IQChampionsModelStoreContainer">
           <EntitySet Name="dbQuestionSet" EntityType="IQChampionsModel.Store.dbQuestionSet" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="dbUserSet" EntityType="IQChampionsModel.Store.dbUserSet" store:Type="Tables" store:Schema="dbo" store:Name="dbUserSet">
-            <DefiningQuery>SELECT 
-      [dbUserSet].[name] AS [name], 
-      [dbUserSet].[pass] AS [pass], 
-      [dbUserSet].[email] AS [email], 
-      [dbUserSet].[played] AS [played], 
-      [dbUserSet].[win] AS [win], 
-      [dbUserSet].[questions] AS [questions], 
-      [dbUserSet].[goodanswers] AS [goodanswers]
-      FROM [dbo].[dbUserSet] AS [dbUserSet]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="dbUserSet" EntityType="IQChampionsModel.Store.dbUserSet" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="dbQuestionSet">
           <Key>
@@ -30,20 +20,11 @@
           <Property Name="badanswer2" Type="nvarchar(max)" Nullable="false" />
           <Property Name="badanswer3" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'IQChampions.dbo.dbUserSet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="dbUserSet">
           <Key>
             <PropertyRef Name="name" />
-            <PropertyRef Name="pass" />
-            
-            
-            
-            
-            
           </Key>
-          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="name" Type="char" Nullable="false" MaxLength="20" />
           <Property Name="pass" Type="nvarchar(max)" Nullable="false" />
           <Property Name="email" Type="nvarchar(max)" Nullable="false" />
           <Property Name="played" Type="smallint" Nullable="false" />
@@ -51,11 +32,12 @@
           <Property Name="questions" Type="smallint" Nullable="false" />
           <Property Name="goodanswers" Type="smallint" Nullable="false" />
         </EntityType>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IQChampionsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="IQChampionsEntities" p1:LazyLoadingEnabled="true">
+        <EntityContainer Name="IQDatabase" p1:LazyLoadingEnabled="true">
           <EntitySet Name="dbQuestionSet" EntityType="IQChampionsModel.dbQuestionSet" />
           <EntitySet Name="dbUserSet" EntityType="IQChampionsModel.dbUserSet" />
         </EntityContainer>
@@ -73,49 +55,49 @@
         <EntityType Name="dbUserSet">
           <Key>
             <PropertyRef Name="name" />
-            <PropertyRef Name="pass" />
           </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="true" />
           <Property Name="pass" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="played" Type="Int16" Nullable="false" DefaultValue="0" />
-          <Property Name="win" Type="Int16" Nullable="false" DefaultValue="0" />
-          <Property Name="questions" Type="Int16" Nullable="false" DefaultValue="0" />
-          <Property Name="goodanswers" Type="Int16" Nullable="false" DefaultValue="0" />
+          <Property Name="played" Type="Int16" Nullable="false" />
+          <Property Name="win" Type="Int16" Nullable="false" />
+          <Property Name="questions" Type="Int16" Nullable="false" />
+          <Property Name="goodanswers" Type="Int16" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="IQChampionsModelStoreContainer" CdmEntityContainer="IQChampionsEntities">
-    <EntitySetMapping Name="dbQuestionSet">
-      <EntityTypeMapping TypeName="IsTypeOf(IQChampionsModel.dbQuestionSet)">
-        <MappingFragment StoreEntitySet="dbQuestionSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="question" ColumnName="question" />
-          <ScalarProperty Name="goodanswer" ColumnName="goodanswer" />
-          <ScalarProperty Name="badanswer1" ColumnName="badanswer1" />
-          <ScalarProperty Name="badanswer2" ColumnName="badanswer2" />
-          <ScalarProperty Name="badanswer3" ColumnName="badanswer3" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="dbUserSet">
-      <EntityTypeMapping TypeName="IsTypeOf(IQChampionsModel.dbUserSet)">
-        <MappingFragment StoreEntitySet="dbUserSet">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="pass" ColumnName="pass" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="played" ColumnName="played" />
-          <ScalarProperty Name="win" ColumnName="win" />
-          <ScalarProperty Name="questions" ColumnName="questions" />
-          <ScalarProperty Name="goodanswers" ColumnName="goodanswers" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-  </EntityContainerMapping>
-</Mapping></edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IQChampionsModelStoreContainer" CdmEntityContainer="IQDatabase">
+          <EntitySetMapping Name="dbQuestionSet">
+            <EntityTypeMapping TypeName="IQChampionsModel.dbQuestionSet">
+              <MappingFragment StoreEntitySet="dbQuestionSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="goodanswer" ColumnName="goodanswer" />
+                <ScalarProperty Name="badanswer1" ColumnName="badanswer1" />
+                <ScalarProperty Name="badanswer2" ColumnName="badanswer2" />
+                <ScalarProperty Name="badanswer3" ColumnName="badanswer3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dbUserSet">
+            <EntityTypeMapping TypeName="IQChampionsModel.dbUserSet">
+              <MappingFragment StoreEntitySet="dbUserSet">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="played" ColumnName="played" />
+                <ScalarProperty Name="win" ColumnName="win" />
+                <ScalarProperty Name="questions" ColumnName="questions" />
+                <ScalarProperty Name="goodanswers" ColumnName="goodanswers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">

@@ -13,10 +13,10 @@ namespace IQUtil
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class IQChampionsEntities : DbContext
+    public partial class IQDatabase : DbContext
     {
-        public IQChampionsEntities()
-            : base("name=IQChampionsEntities")
+        public IQDatabase()
+            : base("name=IQDatabase")
         {
         }
     

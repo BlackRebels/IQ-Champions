@@ -150,15 +150,10 @@ namespace iqchampion_design
             stop = !stop;
             debugbutton.Content = "Pinging is " + (stop ? "off" : "on");
         }
-
-        bool alreadyclicked = false;
-
+        
         private void ButtonClickGameRandom(object sender, RoutedEventArgs e)
         {
-          if (!alreadyclicked)
-               {
-
-            if (queueworker.IsBusy)
+            if (queueworker.IsBusy && MessageBox.Show("Valóban ki akarsz lépni a sorból?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 Client.leaveQueue(User);
                 queueworker.CancelAsync();
@@ -167,20 +162,8 @@ namespace iqchampion_design
 
             else
             {
-                    Client.joinQueue(User);
-                    queueworker.RunWorkerAsync();
-                    alreadyclicked = true;
-                }
-          }
-                else {
-                    if(MessageBox.Show("Valóban ki akarsz lépni a sorból?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes);
-                    {
-                        Client.leaveQueue(User);
-                        queueworker.CancelAsync();
-                        ButtonJatek.Content = "Játék";
-                        alreadyclicked = false;
-                    }
-                
+                Client.joinQueue(User);
+                queueworker.RunWorkerAsync();
             }
         }
 

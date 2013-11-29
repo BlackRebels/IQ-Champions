@@ -123,7 +123,7 @@ namespace IQChampionsServiceLibrary
         States getMyState(string user);
 
         [OperationContract]
-        bool Move(string user, int x, int y);
+        bool Move(string user, int col, int row);
 
         [OperationContract]
         Question getQuestion(string user);

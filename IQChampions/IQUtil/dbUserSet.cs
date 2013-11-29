@@ -14,14 +14,6 @@ namespace IQUtil
     
     public partial class dbUserSet
     {
-        public dbUserSet()
-        {
-            this.played = 0;
-            this.win = 0;
-            this.questions = 0;
-            this.goodanswers = 0;
-        }
-    
         public string name { get; set; }
         public string pass { get; set; }
         public string email { get; set; }

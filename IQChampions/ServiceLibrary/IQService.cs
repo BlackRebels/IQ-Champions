@@ -15,9 +15,10 @@ namespace IQChampionsServiceLibrary
     public class IQService : IIQService
     {
         public static Random rand = new Random();
-        public static IQChampionsEntities database = null;
+        public static IQDatabase database = null;
         public static int Pingperiod { get { return pingperiod; } }
         public static int Timeout { get { return timeout; } }
+        public static int Turns { get { return turns; } }
 
         private static List<User> onlineUsers = null;
         private static List<string> queue = null;
@@ -26,52 +27,15 @@ namespace IQChampionsServiceLibrary
         private static Object lockObject = new Object();
         private static int pingperiod = 1000;
         private static int timeout = 10000;
+        private static int turns = 10;
 
         static IQService()
         {
             onlineUsers = new List<User>();
             queue = new List<string>();
             rooms = new List<Room>();
-            database = new IQChampionsEntities();
+            database = new IQDatabase();
 
-            var data = new Dictionary<string, string>();
-            try
-            {
-                foreach (var row in File.ReadAllLines(".\\properties.txt"))
-                {
-                    string[] split = row.Split('=');
-                    try
-                    {
-                        data.Add(split[0], split[1]);
-                    }
-                    catch (IndexOutOfRangeException)
-                    {
-                        Logger.log(Errorlevel.ERROR, "Property format error, missing \"=\" " + row);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.log(Errorlevel.ERROR, ex.Message);
-            }
-            try
-            {
-                pingperiod = int.Parse(data["pingperiod"]);
-                Logger.log(Errorlevel.INFO, "Picked up property pingperiod=" + pingperiod);
-            }
-            catch (Exception)
-            {
-                Logger.log(Errorlevel.ERROR, "Property error at pingperiod, using default value " + pingperiod);
-            }
-            try
-            {
-                timeout = int.Parse(data["timeout"]);
-                Logger.log(Errorlevel.INFO, "Picked up property timeout=" + timeout);
-            }
-            catch (Exception)
-            {
-                Logger.log(Errorlevel.ERROR, "Property error at timeout, using default value " + timeout);
-            }
 
             Thread kick = new Thread(new ThreadStart(kickOffline));
             kick.IsBackground = true;
@@ -135,13 +99,29 @@ namespace IQChampionsServiceLibrary
 
         public bool Login(string user, string pass)
         {
+            /*
+            // Regisztráció debug
+            database.dbUserSet.Add(new dbUserSet() { name = user, pass = pass, email = "", goodanswers = 0, played = 0, questions = 0, win = 0 });
+            database.SaveChanges();
+            */
+
+            bool userfound = false;
+            try
+            {
+                userfound = (from users in database.dbUserSet
+                             where users.name.Equals(user) && users.pass.Equals(pass)
+                             select users).Count().Equals(1);
+            }
+            catch (Exception)
+            {
+            }
             // debug, adminra belép
             if (onlineUsers.Exists(x => x.Name.Equals(user)))
             {
                 Logger.log(Errorlevel.INFO, user + " tried to log in twice");
                 return false;
             }
-            else if (user.Length < 10)
+            else if (user.Length < 10 || userfound)
             {
                 User login = new User(user);
                 onlineUsers.Add(login);
@@ -298,11 +278,11 @@ namespace IQChampionsServiceLibrary
             return getUserByUserName(user).State;
         }
 
-        public bool Move(string user, int x, int y)
+        public bool Move(string user, int col, int row)
         {
             try
             {
-                return getRoomByUserName(user).Move(x, y);
+                return getRoomByUserName(user).Move(col, row);
             }
             catch (Exception ex)
             {
@@ -330,7 +310,7 @@ namespace IQChampionsServiceLibrary
         #region Chat
         public void Send(string user, string message)
         {
-            getRoomByUserName(user).Chat.Add(new Message(DateTime.Now,getUserByUserName(user), message));
+            getRoomByUserName(user).Chat.Add(new Message(DateTime.Now, getUserByUserName(user), message));
         }
         public List<Message> getMesages(string user)
         {
@@ -344,7 +324,7 @@ namespace IQChampionsServiceLibrary
         {
             List<String> vissza = new List<String>();
 
-            foreach(User u in onlineUsers)
+            foreach (User u in onlineUsers)
             {
                 vissza.Add(u.Name);
             }
@@ -357,6 +337,59 @@ namespace IQChampionsServiceLibrary
             User u = onlineUsers.Find(x => x.Name.Equals(username));
             string[] vissza = { u.Name, u.Online.ToString(), u.Point.ToString(), u.State.ToString() };
             return vissza;
+        }
+
+        private static void readParameters()
+        {
+            var data = new Dictionary<string, string>();
+            try
+            {
+                foreach (var row in File.ReadAllLines(".\\properties.txt"))
+                {
+                    string[] split = row.Split('=');
+                    try
+                    {
+                        data.Add(split[0], split[1]);
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        Logger.log(Errorlevel.ERROR, "Property format error, missing \"=\" " + row);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.log(Errorlevel.ERROR, ex.Message);
+            }
+            try
+            {
+                pingperiod = int.Parse(data["pingperiod"]);
+                Logger.log(Errorlevel.INFO, "Picked up property pingperiod=" + pingperiod);
+            }
+            catch (Exception)
+            {
+                Logger.log(Errorlevel.ERROR, "Property error at pingperiod, using default value " + pingperiod);
+            }
+
+            try
+            {
+                timeout = int.Parse(data["timeout"]);
+                Logger.log(Errorlevel.INFO, "Picked up property timeout=" + timeout);
+            }
+            catch (Exception)
+            {
+                Logger.log(Errorlevel.ERROR, "Property error at timeout, using default value " + timeout);
+            }
+
+            try
+            {
+                turns = int.Parse(data["turns"]);
+                Logger.log(Errorlevel.INFO, "Picked up property turns=" + turns);
+            }
+            catch (Exception)
+            {
+                Logger.log(Errorlevel.ERROR, "Property error at turns, using default value " + turns);
+            }
         }
     }
 }

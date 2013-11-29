@@ -21,7 +21,6 @@ namespace IQChampionsServiceLibrary
         public bool Finished { get { return finished; } }
 
         private const int turnTimeout = 30000;
-        private const int maxturns = 3;
         private static readonly byte[] defaultcolor = new byte[] { 225, 225, 225 };
         private static readonly byte[][] playercolors = new byte[][] { 
             new byte[] { 0, 0, 255 },   // Blue
@@ -36,7 +35,7 @@ namespace IQChampionsServiceLibrary
         private Cell actualCell = null;
         private Question question = null;
         private bool finished = false;
-
+        private int maxturns;
 
         public Room()
         {
@@ -57,6 +56,7 @@ namespace IQChampionsServiceLibrary
             turnworker = new BackgroundWorker();
             turnworker.DoWork += turn;
             Chat = new List<Message>();
+            maxturns = IQService.Turns;
         }
 
         public void addUser(User user)
@@ -169,21 +169,32 @@ namespace IQChampionsServiceLibrary
             actualPlayer.State = States.MOVE;
         }
 
-        public bool Move(int x, int y)
+        public bool Move(int col, int row)
         {
-            actualCell = Table.Table.Find(c => c.Row == x && c.Col == y);
-            if (actualCell.Owner == actualPlayer)
+            actualCell = Table.Table.Find(c => c.Row == col && c.Col == row);
+           /* bool ok = false;
+            foreach (Cell c in Table.Table)
             {
-                // Saját mező, hiba
-                actualCell = null;
-                return false;
-            }
-            else
+                if (c.Owner == actualPlayer)
+                    if (c.neighbor(actualCell))
+                    {
+                        ok = true;
+                        break;
+                    }
+            }*/
+            // vizsgálat nincs megvalósítva
+            if (true)
             {
                 // Támad
                 actualPlayer.State = States.ANSWER;
                 actualCell.Owner.State = States.ANSWER;
                 return true;
+            }
+            else
+            {
+                // Rossz mező
+                actualCell = null;
+                return false;
             }
         }
 

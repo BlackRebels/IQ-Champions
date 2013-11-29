@@ -13,15 +13,21 @@ namespace IQChampionsServiceLibrary
         public User Owner { get; set; }
         public int Row { get; set; }
         public int Col { get; set; }
-       
+
         public Cell()
         {
         }
 
-        public Cell(int x,int y)
+        public Cell(int x, int y)
         {
             Row = x;
-            Col = y;            
+            Col = y;
+        }
+        public bool neighbor(Cell cell)
+        {
+            if (this.Col == cell.Col && this.Row == cell.Row) return false;
+            if (Math.Abs(this.Col - cell.Col) <= 1 && Math.Abs(this.Row - cell.Row) <= 1) return true;
+            return false;
         }
     }
 }

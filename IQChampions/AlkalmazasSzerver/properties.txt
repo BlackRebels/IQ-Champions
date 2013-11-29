@@ -1,2 +1,3 @@
 pingperiod=500
 timeout=5000
+turns=3

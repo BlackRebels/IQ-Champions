@@ -41,13 +41,13 @@ namespace iqchampion_design
         public Login()
         {
             InitializeComponent();
-                ImageBrush myBrush = new ImageBrush();
-        myBrush.ImageSource = new BitmapImage(new Uri(".\\Resources\\keret.png", UriKind.Relative));
-        this.Background = myBrush;
+            ImageBrush myBrush = new ImageBrush();
+            myBrush.ImageSource = new BitmapImage(new Uri(".\\Resources\\keret.png", UriKind.Relative));
+            this.Background = myBrush;
 
-        ImageBrush myBrush2 = new ImageBrush();
-        myBrush2.ImageSource = new BitmapImage(new Uri(".\\Resources\\icon_closebutton.png", UriKind.Relative));
-        klóz.Background = myBrush2;
+            ImageBrush myBrush2 = new ImageBrush();
+            myBrush2.ImageSource = new BitmapImage(new Uri(".\\Resources\\icon_closebutton.png", UriKind.Relative));
+            klóz.Background = myBrush2;
 
             string[] args = Environment.GetCommandLineArgs();
             if (args.Length > 1)
@@ -70,37 +70,32 @@ namespace iqchampion_design
 
         private void ButtonClickLogin(object sender, RoutedEventArgs e)
         {
-            if (TextBoxUser.Text == "") { MessageBox.Show("Hibás felhasználónév vagy jelszó!"); }
-            else
+            Cursor = Cursors.Wait;
+            try
             {
-
-                Cursor = Cursors.Wait;
-                try
+                pingPeriod = client.PingPeriod();
+                bool authenticated = client.Login(TextBoxUser.Text, Hash.generate(TextBoxPass.Password));
+                if (authenticated)
                 {
-                    pingPeriod = client.PingPeriod();
-                    bool authenticated = client.Login(TextBoxUser.Text, Hash.generate(TextBoxPass.Password));
-                    if (authenticated)
-                    {
-                        user = TextBoxUser.Text;
-                        Menu menuWindow = new Menu(this);
-                        menuWindow.Show();
-                        this.Hide();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Hibás felhasználónév vagy jelszó!");
-                        TextBoxUser.Text = null;
-                        TextBoxPass.Password = null;
-                    }
+                    user = TextBoxUser.Text;
+                    Menu menuWindow = new Menu(this);
+                    menuWindow.Show();
+                    this.Hide();
                 }
-                catch (Exception)
+                else
                 {
-                    MessageBox.Show("A szerver jelenleg nem elérhető!");
+                    MessageBox.Show("Hibás felhasználónév vagy jelszó!");
+                    TextBoxUser.Text = null;
+                    TextBoxPass.Password = null;
                 }
-                finally
-                {
-                    Cursor = Cursors.Arrow;
-                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("A szerver jelenleg nem elérhető!");
+            }
+            finally
+            {
+                Cursor = Cursors.Arrow;
             }
         }
 
