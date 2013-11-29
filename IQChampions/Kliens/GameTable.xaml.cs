@@ -39,6 +39,48 @@ namespace iqchampion_design
             get { return Login.PingPeriod; }
         }
 
+        ImageBrush myBrush;
+        ImageBrush myBrush2;
+
+        ImageBrush korong_normal;
+        ImageBrush korong_red;
+        ImageBrush korong_blue;
+        ImageBrush korong_green;
+        ImageBrush korong_yellow;
+        ImageBrush korong_base;
+        ImageBrush korong_base_red;
+        ImageBrush korong_base_blue;
+        ImageBrush korong_base_green;
+        ImageBrush korong_base_yellow;
+
+        private void initImages()
+        {
+            myBrush = new ImageBrush();
+            myBrush.ImageSource = new BitmapImage(new Uri(".\\Resources\\keret.png", UriKind.Relative));
+
+            korong_normal = new ImageBrush();
+            korong_base = new ImageBrush();
+            korong_red = new ImageBrush();
+            korong_base_red = new ImageBrush();
+            korong_blue = new ImageBrush();
+            korong_base_blue = new ImageBrush();
+            korong_green = new ImageBrush();
+            korong_base_green = new ImageBrush();
+            korong_yellow = new ImageBrush();
+            korong_base_yellow = new ImageBrush();
+            korong_normal.ImageSource = new BitmapImage(new Uri(".\\Resources\\korong_normal.png", UriKind.Relative));
+            korong_base.ImageSource = new BitmapImage(new Uri(".\\Resources\\korong_base.png", UriKind.Relative));
+            korong_red.ImageSource = new BitmapImage(new Uri(".\\Resources\\korong_red.png", UriKind.Relative));
+            korong_base_red.ImageSource = new BitmapImage(new Uri(".\\Resources\\korong_base_red.png", UriKind.Relative));
+            korong_blue.ImageSource = new BitmapImage(new Uri(".\\Resources\\korong_blue.png", UriKind.Relative));
+            korong_base_blue.ImageSource = new BitmapImage(new Uri(".\\Resources\\korong_base_blue.png", UriKind.Relative));
+            korong_green.ImageSource = new BitmapImage(new Uri(".\\Resources\\korong_green.png", UriKind.Relative));
+            korong_base_green.ImageSource = new BitmapImage(new Uri(".\\Resources\\korong_base_green.png", UriKind.Relative));
+            korong_yellow.ImageSource = new BitmapImage(new Uri(".\\Resources\\korong_yellow.png", UriKind.Relative));
+            korong_base_yellow.ImageSource = new BitmapImage(new Uri(".\\Resources\\korong_base_yellow.png", UriKind.Relative));
+
+        }
+
         public GameTable(Menu parent)
         {
             InitializeComponent();
@@ -57,15 +99,10 @@ namespace iqchampion_design
             activityworker.DoWork += wait;
             activityworker.RunWorkerCompleted += doActivity;
 
+            initImages();
 
 
-            ImageBrush myBrush = new ImageBrush();
-            myBrush.ImageSource = new BitmapImage(new Uri(".\\Resources\\keret.png", UriKind.Relative));
             kérdéskártya.Background = myBrush;
-
-            ImageBrush myBrush2 = new ImageBrush();
-            myBrush2.ImageSource = new BitmapImage(new Uri(".\\Resources\\icon_closebutton.png", UriKind.Relative));
-            klóz.Background = myBrush2;
 
         }
 
@@ -96,8 +133,59 @@ namespace iqchampion_design
             {
                 foreach (Cell c in (e.UserState as ServiceReference.GameTable).Table)
                 {
-                    ((Rectangle)GridGameTable.FindName("cell" + c.Row + c.Col)).Fill =
-                                   new SolidColorBrush(Color.FromRgb(c.Owner.Color[0], c.Owner.Color[1], c.Owner.Color[2]));
+                    ImageBrush cellakep;
+
+                    if (c.isBase)
+                    {
+                        switch ("" + (int)c.Owner.Color[0] + (int)c.Owner.Color[1] + (int)c.Owner.Color[2])
+                        {
+          //  new byte[] { 0, 0, 255 },   // Blue
+           // new byte[] { 0, 255, 0 },   // Green
+          //  new byte[] { 255, 0, 0 },   // Red
+          //  new byte[] { 255, 175, 0 }  // Orange
+                            case "00255":
+                                cellakep = korong_base_blue;
+                                break;
+                            case "25500":
+                                cellakep = korong_base_red;
+                                break;
+                            case "02550":
+                                cellakep = korong_base_green;
+                                break;
+                            case "2551750":
+                                cellakep = korong_base_yellow;
+                                break;
+                            default:
+                                cellakep = korong_normal;
+                                break;
+                        }
+                    }
+                    else {
+                        switch ("" + (int)c.Owner.Color[0] + (int)c.Owner.Color[1] + (int)c.Owner.Color[2])
+                        {
+                            //  new byte[] { 0, 0, 255 },   // Blue
+                            // new byte[] { 0, 255, 0 },   // Green
+                            //  new byte[] { 255, 0, 0 },   // Red
+                            //  new byte[] { 255, 175, 0 }  // Orange
+                            case "00255":
+                                cellakep = korong_blue;
+                                break;
+                            case "25500":
+                                cellakep = korong_red;
+                                break;
+                            case "02550":
+                                cellakep = korong_green;
+                                break;
+                            case "2551750":
+                                cellakep = korong_yellow;
+                                break;
+                            default:
+                                cellakep = korong_normal;
+                                break;
+                        }
+                    }
+
+                    ((Rectangle)GridGameTable.FindName("cell" + c.Row + c.Col)).Fill = cellakep;
                 }
             }
             else if (e.UserState is Statistic)

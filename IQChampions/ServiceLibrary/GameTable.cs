@@ -21,8 +21,19 @@ namespace IQChampionsServiceLibrary
             Table = new List<Cell>();
             for (int i = 0; i < x; i++) for (int j = 0; j < y; j++)
                 {
-                    Table.Add(new Cell(i, j));
+                    if ((i == 0 && j == 0) || (i == 0 && j == y-1) || (i == x-1 && j == 0) || (i == x-1 && j == y-1))
+                    {
+                        Cell cella = new Cell(i, j);
+                        cella.isBase = true;
+                        Table.Add(cella);
+                    }
+                    else
+                    {
+                        Table.Add(new Cell(i, j));
+
+                    }
                 }
+
         }
     }
 }

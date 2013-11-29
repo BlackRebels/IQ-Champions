@@ -11,6 +11,7 @@ namespace IQChampionsServiceLibrary
     public class Cell
     {
         public User Owner { get; set; }
+        public Boolean isBase { get; set; }
         public int Row { get; set; }
         public int Col { get; set; }
 
@@ -22,6 +23,7 @@ namespace IQChampionsServiceLibrary
         {
             Row = x;
             Col = y;
+            isBase = false;
         }
         public bool neighbor(Cell cell)
         {

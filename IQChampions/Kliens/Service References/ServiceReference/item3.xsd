@@ -58,6 +58,7 @@
       <xs:element minOccurs="0" name="Col" type="xs:int" />
       <xs:element minOccurs="0" name="Owner" nillable="true" type="tns:User" />
       <xs:element minOccurs="0" name="Row" type="xs:int" />
+      <xs:element minOccurs="0" name="isBase" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Cell" nillable="true" type="tns:Cell" />

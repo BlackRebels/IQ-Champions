@@ -12,12 +12,12 @@
             <RowDefinition Height="83*"/>
             <RowDefinition Height="84*"/>
         </Grid.RowDefinitions>
-        <Button Content="Meghívás" HorizontalAlignment="Left" Margin="153,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
-        <Label Content="Felhasználónév" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label Content="Stat1" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
-        <Label Content="Stat2" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <Label Content="Stat3" HorizontalAlignment="Left" Margin="10,13,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Stat4" HorizontalAlignment="Left" Margin="10,39,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Button Content="Chat" HorizontalAlignment="Left" Margin="153,0,0,53" Width="75" Grid.Row="1"/>
+        <Button IsEnabled="False" Content="Meghívás" Height="20" HorizontalAlignment="Left" Margin="153,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="uname" Content="Felhasználónév" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="stat1" Content="Stat1" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="stat2" Content="Stat2" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <Label x:Name="stat3" Content="Stat3" HorizontalAlignment="Left" Margin="10,13,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label x:Name="stat4" Content="Stat4" HorizontalAlignment="Left" Margin="10,39,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Button IsEnabled="False" Content="Chat" HorizontalAlignment="Left" Height="20" Margin="153,0,0,53" Width="75" Grid.Row="1" Click="Button_Click"/>
     </Grid>
 </Page>

@@ -356,6 +356,9 @@ namespace iqchampion_design.ServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int RowField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool isBaseField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -401,6 +404,19 @@ namespace iqchampion_design.ServiceReference {
                 if ((this.RowField.Equals(value) != true)) {
                     this.RowField = value;
                     this.RaisePropertyChanged("Row");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool isBase {
+            get {
+                return this.isBaseField;
+            }
+            set {
+                if ((this.isBaseField.Equals(value) != true)) {
+                    this.isBaseField = value;
+                    this.RaisePropertyChanged("isBase");
                 }
             }
         }
@@ -658,10 +674,10 @@ namespace iqchampion_design.ServiceReference {
         System.Threading.Tasks.Task<iqchampion_design.ServiceReference.States> getMyStateAsync(string user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/Move", ReplyAction="http://tempuri.org/IIQService/MoveResponse")]
-        bool Move(string user, int x, int y);
+        bool Move(string user, int col, int row);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/Move", ReplyAction="http://tempuri.org/IIQService/MoveResponse")]
-        System.Threading.Tasks.Task<bool> MoveAsync(string user, int x, int y);
+        System.Threading.Tasks.Task<bool> MoveAsync(string user, int col, int row);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IIQService/getQuestion", ReplyAction="http://tempuri.org/IIQService/getQuestionResponse")]
         iqchampion_design.ServiceReference.Question getQuestion(string user);
@@ -821,12 +837,12 @@ namespace iqchampion_design.ServiceReference {
             return base.Channel.getMyStateAsync(user);
         }
         
-        public bool Move(string user, int x, int y) {
-            return base.Channel.Move(user, x, y);
+        public bool Move(string user, int col, int row) {
+            return base.Channel.Move(user, col, row);
         }
         
-        public System.Threading.Tasks.Task<bool> MoveAsync(string user, int x, int y) {
-            return base.Channel.MoveAsync(user, x, y);
+        public System.Threading.Tasks.Task<bool> MoveAsync(string user, int col, int row) {
+            return base.Channel.MoveAsync(user, col, row);
         }
         
         public iqchampion_design.ServiceReference.Question getQuestion(string user) {

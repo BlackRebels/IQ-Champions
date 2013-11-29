@@ -17,13 +17,14 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListBox Margin="40,40,0,107" Name="chatWindow" HorizontalAlignment="Left" Width="198"/>
+        <ListBox x:Name="chatbox" Margin="40,40,0,91" />
         <ListBox x:Name="FelhazsnaloList" Margin="0,40,40,40" Grid.Column="2" PreviewMouseDown="onFelhasznaloClicked"/>
         <ListBox x:Name="roomList" Margin="40,40,40,231" Grid.Column="1" PreviewMouseDown="onSzobaClicked" >
             <Label Content="Szoba Létrehozása" Foreground="#FF013A3E" MouseLeftButtonDown="onSzobaClicked" Background="Transparent" BorderThickness="0" Height="39" Width="177" FontSize="20" HorizontalAlignment="Left" />
+            <Label Content="Jelenleg nem elérhető szolgáltatás" Foreground="#FF013A3E"/>
         </ListBox>
         <Frame x:Name="pageContainer" Margin="21,0,21,40"  Height="162" VerticalAlignment="Bottom" Grid.Column="1" NavigationUIVisibility="Hidden"/>
-        <TextBox Foreground="#FF013A3E" x:Name="chatText" HorizontalAlignment="Left" Height="46" Margin="40,383,0,0" TextWrapping="Wrap" Text="Írj ide szöveget, entterrel pedig küldesz  /közös /szoba /pm [név]" VerticalAlignment="Top" Width="198" KeyDown="enterMessage"/>
+        <TextBox Foreground="#FF013A3E" x:Name="chatText" HorizontalAlignment="Left" Height="46" Margin="40,394,0,0" TextWrapping="Wrap" Text="Írj ide szöveget, entterrel pedig küldesz  /közös /szoba /pm [név]" VerticalAlignment="Top" Width="198" KeyDown="enterMessage" GotFocus="chatText_GotFocus"/>
         <Label Foreground="#FF013A3E" Content="Chat" HorizontalAlignment="Left" Margin="40,4,0,0" VerticalAlignment="Top" FontSize="16" Height="36"/>
         <Label Foreground="#FF013A3E" Content="Szobák" Grid.Column="1" HorizontalAlignment="Left" Margin="40,9,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Foreground="#FF013A3E" Content="Felhasználók" Grid.Column="2" HorizontalAlignment="Left" Margin="0,9,0,0" VerticalAlignment="Top" FontSize="16"/>
