@@ -15,10 +15,10 @@ namespace IQChampionsServiceLibrary
     public class IQService : IIQService
     {
         public static Random rand = new Random();
-        public static IQDatabase database = null;
         public static int Pingperiod { get { return pingperiod; } }
         public static int Timeout { get { return timeout; } }
         public static int Turns { get { return turns; } }
+        public static bool Debug { get { return IQService.debug; } }
 
         private static List<User> onlineUsers = null;
         private static List<string> queue = null;
@@ -28,14 +28,15 @@ namespace IQChampionsServiceLibrary
         private static int pingperiod = 1000;
         private static int timeout = 10000;
         private static int turns = 10;
+        private static bool debug;
 
         static IQService()
         {
             onlineUsers = new List<User>();
             queue = new List<string>();
             rooms = new List<Room>();
-            database = new IQDatabase();
-
+            debug = File.Exists("debug");
+            if (Debug) Logger.log(Errorlevel.INFO, "Server starts in debug mode!");
 
             Thread kick = new Thread(new ThreadStart(kickOffline));
             kick.IsBackground = true;
@@ -45,6 +46,7 @@ namespace IQChampionsServiceLibrary
             roomWatcher.IsBackground = true;
             roomWatcher.Start();
 
+            readParameters();
             Logger.log(Errorlevel.INFO, "Initialized successful!");
         }
 
@@ -99,29 +101,50 @@ namespace IQChampionsServiceLibrary
 
         public bool Login(string user, string pass)
         {
-            /*
-            // Regisztráció debug
-            database.dbUserSet.Add(new dbUserSet() { name = user, pass = pass, email = "", goodanswers = 0, played = 0, questions = 0, win = 0 });
-            database.SaveChanges();
-            */
+            // debug, login előtt regisztrál   
+            if (Debug)
+            {
+                using (IQDatabase database = new IQDatabase())
+                {
+                    try
+                    {
+                        database.dbUserSet.Add(new dbUserSet()
+                        {
+                            name = user,
+                            pass = pass,
+                            email = "",
+                            goodanswers = 0,
+                            played = 0,
+                            questions = 0,
+                            win = 0
+                        });
+                        database.SaveChanges();
+
+                    }
+                    catch (Exception) { }
+                }
+            }
 
             bool userfound = false;
             try
             {
-                userfound = (from users in database.dbUserSet
-                             where users.name.Equals(user) && users.pass.Equals(pass)
-                             select users).Count().Equals(1);
+                using (IQDatabase database = new IQDatabase())
+                {
+                    userfound = (from users in database.dbUserSet
+                                 where users.name.Equals(user) && users.pass.Equals(pass)
+                                 select users).Count().Equals(1);
+                }
             }
             catch (Exception)
             {
             }
-            // debug, adminra belép
+
             if (onlineUsers.Exists(x => x.Name.Equals(user)))
             {
                 Logger.log(Errorlevel.INFO, user + " tried to log in twice");
                 return false;
             }
-            else if (user.Length < 10 || userfound)
+            else if (userfound)
             {
                 User login = new User(user);
                 onlineUsers.Add(login);
@@ -296,14 +319,36 @@ namespace IQChampionsServiceLibrary
             return getRoomByUserName(user).Question;
         }
 
+        public int getTimeLeft(string user)
+        {
+            return getRoomByUserName(user).TimeLeft;
+        }
+
+
         public bool answerQuestion(string user, int id)
         {
-            return getRoomByUserName(user).Answer(getUserByUserName(user), id);
+            bool ret = getRoomByUserName(user).Answer(getUserByUserName(user), id);
+            using (IQDatabase database = new IQDatabase())
+            {
+                try
+                {
+                    dbUserSet u = database.dbUserSet.First(x => x.name.Equals(user));
+                    u.questions++;
+                    if (ret) u.goodanswers++;
+                    database.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Logger.log(Errorlevel.WARN, ex.Message + Environment.NewLine + ex.StackTrace);
+                }
+            }
+
+            return ret;
         }
 
         public Statistic getStatistics(string user)
         {
-            return new Statistic(getRoomByUserName(user));
+            return new Statistic(getRoomByUserName(user));          
         }
         #endregion
 

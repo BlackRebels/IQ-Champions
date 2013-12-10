@@ -104,6 +104,12 @@
   <wsdl:message name="IIQService_getQuestion_OutputMessage">
     <wsdl:part name="parameters" element="tns:getQuestionResponse" />
   </wsdl:message>
+  <wsdl:message name="IIQService_getTimeLeft_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTimeLeft" />
+  </wsdl:message>
+  <wsdl:message name="IIQService_getTimeLeft_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTimeLeftResponse" />
+  </wsdl:message>
   <wsdl:message name="IIQService_answerQuestion_InputMessage">
     <wsdl:part name="parameters" element="tns:answerQuestion" />
   </wsdl:message>
@@ -180,6 +186,10 @@
     <wsdl:operation name="getQuestion">
       <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getQuestion" message="tns:IIQService_getQuestion_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getQuestionResponse" message="tns:IIQService_getQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTimeLeft">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIQService/getTimeLeft" message="tns:IIQService_getTimeLeft_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIQService/getTimeLeftResponse" message="tns:IIQService_getTimeLeft_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="answerQuestion">
       <wsdl:input wsaw:Action="http://tempuri.org/IIQService/answerQuestion" message="tns:IIQService_answerQuestion_InputMessage" />
@@ -329,6 +339,15 @@
     </wsdl:operation>
     <wsdl:operation name="getQuestion">
       <soap:operation soapAction="http://tempuri.org/IIQService/getQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTimeLeft">
+      <soap:operation soapAction="http://tempuri.org/IIQService/getTimeLeft" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

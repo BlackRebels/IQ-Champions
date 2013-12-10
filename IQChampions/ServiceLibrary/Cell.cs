@@ -27,9 +27,10 @@ namespace IQChampionsServiceLibrary
         }
         public bool neighbor(Cell cell)
         {
-            if (this.Col == cell.Col && this.Row == cell.Row) return false;
-            if (Math.Abs(this.Col - cell.Col) <= 1 && Math.Abs(this.Row - cell.Row) <= 1) return true;
-            return false;
+            if (this.Col == cell.Col && this.Row == cell.Row) return false; // saját maga
+            else if (this.Owner == cell.Owner) return false; // saját cellára kattintott
+            else if (Math.Abs(this.Col - cell.Col) <= 1 && Math.Abs(this.Row - cell.Row) <= 1) return true; // szomszédos
+            else return false; //bármi más
         }
     }
 }

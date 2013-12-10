@@ -24,6 +24,7 @@ namespace iqchampion_design
         private Menu parent = null;
         private BackgroundWorker refreshworker = null;
         private BackgroundWorker activityworker = null;
+        private BackgroundWorker timeoutworker = null;
         private bool enableMoving = false;
 
         private string User
@@ -99,12 +100,13 @@ namespace iqchampion_design
             activityworker.DoWork += wait;
             activityworker.RunWorkerCompleted += doActivity;
 
+            timeoutworker = new BackgroundWorker();
+            timeoutworker.WorkerSupportsCancellation = true;
+            timeoutworker.DoWork += waitTimeout;
+            timeoutworker.RunWorkerCompleted += timeout;
+
             initImages();
-
-
         }
-
-
 
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
@@ -120,6 +122,7 @@ namespace iqchampion_design
                 (sender as BackgroundWorker).ReportProgress(0, Client.getGameTable(User));
                 (sender as BackgroundWorker).ReportProgress(0, Client.getStatistics(User));
                 (sender as BackgroundWorker).ReportProgress(0, Client.getMesages(User));
+                (sender as BackgroundWorker).ReportProgress(0, Client.getTimeLeft(User));
                 Thread.Sleep(PingPeriod);
             } while (!(sender as BackgroundWorker).CancellationPending);
         }
@@ -129,61 +132,42 @@ namespace iqchampion_design
             if (e.UserState == null) return;
             else if (e.UserState is ServiceReference.GameTable)
             {
-                foreach (Cell c in (e.UserState as ServiceReference.GameTable).Table)
+                ServiceReference.GameTable gt = e.UserState as ServiceReference.GameTable;
+                foreach (Cell c in gt.Table)
                 {
                     ImageBrush cellakep;
 
-                    if (c.isBase)
+                    switch (c.Owner.Color[0].ToString() + c.Owner.Color[1] + c.Owner.Color[2])
                     {
-                        switch ("" + (int)c.Owner.Color[0] + (int)c.Owner.Color[1] + (int)c.Owner.Color[2])
-                        {
-          //  new byte[] { 0, 0, 255 },   // Blue
-           // new byte[] { 0, 255, 0 },   // Green
-          //  new byte[] { 255, 0, 0 },   // Red
-          //  new byte[] { 255, 175, 0 }  // Orange
-                            case "00255":
-                                cellakep = korong_base_blue;
-                                break;
-                            case "25500":
-                                cellakep = korong_base_red;
-                                break;
-                            case "02550":
-                                cellakep = korong_base_green;
-                                break;
-                            case "2551750":
-                                cellakep = korong_base_yellow;
-                                break;
-                            default:
-                                cellakep = korong_normal;
-                                break;
-                        }
-                    }
-                    else {
-                        switch ("" + (int)c.Owner.Color[0] + (int)c.Owner.Color[1] + (int)c.Owner.Color[2])
-                        {
-                            //  new byte[] { 0, 0, 255 },   // Blue
-                            // new byte[] { 0, 255, 0 },   // Green
-                            //  new byte[] { 255, 0, 0 },   // Red
-                            //  new byte[] { 255, 175, 0 }  // Orange
-                            case "00255":
-                                cellakep = korong_blue;
-                                break;
-                            case "25500":
-                                cellakep = korong_red;
-                                break;
-                            case "02550":
-                                cellakep = korong_green;
-                                break;
-                            case "2551750":
-                                cellakep = korong_yellow;
-                                break;
-                            default:
-                                cellakep = korong_normal;
-                                break;
-                        }
+                        //  new byte[] { 0, 0, 255 },   // Blue
+                        //  new byte[] { 0, 255, 0 },   // Green
+                        //  new byte[] { 255, 0, 0 },   // Red
+                        //  new byte[] { 255, 175, 0 }  // Orange
+                        case "00255":
+                            if (c.isBase) cellakep = korong_base_blue;
+                            else cellakep = korong_blue;
+                            break;
+                        case "25500":
+                            if (c.isBase) cellakep = korong_base_red;
+                            else cellakep = korong_red;
+                            break;
+                        case "02550":
+                            if (c.isBase) cellakep = korong_base_green;
+                            else cellakep = korong_green;
+                            break;
+                        case "2551750":
+                            if (c.isBase) cellakep = korong_base_yellow;
+                            else cellakep = korong_yellow;
+                            break;
+                        default:
+                            if (c.isBase) cellakep = korong_normal;
+                            else cellakep = korong_normal;
+                            break;
                     }
 
-                    ((Rectangle)GridGameTable.FindName("cell" + c.Row + c.Col)).Fill = cellakep;
+                    Rectangle r = (Rectangle)GridGameTable.FindName("cell" + c.Row + c.Col);
+                    r.Fill = cellakep;
+                    // Támadhatóak más színűek legyenek?
                 }
             }
             else if (e.UserState is Statistic)
@@ -212,12 +196,17 @@ namespace iqchampion_design
                 for (int i = chat.Length - 1; i >= 0; i--)
                 {
                     User u = chat[i].Sender;
-                    Label l = new Label();
-                    l.Foreground = new SolidColorBrush(Color.FromRgb(u.Color[0], u.Color[1], u.Color[2]));
-                    string s = chat[i].Time.ToString("HH:mm") + " [" + u.Name + "] " + chat[i].Msg;
-                    l.Content = StringExtensions.MultiInsert(s, "\r\n  ", 30);
-                    ListBoxChatMessages.Items.Add(l);
+                    TextBlock tb = new TextBlock();
+                    tb.TextWrapping = TextWrapping.Wrap;
+                    tb.Foreground = new SolidColorBrush(Color.FromRgb(u.Color[0], u.Color[1], u.Color[2]));
+                    string s = chat[i].Time.ToString("HH:mm") + " [" + u.Name + "] " + Environment.NewLine + chat[i].Msg;
+                    tb.Text = s;
+                    ListBoxChatMessages.Items.Add(tb);
                 }
+            }
+            else if (e.UserState is int)
+            {
+                time.Content = "Hátralévő idő: " + e.UserState + " másodperc";
             }
         }
 
@@ -235,31 +224,14 @@ namespace iqchampion_design
             if ((States)e.Result == States.ANSWER)
             {
                 LabelActualPlayer.Content = "Válaszolj!!";
-
-                //get the question here
-                KerdesKartya kartya = new KerdesKartya(true);
-                Question kerdes = Client.getQuestion(User);
-                String[] valaszok = {kerdes.GoodAnswer, kerdes.BadAnswer1, kerdes.BadAnswer2, kerdes.BadAnswer3};
-                kartya.setKerdes(kerdes.Questionn, valaszok);
-                kartyahelye.Content = kartya;
-
-                bool good = Client.answerQuestion(User, kartya.sorszam);
-                activityworker.RunWorkerAsync();
-                if (good)
-                {
-                    MessageBox.Show("Helyes válasz");
-                }
-                else
-                {
-                    MessageBox.Show("Rossz válasz");
-                }
-                kartyahelye.Content = "";
+                kerdez();
             }
             else if ((States)e.Result == States.MOVE)
             {
                 LabelActualPlayer.Content = "Te választhatsz!";
                 enableMoving = true;
                 GridGameTable.Opacity = 1;
+                timeoutworker.RunWorkerAsync();
                 //MessageBox.Show("Te jösz!");
             }
             else if ((States)e.Result == States.FINISHED)
@@ -267,9 +239,37 @@ namespace iqchampion_design
                 refreshworker.CancelAsync();
                 GridGameTable.Opacity = 1;
 
-                MessageBox.Show("Játék vége!\r\n" + Client.getStatistics(User).Users[0].Name + " megnyerte a játékot!");
+                string winner = Client.getStatistics(User).Users[0].Name;
+                if (winner.Equals(User)) MessageBox.Show("Gratulálunk megnyerted a játékot!", "Játék vége!");
+                else MessageBox.Show(winner + " megnyerte a játékot!", "Játék vége!");
             }
         }
+
+        private void waitTimeout(object sender, DoWorkEventArgs e)
+        {
+            while ((States)(e.Result = Client.getMyState(User)) == States.MOVE)
+            {
+                if ((sender as BackgroundWorker).CancellationPending)
+                {
+                    e.Result = "timeout";
+                    break;
+                }
+                Thread.Sleep(PingPeriod);
+            }
+        }
+
+        private void timeout(object sender, RunWorkerCompletedEventArgs e)
+        {
+            string res = e.Result as String;
+            if (res != null && res.Equals("timeout"))
+            {
+                GridGameTable.Opacity = 0.3;
+                enableMoving = false;
+                MessageBox.Show("Lejárt az idő!");
+            }
+        }
+
+
 
         private void cellMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -280,20 +280,12 @@ namespace iqchampion_design
                     string rname = (sender as Rectangle).Name;
                     if (Client.Move(User, int.Parse(rname.Substring(4, 1)), int.Parse(rname.Substring(5, 1))))
                     {
+                        timeoutworker.CancelAsync();
+
+                        kerdez();
+
                         GridGameTable.Opacity = 0.3;
                         enableMoving = false;
-                        //MessageBox.Show(Client.getQuestion(User).Questionn);
-                        //// megválaszolta...
-                        //bool good = Client.answerQuestion(User, 0);
-                        //activityworker.RunWorkerAsync();
-                        //if (good)
-                        //{
-                        //    MessageBox.Show("Helyes válasz");
-                        //}
-                        //else
-                        //{
-                        //    MessageBox.Show("Rossz válasz");
-                        //}
                     }
                     else
                     {
@@ -330,6 +322,31 @@ namespace iqchampion_design
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBoxChatWrite.Text = "";
+        }
+
+        private void kerdez()
+        {
+            //get the question here
+            KerdesKartya kartya = new KerdesKartya(this);
+            kartya.ShowDialog();
+
+            GridGameTable.Opacity = 0.3;
+
+            switch (kartya.Answer)
+            {
+                case AnswerState.Good:
+                    MessageBox.Show("Helyes válasz");
+                    break;
+                case AnswerState.Bad:
+                    MessageBox.Show("Rossz válasz");
+                    break;
+                case AnswerState.Timeout:
+                    MessageBox.Show("Lejárt az idő!");
+                    break;
+            }
+            kartya.Close();
+
+            activityworker.RunWorkerAsync();
         }
     }
 }

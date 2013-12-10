@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e91cef14b4904a0a8094261ec060f2f5" Name="Diagram1">
+      <Diagram DiagramId="87dd11635fb240dfa90841ac5a6f3008" Name="Diagram1">
         <EntityTypeShape EntityType="IQChampionsModel.dbQuestionSet" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IQChampionsModel.dbUserSet" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
       </Diagram>

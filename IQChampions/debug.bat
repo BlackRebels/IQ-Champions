@@ -1,13 +1,14 @@
 cd AlkalmazasSzerver\bin\Debug
-start AlkalmazasSzerver.exe
+start IQbackend.exe
 TIMEOUT /T 1
 cd ..\..\..\Kliens\bin\Debug
-FOR %%A IN ("Egyeske" "Ketteske" "Harmaska"  "Negyeske" ) DO (
-rem "a" "b" "c" "d"	
-	START iqchampion_design.exe %%A Play	
+FOR %%A IN ("Egyeske" "Ketteske" "Harmaska" "Negyeske") DO (
+rem "a" "b" "c" "d"	 
+	START IQChampions.exe %%A Play	
+	TIMEOUT /T 1
 )
 
 PAUSE
 
-TASKKILL /F /IM iqchampion_design.exe
-TASKKILL /F /IM AlkalmazasSzerver.exe
+TASKKILL /F /IM IQbackend.exe
+TASKKILL /F /IM IQChampions.exe

@@ -129,6 +129,9 @@ namespace IQChampionsServiceLibrary
         Question getQuestion(string user);
 
         [OperationContract]
+        int getTimeLeft(string user);
+
+        [OperationContract]
         bool answerQuestion(string user, int id);
 
         [OperationContract]

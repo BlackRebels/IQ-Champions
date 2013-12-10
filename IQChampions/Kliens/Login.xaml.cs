@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Security;
 using System.Text;
@@ -24,19 +25,12 @@ namespace iqchampion_design
         private static int pingPeriod = -1;
         private static IQServiceClient client = new IQServiceClient();
         private static string user = null;
+        private static bool debug;
 
-        public static int PingPeriod
-        {
-            get { return Login.pingPeriod; }
-        }
-        public static IQServiceClient Client
-        {
-            get { return Login.client; }
-        }
-        public static string User
-        {
-            get { return user; }
-        }
+        public static bool Debug { get { return Login.debug; } }
+        public static int PingPeriod { get { return Login.pingPeriod; } }
+        public static IQServiceClient Client { get { return Login.client; } }
+        public static string User { get { return user; } }
 
         public Login()
         {
@@ -49,11 +43,16 @@ namespace iqchampion_design
             myBrush2.ImageSource = new BitmapImage(new Uri(".\\Resources\\icon_closebutton.png", UriKind.Relative));
             klóz.Background = myBrush2;
 
-            string[] args = Environment.GetCommandLineArgs();
-            if (args.Length > 1)
+            debug = File.Exists("debug");
+
+            if (debug)
             {
-                TextBoxUser.Text = args[1];
-                ButtonClickLogin(this, null);
+                string[] args = Environment.GetCommandLineArgs();
+                if (args.Length > 1)
+                {
+                    TextBoxUser.Text = args[1];
+                    ButtonClickLogin(this, null);
+                }
             }
         }
 

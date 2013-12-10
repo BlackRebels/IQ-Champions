@@ -65,9 +65,9 @@ namespace iqchampion_design
         }
 
 
-                private void doActivity(object sender, RunWorkerCompletedEventArgs e)
-        {}
-                private int PingPeriod
+        private void doActivity(object sender, RunWorkerCompletedEventArgs e)
+        { }
+        private int PingPeriod
         {
             get { return Login.PingPeriod; }
         }
@@ -96,22 +96,24 @@ namespace iqchampion_design
             } while (!(sender as BackgroundWorker).CancellationPending);
         }
 
-    public void refreshUI(object sender,ProgressChangedEventArgs e)
-{
- if (e.UserState is Message[])
+        public void refreshUI(object sender, ProgressChangedEventArgs e)
+        {
+            if (e.UserState is Message[])
             {
                 Message[] chat = (e.UserState as Message[]);
                 chatbox.Items.Clear();
                 for (int i = chat.Length - 1; i >= 0; i--)
                 {
                     User u = chat[i].Sender;
-                    Label l = new Label();
-                    string s = chat[i].Time.ToString("HH:mm") + " [" + u.Name + "] " + chat[i].Msg;
-                    l.Content = StringExtensions.MultiInsert(s, "\r\n  ", 30);
-                    chatbox.Items.Add(l);
+                    TextBlock tb = new TextBlock();
+                    tb.TextWrapping = TextWrapping.Wrap;
+                    tb.Foreground = new SolidColorBrush(Color.FromRgb(u.Color[0], u.Color[1], u.Color[2]));
+                    string s = chat[i].Time.ToString("HH:mm") + " [" + u.Name + "] " + Environment.NewLine + chat[i].Msg;
+                    tb.Text = s;
+                    chatbox.Items.Add(tb);
                 }
             }
-    }
+        }
 
         private void wait(object sender, DoWorkEventArgs e)
         {
@@ -123,8 +125,8 @@ namespace iqchampion_design
                 }
             }
             catch (Exception exc)
-            { 
-            //!!!!!!!!! Wait miatt kihal a progi
+            {
+                //!!!!!!!!! Wait miatt kihal a progi
             }
         }
 
@@ -138,7 +140,7 @@ namespace iqchampion_design
         {
             if (e.Key == Key.Enter)
             {
-               // Client.Send(User, chatText.Text);
+                // Client.Send(User, chatText.Text);
                 chatText.Text = "";
             }
         }
@@ -157,7 +159,7 @@ namespace iqchampion_design
                 FelhasznaloPage page = new FelhasznaloPage(item.Content.ToString());
                 pageContainer.Content = page;
             }
-            
+
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)

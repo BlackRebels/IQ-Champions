@@ -25,18 +25,10 @@ namespace iqchampion_design
         private BackgroundWorker pingworker = null;
         private BackgroundWorker queueworker = null;
 
-        private string User
-        {
-            get { return Login.User; }
-        }
-        private IQServiceClient Client
-        {
-            get { return Login.Client; }
-        }
-        private int PingPeriod
-        {
-            get { return Login.PingPeriod; }
-        }
+        private string User { get { return Login.User; } }
+        private IQServiceClient Client { get { return Login.Client; } }
+        private int PingPeriod { get { return Login.PingPeriod; } }
+        private static bool Debug { get { return Login.Debug; } }
 
         public Menu(Login parent)
         {
@@ -66,10 +58,13 @@ namespace iqchampion_design
         {
             pingworker.RunWorkerAsync();
 
-            string[] args = Environment.GetCommandLineArgs();
-            if (args.Length > 2 && args[2].Equals("Play"))
+            if (Debug)
             {
-                ButtonClickGameRandom(this, null);
+                string[] args = Environment.GetCommandLineArgs();
+                if (args.Length > 2 && args[2].Equals("Play"))
+                {
+                    ButtonClickGameRandom(this, null);
+                }
             }
         }
 
@@ -150,7 +145,7 @@ namespace iqchampion_design
             stop = !stop;
             debugbutton.Content = "Pinging is " + (stop ? "off" : "on");
         }
-        
+
         private void ButtonClickGameRandom(object sender, RoutedEventArgs e)
         {
             if (queueworker.IsBusy && MessageBox.Show("Valóban ki akarsz lépni a sorból?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using IQUtil;
 
 namespace IQChampionsServiceLibrary
 {
@@ -19,6 +20,16 @@ namespace IQChampionsServiceLibrary
         public List<Message> Chat { get; set; }
         public Question Question { get { return question; } }
         public bool Finished { get { return finished; } }
+        public int TimeLeft
+        {
+            get
+            {
+                lock (lockObject)
+                {
+                    return timeleft;
+                }
+            }
+        }
 
         private const int turnTimeout = 30000;
         private static readonly byte[] defaultcolor = new byte[] { 225, 225, 225 };
@@ -29,6 +40,7 @@ namespace IQChampionsServiceLibrary
             new byte[] { 255, 175, 0 }  // Orange
         };
 
+        private static Object lockObject = new Object();
         private BackgroundWorker turnworker = null;
         private List<User> rollable;
         private User actualPlayer = new User();
@@ -36,6 +48,7 @@ namespace IQChampionsServiceLibrary
         private Question question = null;
         private bool finished = false;
         private int maxturns;
+        private int timeleft;
 
         public Room()
         {
@@ -55,8 +68,11 @@ namespace IQChampionsServiceLibrary
             Table = new GameTable(6, 4);
             turnworker = new BackgroundWorker();
             turnworker.DoWork += turn;
+            turnworker.RunWorkerCompleted += stop;
+
             Chat = new List<Message>();
             maxturns = IQService.Turns;
+            timeleft = -1;
         }
 
         public void addUser(User user)
@@ -84,6 +100,10 @@ namespace IQChampionsServiceLibrary
                 else if (c.Col == 3 && c.Row == 5) c.Owner = Players[3];
                 else c.Owner = new User() { Color = defaultcolor, State = States.IDLE };
             }
+            foreach (User u in Players)
+            {
+                u.Point = 0;
+            }
             turnworker.RunWorkerAsync();
         }
 
@@ -94,14 +114,24 @@ namespace IQChampionsServiceLibrary
             {
                 actualPlayer = null;
                 actualCell = null;
-
-                question = new Question(IQService.database.dbQuestionSet.OrderBy(r => Guid.NewGuid()).First());
+                using (IQDatabase database = new IQDatabase())
+                {
+                    question = new Question(database.dbQuestionSet.OrderBy(r => Guid.NewGuid()).First());
+                }
                 selectNextMove();
 
+                timeleft = turnTimeout / 1000;
                 Stopwatch stopper = new Stopwatch();
                 stopper.Start();
                 // Lépésre vár
-                while (stopper.ElapsedMilliseconds < turnTimeout && actualCell == null) Thread.Sleep(IQService.Pingperiod);
+                while (stopper.ElapsedMilliseconds < turnTimeout && actualCell == null)
+                {
+                    lock (lockObject)
+                    {
+                        timeleft = (turnTimeout / 1000) - (int)(stopper.ElapsedMilliseconds / 1000);
+                    }
+                    Thread.Sleep(IQService.Pingperiod);
+                }
 
                 if (actualCell != null)
                 {
@@ -113,8 +143,13 @@ namespace IQChampionsServiceLibrary
                         (actualPlayer.State == States.ANSWER ||
                         (actualCell.Owner.State == States.ANSWER && actualCell.Owner.Name != null)))
                     {
+                        lock (lockObject)
+                        {
+                            timeleft = (turnTimeout / 1000) - (int)(stopper.ElapsedMilliseconds / 1000);
+                        }
                         Thread.Sleep(IQService.Pingperiod);
                     }
+                    timeleft = 0;
 
                     // Lejárt az idő: a válasz rossz
                     if (actualPlayer.AnswerResult == null)
@@ -163,6 +198,14 @@ namespace IQChampionsServiceLibrary
             }
 
             int r = IQService.rand.Next(rollable.Count);
+
+            if (IQService.Debug)
+            {
+                int debug = -1;
+                debug = rollable.FindIndex(x => x.Name.Equals("debug"));
+                if (debug != -1) r = debug;
+            }
+
             actualPlayer = rollable[r];
             rollable.RemoveAt(r);
 
@@ -172,18 +215,18 @@ namespace IQChampionsServiceLibrary
         public bool Move(int col, int row)
         {
             actualCell = Table.Table.Find(c => c.Row == col && c.Col == row);
-           /* bool ok = false;
+            bool attackable = false;
             foreach (Cell c in Table.Table)
             {
                 if (c.Owner == actualPlayer)
                     if (c.neighbor(actualCell))
                     {
-                        ok = true;
+                        attackable = true;
                         break;
                     }
-            }*/
+            }
             // vizsgálat nincs megvalósítva
-            if (true)
+            if (attackable)
             {
                 // Támad
                 actualPlayer.State = States.ANSWER;
@@ -214,5 +257,56 @@ namespace IQChampionsServiceLibrary
 
         }
 
+        private void stop(object sender, RunWorkerCompletedEventArgs e)
+        {
+            using (IQDatabase database = new IQDatabase())
+            {
+                try
+                {
+                    Statistic s = new Statistic(this);
+                    string name = s.Users[0].Name;
+                    database.dbUserSet.First(x => x.name.Equals(name)).win++;
+                                      
+                    foreach (User u in s.Users)
+                    {
+                        name = u.Name;
+                        database.dbUserSet.First(x => x.name.Equals(name)).played++;                        
+                    }
+                    database.SaveChanges();
+
+                }
+                catch (Exception ex)
+                {
+                    Logger.log(Errorlevel.WARN, ex.Message + Environment.NewLine + ex.StackTrace);
+                }
+            }
+            /*
+            using (IQDatabase database = new IQDatabase())
+            {
+                try
+                {
+                    
+                    IQueryable<dbUserSet> dbul = database.dbUserSet.Where(x =>
+                        x.name.Equals(s.Users[0].Name) ||
+                        x.name.Equals(s.Users[1].Name) ||
+                        x.name.Equals(s.Users[2].Name) ||
+                        x.name.Equals(s.Users[3].Name)
+                        );
+                    foreach (dbUserSet u in dbul)
+                    {
+                        if (u.name.Equals(s.Users[0].Name))
+                        {
+                            u.win++;
+                        }
+                        u.played++;
+                    }
+                    database.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Logger.log(Errorlevel.ERROR, ex.Message + Environment.NewLine + ex.StackTrace);
+                }
+            }*/
+        }
     }
 }
